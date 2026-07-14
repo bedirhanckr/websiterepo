@@ -1,0 +1,717 @@
+<title>Site Analizi — Bedirhan Çakıroğlu Portfolio</title>
+<style>
+  :root{
+    --ground: #F7F4EE;
+    --panel:  #FDFBF6;
+    --ink:    #161513;
+    --muted:  #6B685F;
+    --line:   #E3DED2;
+    --line-2: #EFEAE0;
+    --accent: #C1401F;
+    --accent-soft: #F6E4DD;
+    --ok:     #3E7A54;
+    --ok-soft:#E1EDE3;
+    --warn:   #B87A17;
+    --warn-soft:#F3E7CE;
+    --shadow: 0 1px 2px rgba(20,19,17,0.04), 0 8px 32px -12px rgba(20,19,17,0.10);
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"URW Palladio L","Book Antiqua",Georgia,serif;
+    --sans:  -apple-system,BlinkMacSystemFont,"Segoe UI","Inter",system-ui,sans-serif;
+    --mono:  "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#141310;
+      --panel: #1B1A16;
+      --ink:   #EBE7DE;
+      --muted: #928F87;
+      --line:  #2A2825;
+      --line-2:#232120;
+      --accent:#D95A3A;
+      --accent-soft:#3A1E17;
+      --ok:    #6BAE83;
+      --ok-soft:#1D2A22;
+      --warn:  #D19638;
+      --warn-soft:#2E2417;
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 12px 40px -14px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#F7F4EE;--panel:#FDFBF6;--ink:#161513;--muted:#6B685F;
+    --line:#E3DED2;--line-2:#EFEAE0;--accent:#C1401F;--accent-soft:#F6E4DD;
+    --ok:#3E7A54;--ok-soft:#E1EDE3;--warn:#B87A17;--warn-soft:#F3E7CE;
+    --shadow: 0 1px 2px rgba(20,19,17,0.04), 0 8px 32px -12px rgba(20,19,17,0.10);
+  }
+  :root[data-theme="dark"]{
+    --ground:#141310;--panel:#1B1A16;--ink:#EBE7DE;--muted:#928F87;
+    --line:#2A2825;--line-2:#232120;--accent:#D95A3A;--accent-soft:#3A1E17;
+    --ok:#6BAE83;--ok-soft:#1D2A22;--warn:#D19638;--warn-soft:#2E2417;
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 12px 40px -14px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0; font-family:var(--sans); background:var(--ground); color:var(--ink);
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    font-feature-settings: "ss01","cv02";
+  }
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent}
+  a:hover{border-bottom-color:currentColor}
+  code, .mono{font-family:var(--mono); font-size:0.88em}
+
+  .frame{
+    max-width: 1180px; margin: 0 auto; padding: 48px 32px 96px;
+    display:grid; grid-template-columns: 220px 1fr; gap: 48px;
+  }
+  @media (max-width: 900px){
+    .frame{grid-template-columns:1fr; gap:32px; padding: 32px 20px 64px}
+    .toc{position:static !important; border-right:none; padding-right:0;
+         border-bottom:1px solid var(--line); padding-bottom:24px}
+  }
+
+  /* Top masthead */
+  .masthead{
+    grid-column: 1 / -1; border-bottom: 1px solid var(--line);
+    padding-bottom: 28px; margin-bottom: 8px;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .masthead .kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:16px;
+  }
+  .masthead h1{
+    font-family:var(--serif); font-weight:400; font-style:italic;
+    font-size: clamp(34px, 4.4vw, 56px); line-height:1.05; margin:0;
+    text-wrap: balance; letter-spacing:-0.01em;
+  }
+  .masthead .lede{
+    color: var(--muted); max-width: 46ch; font-size: 15px; margin: 14px 0 0;
+  }
+  .masthead .meta{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-align:right; line-height:1.8;
+  }
+  .masthead .meta b{color:var(--ink); font-weight:600}
+
+  /* Left ToC */
+  .toc{
+    position: sticky; top: 32px; align-self:start;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.05em;
+    padding-right: 24px; border-right:1px solid var(--line);
+  }
+  .toc .toc-label{
+    text-transform:uppercase; color:var(--muted); font-size:10px;
+    letter-spacing:0.18em; margin-bottom:12px;
+  }
+  .toc ol{list-style:none; padding:0; margin:0; counter-reset:t}
+  .toc li{margin-bottom:8px; counter-increment:t}
+  .toc li::before{
+    content: counter(t, decimal-leading-zero);
+    color: var(--muted); margin-right:8px; font-size:10px;
+  }
+  .toc a{color:var(--ink); border:none}
+  .toc a:hover{color:var(--accent)}
+
+  main{min-width:0}
+  section{margin-bottom: 56px}
+  section > h2{
+    font-family:var(--serif); font-weight:400; font-size: clamp(24px, 2.4vw, 32px);
+    margin: 0 0 8px; letter-spacing:-0.01em; text-wrap:balance;
+  }
+  section > .section-kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  section > p.intro{
+    color:var(--muted); max-width:64ch; margin: 0 0 24px; font-size:15px;
+  }
+
+  /* Executive summary */
+  .summary{
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 28px 32px; border-radius: 3px; margin-bottom: 56px;
+    box-shadow: var(--shadow);
+    display:grid; grid-template-columns: 1fr 1fr; gap: 24px 40px;
+  }
+  @media (max-width: 720px){.summary{grid-template-columns:1fr; padding: 24px}}
+  .summary h3{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--muted); font-weight:600; margin: 0 0 8px;
+  }
+  .summary p{margin:0; font-size:15px; line-height:1.55}
+  .summary .verdict{font-family:var(--serif); font-size:20px; font-style:italic;
+                    grid-column: 1 / -1; margin: 0 0 8px; color: var(--ink);}
+  .summary .verdict::before{content:"“"; color:var(--accent); margin-right:2px}
+  .summary .verdict::after{content:"”"; color:var(--accent); margin-left:2px}
+
+  /* Stats bar */
+  .stats{
+    display:grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin: 0 0 56px; overflow-x:auto;
+  }
+  .stats .cell{
+    padding: 20px 16px; border-right: 1px solid var(--line-2);
+    min-width: 140px;
+  }
+  .stats .cell:last-child{border-right:none}
+  .stats .num{
+    font-family:var(--serif); font-size: 32px; line-height:1;
+    letter-spacing:-0.02em; margin:0 0 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stats .lab{
+    font-family:var(--mono); font-size: 10px; letter-spacing:0.16em; text-transform:uppercase;
+    color: var(--muted);
+  }
+
+  /* Findings — card list */
+  .findings{display:grid; gap: 16px}
+  .finding{
+    background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--muted);
+    padding: 20px 24px; border-radius: 2px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 16px 20px; align-items: baseline;
+  }
+  .finding.sev-hi{border-left-color: var(--accent)}
+  .finding.sev-md{border-left-color: var(--warn)}
+  .finding.sev-lo{border-left-color: var(--muted)}
+  .finding.pos{border-left-color: var(--ok)}
+  .finding h4{
+    grid-column: 2 / 3; margin: 0;
+    font-family:var(--serif); font-size: 19px; font-weight:400; line-height:1.25;
+  }
+  .finding .chip{
+    grid-column: 1 / 2; align-self: baseline; margin-top: 3px;
+    font-family:var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; border: 1px solid transparent; white-space:nowrap;
+  }
+  .chip.hi{background: var(--accent-soft); color: var(--accent); border-color: var(--accent)}
+  .chip.md{background: var(--warn-soft);   color: var(--warn);   border-color: var(--warn)}
+  .chip.lo{background: var(--line-2);      color: var(--muted); border-color: var(--line)}
+  .chip.ok{background: var(--ok-soft);     color: var(--ok);    border-color: var(--ok)}
+  .finding .ref{
+    grid-column: 3 / 4; font-family:var(--mono); font-size: 10px; color: var(--muted);
+    letter-spacing:0.05em; white-space:nowrap;
+  }
+  .finding p{
+    grid-column: 2 / -1; margin: 0; color: var(--ink); font-size: 14.5px; line-height:1.6;
+  }
+  .finding p + p{margin-top: 8px; color: var(--muted)}
+  .finding .fix{
+    grid-column: 2 / -1;
+    background: var(--ground); border: 1px dashed var(--line);
+    padding: 10px 14px; margin-top: 8px;
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink); line-height:1.55;
+    white-space: pre-wrap; overflow-x:auto; border-radius: 2px;
+  }
+  .finding .fix::before{
+    content:"FIX"; display:inline-block; margin-right:10px;
+    font-size: 9px; letter-spacing:0.18em; color: var(--accent);
+  }
+  @media (max-width: 640px){
+    .finding{grid-template-columns:auto 1fr}
+    .finding .ref{grid-column:1/-1; text-align:left; margin-top:-4px}
+  }
+
+  /* Checklist table */
+  .checklist{
+    width: 100%; border-collapse: collapse; font-size: 14px;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .checklist th, .checklist td{
+    text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line-2);
+    vertical-align: top;
+  }
+  .checklist th{
+    font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.16em;
+    text-transform:uppercase; color: var(--muted); background: var(--panel);
+  }
+  .checklist th:first-child, .checklist td:first-child{width: 44%}
+  .checklist th:nth-child(2), .checklist td:nth-child(2){width: 88px; text-align:center}
+  .checklist td:nth-child(2) .chip{margin:0 auto; display:inline-block}
+  .checklist td:last-child{color: var(--muted); font-size: 13.5px}
+  .checklist tr:last-child td{border-bottom:none}
+
+  /* Priority list */
+  .prio{display:grid; gap: 12px}
+  .prio-group{
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 20px 24px; border-radius: 3px;
+  }
+  .prio-group h3{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    margin: 0 0 4px; color: var(--accent); font-weight:600;
+  }
+  .prio-group .est{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; color:var(--muted);
+    margin-bottom: 14px;
+  }
+  .prio-group ol{margin: 0; padding-left: 20px}
+  .prio-group li{margin-bottom: 10px; font-size: 14.5px; line-height:1.55}
+  .prio-group li b{color:var(--ink)}
+  .prio-group li code{
+    font-family:var(--mono); font-size:12.5px;
+    background: var(--ground); padding: 1px 6px; border-radius: 2px;
+    border: 1px solid var(--line-2);
+  }
+
+  /* Motion note block */
+  .motion{
+    background: linear-gradient(180deg, var(--panel), var(--ground));
+    border: 1px solid var(--line); border-radius: 3px;
+    padding: 32px; margin-top: 40px;
+    display:grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  @media (max-width: 720px){.motion{grid-template-columns:1fr; padding: 24px}}
+  .motion h3{
+    font-family: var(--serif); font-style:italic; font-weight:400;
+    font-size: 22px; margin: 0 0 12px; letter-spacing:-0.01em;
+  }
+  .motion ul{margin: 0; padding-left: 20px; font-size: 14.5px; line-height:1.6}
+  .motion .col-title{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+
+  hr.rule{
+    border:none; border-top:1px solid var(--line); margin: 56px 0;
+  }
+
+  /* Footer */
+  .colophon{
+    grid-column: 1/-1; padding-top: 40px; border-top: 1px solid var(--line);
+    display:flex; justify-content:space-between; gap: 24px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.05em; color: var(--muted);
+  }
+
+  /* Focus states */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+  }
+
+  /* Small tweaks */
+  em{font-style:italic; color: var(--ink)}
+  strong{font-weight:600}
+</style>
+
+<div class="frame">
+
+  <header class="masthead">
+    <div>
+      <div class="kicker">Bütüncül Değerlendirme · v1</div>
+      <h1>Portfolio sitesi — nerede güçlü, nerede eksik, sırada ne var</h1>
+      <p class="lede">Site şu anda içerik olarak sağlam ve teknik olarak temiz; keşfedilebilirlik, sosyal paylaşım ve dinamizm katmanları ise henüz kurulmamış. Aşağıda ne çalışıyor, ne çalışmıyor ve önce hangisine dokunmak en yüksek getiriyi verir — hepsi tek sayfada.</p>
+    </div>
+    <div class="meta">
+      <b>2026-07-14</b><br>
+      Branch · claude/project-recall-check-ix76if<br>
+      Base · commit 23f4b9e
+    </div>
+  </header>
+
+  <aside class="toc" aria-label="İçindekiler">
+    <div class="toc-label">İçindekiler</div>
+    <ol>
+      <li><a href="#ozet">Yönetici özeti</a></li>
+      <li><a href="#sayilar">Sayılarla site</a></li>
+      <li><a href="#guclu">Ne iyi çalışıyor</a></li>
+      <li><a href="#eksik">Eksikler & bulgular</a></li>
+      <li><a href="#checklist">Portfolyo checklist</a></li>
+      <li><a href="#oncelik">Öncelikli iş listesi</a></li>
+      <li><a href="#motion">Motion / parallax planı</a></li>
+    </ol>
+  </aside>
+
+  <main>
+
+    <!-- ============ SUMMARY ============ -->
+    <section id="ozet" style="margin-bottom:40px">
+      <div class="summary">
+        <p class="verdict">Bir mühendis-tasarımcının portfolyosu olarak zaten inandırıcı — dinamizm ve keşfedilebilirlik eklenirse tam bir portfolyo sitesine dönüşür.</p>
+        <div>
+          <h3>Ne var</h3>
+          <p>9 vaka çalışması, 13-aşamalı süreç anlatımı, ölçülebilir sonuçlar (TEKNOFEST ödülü, İTÜ 2., Robotistan'da satılan ürün), EN/DE/TR tam çeviri, tutarlı Braun-tarzı görsel dil, mobile-safe layout, temiz kod.</p>
+        </div>
+        <div>
+          <h3>Ne eksik</h3>
+          <p>Sosyal paylaşımda kırık önizleme (OG image + favicon yok), portfolyo destesi footer'da gömülü, hero neredeyse tamamen portre — üstün işlerin görselleri geride, hiç motion yok, contact form gerçekten bir yere gitmiyor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section id="sayilar" style="margin-bottom:56px">
+      <div class="section-kicker">01 — Sayılarla</div>
+      <h2>Şu an nerede duruyor</h2>
+      <div class="stats">
+        <div class="cell"><p class="num">9</p><div class="lab">Vaka çalışması</div></div>
+        <div class="cell"><p class="num">3</p><div class="lab">Dil (EN/DE/TR)</div></div>
+        <div class="cell"><p class="num">81</p><div class="lab">Optimize görsel</div></div>
+        <div class="cell"><p class="num">23<span style="font-size:16px;color:var(--muted)"> MB</span></p><div class="lab">Toplam görsel yükü</div></div>
+        <div class="cell"><p class="num">53</p><div class="lab">PDF deck slaydı</div></div>
+        <div class="cell"><p class="num">5</p><div class="lab">Bekleyen sketch slotu</div></div>
+      </div>
+    </section>
+
+    <!-- ============ GUCLU YANLAR ============ -->
+    <section id="guclu">
+      <div class="section-kicker">02 — Güçlü yanlar</div>
+      <h2>Site şu konularda hakkını veriyor</h2>
+      <p class="intro">Bir hiring manager 15 saniyede "bu adam işi biliyor" hissiyle ayrılır. Aşağıdakiler bunun sebebi.</p>
+
+      <div class="findings">
+
+        <div class="finding pos">
+          <span class="chip ok">Kanıtlanmış</span>
+          <h4>Süreç anlatımı gerçek, pazarlama değil</h4>
+          <span class="ref">work/*.html</span>
+          <p>13-aşamalı vaka çalışması yapısı (Problem → Araştırma → Kriter → Konsept → Sketch → CAD → Mühendislik → DFM/DFA → Prototip → Test → İterasyon → Nihai → Kazanım) portfolyoyu gallery değil <em>engineering document</em> yapıyor. Retroscent'te "prototipimiz yok, dürüstçe söylüyoruz" notu güven ekliyor.</p>
+        </div>
+
+        <div class="finding pos">
+          <span class="chip ok">Kanıtlanmış</span>
+          <h4>Doğrulanabilir sonuçlar</h4>
+          <span class="ref">Pioneer, REX, Rockhounder</span>
+          <p>TEKNOFEST ödülü (fotoğraflı), İTÜ 2. mezuniyet projesi, Robotistan'da satılan gerçek ürün — hepsi doğrulanabilir. "Innovative solution" jargonu yok, sayılar var. Bu, hiring manager için farkı yaratan şey.</p>
+        </div>
+
+        <div class="finding pos">
+          <span class="chip ok">Kanıtlanmış</span>
+          <h4>Tam EN/DE/TR desteği</h4>
+          <span class="ref">assets/js/i18n.js</span>
+          <p>168 KB, 1348 satır i18n bundle'ı. 9 vaka + genel içerik tam çevrilmiş. Almanya iş başvuruları için kritik: DE fallback yok, gerçekten Almanca. Sadece bir kayıp uyarısı — <code>data-i18n</code> vs <code>data-i18n-html</code> ayrımı frajil; 2026-07-10'da tek bir kaçırılmamış tırnak dili öldürmüş.</p>
+        </div>
+
+        <div class="finding pos">
+          <span class="chip ok">Kanıtlanmış</span>
+          <h4>Görsel dil tutarlı</h4>
+          <span class="ref">tokens.css, style.css</span>
+          <p>Braun/Rams grayscale + tek bir accent (#C1401F), Inter + JetBrains Mono, "dim-mark" motifi, `#nihai` full-bleed close. Modaya kaçmayan, endüstriyel-tasarımcı-kimliğine uygun bir dil. Vaka sayfaları arasında hiç kaymıyor.</p>
+        </div>
+
+        <div class="finding pos">
+          <span class="chip ok">Kanıtlanmış</span>
+          <h4>Teknik alt yapı temiz</h4>
+          <span class="ref">git repo, netlify.toml</span>
+          <p>Tüm görseller alt-text'li, hiçbir `img` `alt`'sız değil. WebP + JPEG paralel format, 1 yıl immutable cache, mobil overflow yok, focus states var. Auto-deploy pipeline kurulu. Bu genelde portfolyolarda gözden kaçan bir alt zemin.</p>
+        </div>
+
+        <div class="finding pos">
+          <span class="chip ok">Kanıtlanmış</span>
+          <h4>Vaka içi navigasyon rahat</h4>
+          <span class="ref">case-subnav, case-pager</span>
+          <p>Her vakada sticky 13-aşama subnav (uzun sayfada okuyucu yolunu kaybetmiyor) + sonda prev/next proje pager. Bir tık kadar bile ölü yol yok.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ EKSIKLER ============ -->
+    <section id="eksik">
+      <div class="section-kicker">03 — Bulgular</div>
+      <h2>Eksik ve iyileştirilmesi gereken</h2>
+      <p class="intro">Severity'e göre sıralı. Kırmızı = paylaşım/keşif kaybı yaratıyor, sarı = deneyim pürüzü, gri = ince ayar.</p>
+
+      <div class="findings">
+
+        <div class="finding sev-hi">
+          <span class="chip hi">Yüksek</span>
+          <h4>Sosyal paylaşımda kırık önizleme</h4>
+          <span class="ref">index.html:8-10</span>
+          <p><code>og:title</code> ve <code>og:description</code> var, ama <b><code>og:image</code> yok</b>. LinkedIn'e, WhatsApp'a, mail'e link yapıştırınca boş boz kart çıkıyor. Aynı şey Twitter card için de geçerli — hiç yok.</p>
+          <p>Bir portfolyo sitesinde en çok kaybedilen "ilk izlenim" burası — link paylaşıldığında görsel varsa tıklanma katbekat artar.</p>
+          <div class="fix">&lt;meta property="og:image" content="https://cakiroglu.netlify.app/assets/img/pioneer-mk2/hero-nose-render.jpg"&gt;
+&lt;meta property="og:image:width" content="1600"&gt;
+&lt;meta property="og:image:height" content="900"&gt;
+&lt;meta property="og:url" content="https://cakiroglu.netlify.app/"&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:image" content="https://cakiroglu.netlify.app/assets/img/pioneer-mk2/hero-nose-render.jpg"&gt;
+&lt;link rel="canonical" href="https://cakiroglu.netlify.app/"&gt;</div>
+        </div>
+
+        <div class="finding sev-hi">
+          <span class="chip hi">Yüksek</span>
+          <h4>Favicon yok — tarayıcı sekmesinde adsız</h4>
+          <span class="ref">tüm sayfalar</span>
+          <p>Hiçbir sayfada <code>&lt;link rel="icon"&gt;</code> yok. Chrome sekmelerinde 15 sekme açıkken portfolyon "sitesiz kağıt" ikonuyla duruyor. Küçük ama profesyonellik sinyali.</p>
+          <div class="fix">/* İki satırlık çözüm: repo root'a favicon.svg (BC monogram, signal red) koy */
+&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</div>
+        </div>
+
+        <div class="finding sev-hi">
+          <span class="chip hi">Yüksek</span>
+          <h4>Portfolyo destesi keşfedilemez</h4>
+          <span class="ref">index.html footer</span>
+          <p>`pdf/` altında güzel bir 53-slaytlık interactive deck var; ana sayfada sadece footer'ın en altındaki bir alt-satır olarak "View portfolio online ↗" şeklinde geçiyor. Hero altında dedicated bir "Portfolio Deck" CTA olmalı — hem web'i incelemek istemeyen recruiter için hem de PDF indirebilmek için.</p>
+          <p>Ayrıca — Behance profili boş ama Portfolio bölümünde LinkedIn seviyesinde yer alıyor. Ya doldurulmalı ya çıkarılmalı.</p>
+        </div>
+
+        <div class="finding sev-hi">
+          <span class="chip hi">Yüksek</span>
+          <h4>Hero'da portre büyük, iş görseli yok</h4>
+          <span class="ref">index.html hero-grid</span>
+          <p>Yeni tek-sayfa tasarımda hero = büyük başlık + portre. Portre iyi bir insan sinyali ama <b>hero'da tek bir öne çıkan iş görseli olmaması</b> "ne yaptığını" görsel olarak ilk 2 saniyede söylemiyor. TEKNOFEST fotoğrafı ya da Pioneer render'ı arka plan / yan panel olarak yer alsa: hem yüz hem iş, aynı ekranda.</p>
+          <p>Alternatif: portreyi küçük tut, hero-media alanı olarak 3-5 saniyelik loop bir render carousel (motion planına giriyor).</p>
+        </div>
+
+        <div class="finding sev-md">
+          <span class="chip md">Orta</span>
+          <h4>Contact form hiçbir yere gitmiyor</h4>
+          <span class="ref">index.html:271</span>
+          <p>Form var, "Send →" butonu var, ama <code>&lt;form&gt;</code>'da <code>action</code> yok — submit'te sayfa yenileniyor ve hiçbir şey olmuyor. "Opens your email client" yazıyor ama gerçekte açmıyor.</p>
+          <p>İki opsiyon: (a) sadece kaldır, mailto: linkini öne çıkar; (b) Netlify Forms aktive et (repo git'te → Netlify sıfır konfigürasyonla form işleme veriyor).</p>
+          <div class="fix">&lt;form class="contact-form" name="contact" method="POST" data-netlify="true"&gt;
+  &lt;input type="hidden" name="form-name" value="contact"&gt;
+  ...
+&lt;/form&gt;</div>
+        </div>
+
+        <div class="finding sev-md">
+          <span class="chip md">Orta</span>
+          <h4>Case study sayfaları eski çoklu-sayfa nav'a sahip</h4>
+          <span class="ref">work/*.html header</span>
+          <p>Az önce fixlendi (bu commit'te), ama şunu vurgulamak gerek: <em>single-page redesign eksik kalmış</em>. Case study sayfası kendi başlığıyla "Bedirhan Çakıroğlu / Industrial Designer / Design Engineer" yazan ayrı bir header'a sahip. Sitenin gerisiyle görsel devamlılık zayıf. Header'ı sadeleştirmek + case study'yi index'in üstünden overlay olarak açmak (modal / slide-over) düşünülebilir.</p>
+        </div>
+
+        <div class="finding sev-md">
+          <span class="chip md">Orta</span>
+          <h4>Google Fonts CDN external — offline/privacy zayıflığı</h4>
+          <span class="ref">index.html:11</span>
+          <p>Inter + JetBrains Mono her sayfa yükleniyor. Netlify'da CDN cache'i iyi ama:  (a) GDPR açısından Almanya'daki ziyaretçi IP'si Google'a gidiyor — yaklaşımına göre risk;  (b) Google Fonts down olursa tipografi bozuluyor.</p>
+          <p>Netlify'a self-host: 2 woff2 dosyası (~120 KB), 1yıl cache. Font swap FOUT'u kaybolur, EEA sorunu çözülür.</p>
+        </div>
+
+        <div class="finding sev-md">
+          <span class="chip md">Orta</span>
+          <h4>Case study OG image de yok</h4>
+          <span class="ref">work/*.html:8-10</span>
+          <p>Aynı hikaye vaka sayfaları için: recruiter Pioneer sayfasını atınca boş kart. Her vaka sayfasının kendi hero görselini <code>og:image</code>'a bağlayan bir tek-satır fix var.</p>
+        </div>
+
+        <div class="finding sev-md">
+          <span class="chip md">Orta</span>
+          <h4>About sayfası ile index'in "About me" bölümü çakışıyor</h4>
+          <span class="ref">about.html vs index.html#about</span>
+          <p>Single-page redesign yapılırken <code>about.html</code> silinmemiş, index'e "About me" bölümü eklenmiş. İkisi aynı bilgiyi farklı derinlikte anlatıyor. Ya index'in içeriği zenginleştirilip about.html <code>301 → /#about</code> yönlendirilmeli, ya index'te compact tutulup about.html detay sayfası olarak kalmalı — ama halihazırda nav'dan link verilmiyor.</p>
+        </div>
+
+        <div class="finding sev-lo">
+          <span class="chip lo">Düşük</span>
+          <h4>Repo kökünde artık kalmış <code>delta.html</code></h4>
+          <span class="ref">delta.html · 336 KB</span>
+          <p>Kök dizinde bir <code>delta.html</code> var — <code>work/delta.html</code>'in eski / kopya versiyonu görünüyor. 336 KB deploy edilen ama hiçbir yerden link verilmeyen ölü sayfa. Silinmesi güvenli.</p>
+        </div>
+
+        <div class="finding sev-lo">
+          <span class="chip lo">Düşük</span>
+          <h4>robots.txt hâlâ tam kapalı</h4>
+          <span class="ref">robots.txt</span>
+          <p>Deploy sonrası SEO açık olabilmesi için <code>Disallow: /</code> → <code>Allow: /</code> geçilmeli. Kayda değer ama şu an prematüre (görsel pass tamamlanmadan aramaya çıkmak istemeyebilirsin).</p>
+        </div>
+
+        <div class="finding sev-lo">
+          <span class="chip lo">Düşük</span>
+          <h4>JSON-LD Person şeması yok</h4>
+          <span class="ref">index.html head</span>
+          <p>Google "knowledge panel"e girmek isterseniz Person schema + Award (TEKNOFEST) + AlumniOf (İTÜ) + WorksFor (TUS Metallbau) ile aday olursunuz. ~40 satır JSON, tek dosya. Zorunlu değil ama recruiter Google araması sonuçlarını iyileştirir.</p>
+        </div>
+
+        <div class="finding sev-lo">
+          <span class="chip lo">Düşük</span>
+          <h4>Motion / hareket sıfır</h4>
+          <span class="ref">tüm sayfa</span>
+          <p>Sayfa "editorial magazine" durgunluğunda — okuma için iyi, ama bir endüstriyel tasarımcı portfolyosu için biraz sessiz. Scroll-triggered küçük reveal'lar, hero'da hafif parallax veya proje kartında hover video/render değişimi eklenirse "canlı" hisseder. Motion planı aşağıda.</p>
+        </div>
+
+        <div class="finding sev-lo">
+          <span class="chip lo">Düşük</span>
+          <h4>Dark mode yok</h4>
+          <span class="ref">tokens.css</span>
+          <p>Tasarım dili grayscale + accent olduğu için dark tema mükemmel uyar. Şu an sadece açık tema var — recruiter Mac Dark Mode'da açtığında körlüyor. `prefers-color-scheme` ile CSS custom property'lerini çevirmek yeterli.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ CHECKLIST ============ -->
+    <section id="checklist">
+      <div class="section-kicker">04 — Standartlara karşı</div>
+      <h2>Portfolyo best-practice check-list</h2>
+      <p class="intro">Endüstriyel tasarımcı / design engineer portfolyolarında beklenen 22 madde. Her satırın karşısında sitenin şu anki durumu.</p>
+
+      <table class="checklist">
+        <thead>
+          <tr><th>Madde</th><th>Durum</th><th>Not</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Net kimlik / konumlanma (kim, ne, tek cümle)</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>"I design products, and I like knowing how they're made." — net.</td></tr>
+          <tr><td>Vaka çalışmaları — proje bazlı derinlik</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>9 tam vaka + 4 kısa vaka, 13 aşama.</td></tr>
+          <tr><td>Süreç görünürlüğü (sketch, CAD, prototype)</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>Ama 5 sketch slotu hâlâ boş (Pioneer, Rockhounder, REX, Delta, Retroscent).</td></tr>
+          <tr><td>Ölçülebilir sonuç / etki</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>Ödüller + gerçek satılan ürün + akademik dereceler.</td></tr>
+          <tr><td>Teknik derinlik (DFM, mühendislik dili)</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>Real Robotistan assembly-catalog sayfaları, TUS Metallbau bloku.</td></tr>
+          <tr><td>Görsel dil / tasarım tutarlılığı</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>Braun/Rams token sistemi, tek accent.</td></tr>
+          <tr><td>Mobile-uyumlu, yatay scroll yok</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>Doğrulandı: 375px'te 375px belge genişliği.</td></tr>
+          <tr><td>Optimize görsel yükü</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>81 dosya, 23 MB toplam (kaynak 64 MB'dan %64 küçültüldü).</td></tr>
+          <tr><td>Çoklu dil</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>EN + DE + TR, hepsi eksiksiz.</td></tr>
+          <tr><td>Alt text — a11y</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>Index'te 10/10 img alt'lı.</td></tr>
+          <tr><td>Downloadable / print PDF</td>
+              <td><span class="chip md">Kısmen</span></td>
+              <td>Interactive deck hazır (pdf/), ama PDF export edilmedi; footer'da gömülü.</td></tr>
+          <tr><td>Contact — mailto + LinkedIn + Behance</td>
+              <td><span class="chip md">Kısmen</span></td>
+              <td>Var ama Behance boş, contact form ölü.</td></tr>
+          <tr><td>Sosyal paylaşım kartı (OG image + twitter)</td>
+              <td><span class="chip hi">Yok</span></td>
+              <td>Kritik. Öncelik #1.</td></tr>
+          <tr><td>Favicon</td>
+              <td><span class="chip hi">Yok</span></td>
+              <td>Hiçbir sayfada.</td></tr>
+          <tr><td>Case study prev/next navigation</td>
+              <td><span class="chip ok">Var</span></td>
+              <td>.case-pager component.</td></tr>
+          <tr><td>Analytics / Plausible / Fathom</td>
+              <td><span class="chip lo">Yok</span></td>
+              <td>Bilinçli tercih olabilir; Netlify Analytics veya Plausible eklenebilir.</td></tr>
+          <tr><td>Dark mode desteği</td>
+              <td><span class="chip md">Yok</span></td>
+              <td>Grayscale tasarım için ideal.</td></tr>
+          <tr><td>Motion / micro-interaction</td>
+              <td><span class="chip md">Yok</span></td>
+              <td>Sonraki faz konusu (aşağıda).</td></tr>
+          <tr><td>Awards / press özet sayfası</td>
+              <td><span class="chip lo">Yok</span></td>
+              <td>Vakalar içinde geçiyor, aggregate yok.</td></tr>
+          <tr><td>Testimonial / önerim (Prof, işveren)</td>
+              <td><span class="chip lo">Yok</span></td>
+              <td>TUS Metallbau'dan ya da İTÜ hocasından 2-3 satır çok etkili olur.</td></tr>
+          <tr><td>Blog / writing / thinking</td>
+              <td><span class="chip lo">Yok</span></td>
+              <td>Endüstriyel tasarım portfolyoları için opsiyonel; senin için önerilmez, konsantre kal.</td></tr>
+          <tr><td>Structured data (JSON-LD)</td>
+              <td><span class="chip lo">Yok</span></td>
+              <td>Person + Award schema, ~40 satır.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ PRIORITY ============ -->
+    <section id="oncelik">
+      <div class="section-kicker">05 — Aksiyon</div>
+      <h2>Öncelikli iş listesi</h2>
+      <p class="intro">Yüksek getiri / düşük çaba önce. Hepsi git branch üzerinden bana yaptırılabilir; her madde bir commit.</p>
+
+      <div class="prio">
+
+        <div class="prio-group">
+          <h3>Blok 1 — hızlı kazanımlar</h3>
+          <div class="est">Tahmini süre: ~1 saat · sadece kod</div>
+          <ol>
+            <li><b>OG image + twitter card + canonical URL</b> — 6 satır meta, tüm sayfalara. Sosyal paylaşım kartı çalışır hale gelir. <em>En yüksek ROI, dokun.</em></li>
+            <li><b>Favicon (SVG monogram + apple-touch-icon)</b> — sitenin kendi renkleriyle 2 dosya + 2 link satırı.</li>
+            <li><b>Contact form fix</b> — ya Netlify Forms ile aktive et, ya formu tamamen kaldırıp mailto CTA yap.</li>
+            <li><b>Kök <code>delta.html</code> ölü dosya sil</b> — 336 KB gereksiz deploy.</li>
+            <li><b>Behance boşsa Portfolio bölümünden linkini geçici olarak çıkar</b> — boş profil linki güven kaybettirir.</li>
+          </ol>
+        </div>
+
+        <div class="prio-group">
+          <h3>Blok 2 — orta vadeli</h3>
+          <div class="est">Tahmini süre: ~yarım gün</div>
+          <ol>
+            <li><b>Hero yeniden düzenle</b> — portreyi küçült, yanına 3-4 iş görselinin dönüşümlü göründüğü küçük bir "featured work" panel koy. İşi ve yüzü aynı anda göster.</li>
+            <li><b>Dedicated Portfolio Deck section</b> — hero'nun hemen altında ya da Selected Works'ün üstünde: "View full portfolio deck →" (Behance boş kaldığı sürece bu ana çekim noktası olur).</li>
+            <li><b>Dark mode</b> — token'lar zaten CSS variable, bir <code>@media (prefers-color-scheme: dark)</code> bloğu + toggle butonu.</li>
+            <li><b>Google Fonts self-host</b> — 2 woff2, ~120 KB. GDPR + performans.</li>
+            <li><b>About sayfası ile index'in About bölümünü uzlaştır</b> — ya index'i zenginleştir + about.html'i redirect'e çevir, ya nav'a "More" linki ekle.</li>
+            <li><b>Case study sayfalarında da OG image</b> — her vaka kendi hero'sunu paylaşımda göstersin.</li>
+          </ol>
+        </div>
+
+        <div class="prio-group">
+          <h3>Blok 3 — uzun vadeli</h3>
+          <div class="est">Tahmini süre: 1+ gün, birden fazla oturum</div>
+          <ol>
+            <li><b>Kalan 5 sketch slotunu doldur</b> (Pioneer / Rockhounder / REX / Delta / Retroscent) — senin bana göndermene bağlı.</li>
+            <li><b>Motion katmanı</b> — aşağıdaki plana göre. En etkili yer: hero + work grid hover.</li>
+            <li><b>Testimonial section</b> — İTÜ hocandan veya TUS Metallbau'dan 2-3 satır, portre + kısa alıntı.</li>
+            <li><b>Awards özet sayfası</b> — TEKNOFEST + İTÜ 2. + FURNITUR 2023 vs. tek bir <code>/awards</code> sayfasında.</li>
+            <li><b>JSON-LD Person schema</b> — Google knowledge panel için.</li>
+            <li><b>PDF export + linkleri aktifleştir</b> — deck'in Chrome print → PDF çıkışını al, footer'daki "Download PDF" butonunu aç.</li>
+            <li><b>robots.txt → Allow: /</b> + sitemap.xml güncelle, Google Search Console'a submit.</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ MOTION ============ -->
+    <section id="motion">
+      <div class="section-kicker">06 — Sonraki faz</div>
+      <h2>Motion / parallax planı</h2>
+      <p class="intro">Bir portfolyo sitesinde motion iki şey yapabilir: <em>ilgi çekmek</em> veya <em>işi yüceltmek</em>. İkisi karışmaz. Aşağıda hangisinin nereye yakıştığına dair düşük-risk / yüksek-risk ayrımı.</p>
+
+      <div class="motion">
+        <div>
+          <div class="col-title">Yakışan — düşük risk</div>
+          <ul>
+            <li><b>Hero'da hafif parallax</b> — arka plandaki featured work görselleri sayfa scroll'unda çok yavaşça yukarı süzülür (~10-20% hız farkı). Aşırıya kaçmayan sinema hissi.</li>
+            <li><b>Scroll-triggered reveal</b> — vaka çalışması bölümleri viewport'a girdikçe 6-8px yukarıdan opacity 0→1 fade. IntersectionObserver ile 20 satır JS. <code>prefers-reduced-motion</code>'a saygı zorunlu.</li>
+            <li><b>Work grid hover</b> — thumbnail üzerine gelince ikinci bir render'a cross-fade (Pioneer'in su altı fotoğrafı → CAD render'ı). Öykü anlatır: "bu, hem tasarım hem gerçek".</li>
+            <li><b>Case-study hero'da subtle Ken Burns</b> — hero render sayfa açılınca 8 saniyede %3 zoom-in. Statik bir görsele nefes verir.</li>
+            <li><b>Sayfa yükleme sekansı</b> — logo/başlık kısa bir stagger ile belirir. 500ms, tek seferlik. Tekrar tekrar tetiklemez.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Sakın yapma — yüksek risk</div>
+          <ul>
+            <li><b>Kaydırırken sürekli takip eden büyük parallax katmanları</b> — motion sickness, mobile'da rezalet, yavaş cihazda 20fps.</li>
+            <li><b>Cursor-follow-shimmer</b> — 2018 modası, artık "AI-generated design" sinyali.</li>
+            <li><b>Full-screen animasyonlu intro</b> ("Bedirhan" harfleri yazılır) — recruiter 3 saniye bekleyemez, kapatır.</li>
+            <li><b>Vaka içi "storytelling" scroll-hijack</b> — okuma hızını sen değil, kullanıcı kontrol etmeli.</li>
+            <li><b>Neon / glow / gradient bg animasyonları</b> — Braun estetiğinin karşıtı. Tasarım kimliğini yok eder.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px; font-size: 14.5px; color: var(--muted); max-width: 64ch;">
+        <strong>Öneri:</strong> önce içerik boşluklarını (7 sketch + OG image + favicon + hero yeniden düzenleme) bitir. Motion katmanı en son eklenir çünkü etkisini ancak <em>tamamlanmış</em> bir sayfada ölçebilirsin. Yarım hazır bir sayfaya animasyon eklemek boşluğu gizlemek gibi görünür.
+      </p>
+    </section>
+
+    <div class="colophon">
+      <div>Analiz — Claude Code oturumu · commit 23f4b9e</div>
+      <div>Bedirhan Çakıroğlu Portfolio · v1 · 2026-07-14</div>
+    </div>
+
+  </main>
+</div>
