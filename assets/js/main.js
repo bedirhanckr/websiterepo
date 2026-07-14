@@ -44,6 +44,22 @@
     btn.addEventListener("click", function(){ applyLang(btn.getAttribute("data-lang")); });
   });
 
+  // Theme toggle — inline <head> script already stamped data-theme from
+  // localStorage before paint (FOUC guard). Here we just wire the click.
+  function currentTheme(){
+    var forced = document.documentElement.getAttribute("data-theme");
+    if(forced === "dark" || forced === "light") return forced;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  var themeBtn = document.querySelector(".theme-toggle");
+  if(themeBtn){
+    themeBtn.addEventListener("click", function(){
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try{ localStorage.setItem("theme", next); }catch(e){}
+    });
+  }
+
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".primary-nav");
   if(toggle && nav){

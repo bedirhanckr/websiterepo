@@ -92,7 +92,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 /* ---------- 5. Navigasyon ---------- */
 .site-header{
   position: sticky; top: 0; z-index: 100;
-  background: rgba(252,252,251,0.9);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line-100);
@@ -179,7 +179,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 .status-badge--ready{ color: var(--signal); border-color: var(--signal); }
 
 .media-slot{
-  background: repeating-linear-gradient(135deg, #F1F0ED, #F1F0ED 10px, var(--paper) 10px, var(--paper) 20px);
+  background: repeating-linear-gradient(135deg, var(--line-100), var(--line-100) 10px, var(--paper) 10px, var(--paper) 20px);
   border: 1px dashed var(--line-300);
   aspect-ratio: 16 / 10;
   display: flex; align-items: center; justify-content: center; text-align: center;
@@ -194,7 +194,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 /* Final hero shot: full-bleed, uncropped (letterboxed on dark) for a more confident close per case study */
 #nihai .wrap > .media-slot{
   width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
-  aspect-ratio: 21 / 9; border: none; background: var(--ink-900);
+  aspect-ratio: 21 / 9; border: none; background: var(--nihai-bg);
 }
 #nihai .wrap > .media-slot img{ object-fit: contain; }
 @media (max-width: 720px){ #nihai .wrap > .media-slot{ aspect-ratio: 4 / 3; } }
@@ -309,7 +309,7 @@ html{ scroll-behavior: smooth; }
 .project-card .thumb.is-empty{
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: 10px; color: var(--ink-300);
-  text-transform: uppercase; background: repeating-linear-gradient(135deg, #F1F0ED, #F1F0ED 8px, var(--surface) 8px, var(--surface) 16px);
+  text-transform: uppercase; background: repeating-linear-gradient(135deg, var(--line-100), var(--line-100) 8px, var(--surface) 8px, var(--surface) 16px);
 }
 .project-card h3{ font-size: var(--fs-500); margin-bottom: 6px; }
 .project-card p{ color: var(--ink-500); font-size: var(--fs-300); margin: 0; }
@@ -377,10 +377,10 @@ html{ scroll-behavior: smooth; }
   }
 }
 
-.case-outcome{ background: var(--ink-900); color: var(--paper); }
+.case-outcome{ background: var(--nihai-bg); color: var(--paper); }
 .case-outcome .eyebrow{ color: var(--line-300); }
 .case-outcome h2{ color: var(--surface); }
-.case-outcome p{ color: #D7D6D2; }
+.case-outcome p{ color: var(--ink-500); }
 
 /* ---------- 8b. About sayfası ---------- */
 .about-head{ display: grid; grid-template-columns: 260px 1fr; gap: var(--sp-6); align-items: start; }
@@ -515,3 +515,25 @@ html{ scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce){
   .form-toast{ transition: none; }
 }
+
+/* ---------- Theme toggle (dark mode) ---------- */
+.theme-toggle{
+  width: 28px; height: 28px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-500); margin-left: var(--sp-3);
+  border-radius: 3px;
+  transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+.theme-toggle:hover{ color: var(--ink-900); background: var(--line-100); }
+.theme-toggle .theme-icon{ display: none; }
+/* Light default → show moon (indicates "switch to dark") */
+.theme-toggle .icon-moon{ display: block; }
+/* System-dark → show sun; explicit-light override wins back */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon{ display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun{ display: block; }
+}
+:root[data-theme="dark"] .theme-toggle .icon-moon{ display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun{ display: block; }
+:root[data-theme="light"] .theme-toggle .icon-moon{ display: block; }
+:root[data-theme="light"] .theme-toggle .icon-sun{ display: none; }
