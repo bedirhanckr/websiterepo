@@ -56,7 +56,7 @@ def optimize_one(src: Path, dst: Path, profile: dict) -> tuple[int, int]:
 
     if ext in (".jpg", ".jpeg") or (ext == ".png" and not alpha):
         rgb = img.convert("RGB")
-        primary = dst.with_suffix(".jpg")
+        primary = dst.with_suffix(ext if ext in (".jpg", ".jpeg") else ".jpg")
         rgb.save(primary, "JPEG",
                  quality=profile["jpeg_q"], optimize=True, progressive=True)
         webp = dst.with_suffix(".webp")
@@ -67,6 +67,13 @@ def optimize_one(src: Path, dst: Path, profile: dict) -> tuple[int, int]:
         webp = dst.with_suffix(".webp")
         img.save(webp, "WEBP", quality=profile["webp_q"], method=6,
                  lossless=False)
+
+    # If our re-encode came out larger than the source (usually iPhone JPEGs
+    # already tuned high), keep the source bytes verbatim — a smaller original
+    # beats a fatter "optimized" copy.
+    src_bytes = src.stat().st_size
+    if primary.stat().st_size > src_bytes:
+        primary.write_bytes(src.read_bytes())
 
     return primary.stat().st_size, webp.stat().st_size
 
