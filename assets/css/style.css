@@ -500,3 +500,18 @@ html{ scroll-behavior: smooth; }
   transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
 }
 [data-reveal].is-visible{ opacity: 1; transform: none; }
+
+/* Contact form success toast (fires when Netlify redirects with ?sent=1) */
+.form-toast{
+  position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 60px);
+  background: var(--ink-900); color: var(--surface);
+  padding: 14px 22px; border-radius: 4px;
+  font-size: var(--fs-300); font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  opacity: 0; transition: transform 300ms ease, opacity 300ms ease;
+  z-index: 100; max-width: calc(100vw - 32px);
+}
+.form-toast.is-in{ transform: translate(-50%, 0); opacity: 1; }
+@media (prefers-reduced-motion: reduce){
+  .form-toast{ transition: none; }
+}

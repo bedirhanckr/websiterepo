@@ -65,18 +65,27 @@
     document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-visible"); });
   }
 
-  var contactForm = document.getElementById("contact-form");
-  if(contactForm){
-    contactForm.addEventListener("submit", function(e){
-      e.preventDefault();
-      var name = contactForm.elements["name"].value.trim();
-      var email = contactForm.elements["email"].value.trim();
-      var message = contactForm.elements["message"].value.trim();
-      var subject = "Portfolio contact — " + name;
-      var body = message + "\n\n" + email;
-      window.location.href = "mailto:bedirhanckr.id@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    });
-  }
+  // Contact: submitted via Netlify Forms (data-netlify="true" on the <form>).
+  // After success Netlify redirects to /?sent=1 — show a small confirmation.
+  try{
+    var qs = new URLSearchParams(window.location.search);
+    if(qs.get("sent") === "1"){
+      var t = document.createElement("div");
+      t.className = "form-toast";
+      t.setAttribute("role","status");
+      t.textContent = "Thanks — I'll get back to you shortly.";
+      document.body.appendChild(t);
+      setTimeout(function(){ t.classList.add("is-in"); }, 20);
+      setTimeout(function(){
+        t.classList.remove("is-in");
+        setTimeout(function(){ t.remove(); }, 400);
+        // Clean up URL so the toast doesn't come back on refresh
+        if(history.replaceState){
+          history.replaceState({}, "", window.location.pathname + "#contact");
+        }
+      }, 4200);
+    }
+  }catch(e){}
 
   var subnavLinks = document.querySelectorAll(".case-subnav a");
   var sections = document.querySelectorAll(".case-section[id]");
