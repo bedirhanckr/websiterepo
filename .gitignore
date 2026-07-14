@@ -1,0 +1,25 @@
+# Local staging + build artifacts
+netlify-linux.zip
+portfolio-stage/
+
+# Raw / source images (only optimized versions belong in git)
+_raw-images/
+*.psd
+*.ai
+*.sketch
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (only if we ever add tooling)
+node_modules/
