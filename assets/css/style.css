@@ -353,6 +353,30 @@ html{ scroll-behavior: smooth; }
 .case-section .media-slot,
 .case-section .media-grid{ margin-top: var(--sp-4); }
 
+/* Break media out of the 760px reading column so renders actually breathe.
+   #nihai has its own full-bleed treatment (100vw dark backdrop) — skip it. */
+.case-section:not(#nihai) .media-slot,
+.case-section:not(#nihai) .media-grid{
+  width: min(var(--col-max), calc(100vw - 32px));
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+/* Slots inside a 2-col grid stay inside their grid track, not their own breakout. */
+.case-section:not(#nihai) .media-grid .media-slot{
+  width: auto;
+  margin-left: 0;
+  transform: none;
+}
+@media (max-width: 860px){
+  .case-section:not(#nihai) .media-slot,
+  .case-section:not(#nihai) .media-grid{
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
+
 .case-outcome{ background: var(--ink-900); color: var(--paper); }
 .case-outcome .eyebrow{ color: var(--line-300); }
 .case-outcome h2{ color: var(--surface); }
