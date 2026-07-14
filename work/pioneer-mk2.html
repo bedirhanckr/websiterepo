@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pioneer MKII — Underwater Explorer Nose Module | Bedirhan Çakıroğlu</title>
+<meta name="description" content="Nose module design for the Pioneer MKII underwater explorer — hydrodynamic shell and sensor mounting bracket. TEKNOFEST Design & Presentation Award.">
+<meta property="og:title" content="Pioneer MKII — Underwater Explorer Nose Module | Bedirhan Çakıroğlu">
+<meta property="og:description" content="Nose module design for the Pioneer MKII underwater explorer — hydrodynamic shell and sensor mounting bracket. TEKNOFEST Design & Presentation Award.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Bedirhan Çakıroğlu<small data-i18n="brand.role">Industrial Designer / Design Engineer</small></a>
+    <div style="display:flex; align-items:center;">
+      <nav class="primary-nav" id="primary-nav">
+        <a href="../index.html" data-i18n="nav.work">Work</a>
+        <a href="../about.html" data-i18n="nav.about">About</a>
+        <a href="../index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button><span class="sep">/</span><button data-lang="de" aria-pressed="false">DE</button><span class="sep">/</span><button data-lang="tr" aria-pressed="false">TR</button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="breadcrumb wrap" aria-label="breadcrumb">
+  <a href="../index.html" data-i18n="cs.crumb">Work</a><span>/</span><span>Pioneer MKII</span>
+</nav>
+<main id="main">
+
+  <section class="case-hero">
+    <div class="wrap wrap--narrow">
+      <span class="dim-mark" data-i18n="cs.p.eyebrow">AR·23 — Underwater Robotics</span>
+      <h1 class="h1" data-i18n="cs.p.h1">Pioneer MKII — Underwater Explorer, Nose Module Design</h1>
+      <p class="lede" data-i18n="cs.p.lede">A structure that holds the sensor firmly and a shell that passes through water cleanly had to be designed at the same time.</p>
+
+      <div class="meta-strip" style="margin-top: 0;">
+        <div class="item"><span data-i18n="cs.p.role.l">Role</span><span data-i18n="cs.p.role.v">Nose module, inner & outer design</span></div>
+        <div class="item"><span data-i18n="cs.p.team.l">Team</span><span data-i18n="cs.p.team.v">ITU ROV Team</span></div>
+        <div class="item"><span data-i18n="cs.p.result.l">Result</span><span data-i18n="cs.p.result.v">TEKNOFEST — Design & Presentation Award</span></div>
+        <div class="item"><span data-i18n="cs.p.method.l">Method</span><span data-i18n="cs.p.method.v">CAD + FDM 3D Printing</span></div>
+        <div class="item"><span data-i18n="cs.p.tools.l">Tools</span><span data-i18n="cs.p.tools.v">Fusion 360</span></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="case-subnav" aria-label="Vaka analizi bölümleri">
+    <div class="wrap">
+      <a href="#problem" data-i18n="cs.subnav.problem">Problem</a>
+      <a href="#arastirma" data-i18n="cs.subnav.arastirma">Araştırma</a>
+      <a href="#kriterler" data-i18n="cs.subnav.kriterler">Kriterler</a>
+      <a href="#konsept" data-i18n="cs.subnav.konsept">Konsept</a>
+      <a href="#sketch" data-i18n="cs.subnav.sketch">Sketch</a>
+      <a href="#cad" data-i18n="cs.subnav.cad">CAD</a>
+      <a href="#muhendislik" data-i18n="cs.subnav.muhendislik">Mühendislik</a>
+      <a href="#dfm">DFM/DFA</a>
+      <a href="#prototip" data-i18n="cs.subnav.prototip">Prototip</a>
+      <a href="#testler" data-i18n="cs.subnav.testler">Testler</a>
+      <a href="#iterasyon" data-i18n="cs.subnav.iterasyon">İterasyon</a>
+      <a href="#nihai" data-i18n="cs.subnav.nihai">Nihai</a>
+      <a href="#kazanim" data-i18n="cs.subnav.kazanim">Kazanım</a>
+    </div>
+  </nav>
+
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <span class="eyebrow">01 — <span data-i18n="cs.eyebrow.problem">Problem</span></span>
+      <h2 data-i18n="cs.p.problem.h">İki çelişen ihtiyaç, tek modül</h2>
+      <p data-i18n="cs.p.problem.p1">Pioneer MKII, kör dalış yapabilen; sensörlerle su altı görüntüleme ve harita çıkarma gibi görevleri hem uzaktan kumanda hem otonom modda yürüten bir keşif aracı. Aracın baş modülü, birbiriyle gerilim halindeki iki ihtiyacı aynı anda karşılamak zorundaydı:</p>
+      <ul>
+        <li data-i18n-html="cs.p.problem.li1">Sonar, kamera ve sensör bileşenlerinin su altı titreşimi ve basıncı altında <strong>sabit ve doğru konumda</strong> kalması</li>
+        <li data-i18n-html="cs.p.problem.li2">Gövdenin <strong>düşük sürükleme katsayılı</strong> bir formda ilerlerken, aynı sensörlerin dış ortamı optik/akustik olarak <strong>algılayabilmesi</strong></li>
+      </ul>
+      <p data-i18n="cs.p.problem.p2">Bu iki gereksinim çoğu zaman birbirine zıt yönde form baskısı uygular: yapısal sağlamlık kapalı, kalın kesitler ister; sensör görüşü açık, ince kesitler ister.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="arastirma">
+    <div class="wrap">
+      <span class="eyebrow">02 — <span data-i18n="cs.eyebrow.arastirma">Araştırma</span></span>
+      <h2 data-i18n="cs.p.arastirma.h">Referans ve gereksinim toplama</h2>
+      <p data-i18n="cs.p.arastirma.p">Takım içi teknik toplantılarda sensör paketinin (sonar + kamera) fiziksel ölçüleri, kablolama gereksinimleri ve görüş açısı kısıtları netleştirildi. Mevcut ROV baş modülü tasarımları referans alınarak, hangi form dilinin hem üretilebilir hem de yeterince hidrodinamik olduğuna dair bir kısa liste çıkarıldı.</p>
+      <div class="callout" data-i18n-html="cs.p.arastirma.callout"><strong>Not:</strong> Bu bölüm takım içi bir süreçti; bireysel araştırma dokümantasyonu bu vaka analizine eklenecek şekilde saklanmadı — süreç burada dürüstçe özetleniyor, abartılmıyor.</div>
+    </div>
+  </section>
+
+  <section class="case-section" id="kriterler">
+    <div class="wrap">
+      <span class="eyebrow">03 — <span data-i18n="cs.eyebrow.kriterler">Tasarım Kriterleri</span></span>
+      <h2 data-i18n="cs.p.kriterler.h">Neyin doğru olduğuna nasıl karar verdik</h2>
+      <table class="spec-table">
+        <tr><th data-i18n="cs.spec.criterion">Kriter</th><th data-i18n="cs.spec.requirement">Gereksinim</th></tr>
+        <tr><td data-i18n="cs.p.k1.k">Yapısal sabitlik</td><td data-i18n="cs.p.k1.v">Sensör paketi, su altı titreşiminde konumunu korumalı</td></tr>
+        <tr><td data-i18n="cs.p.k2.k">Hidrodinamik</td><td data-i18n="cs.p.k2.v">Düşük sürükleme, akışkan geçiş formu</td></tr>
+        <tr><td data-i18n="cs.p.k3.k">Sensör görüşü</td><td data-i18n="cs.p.k3.v">Optik/akustik algı için engelsiz alan</td></tr>
+        <tr><td data-i18n="cs.p.k4.k">Bakım erişimi</td><td data-i18n="cs.p.k4.v">Braket sökülüp takılabilmeli</td></tr>
+        <tr><td data-i18n="cs.p.k5.k">Görünürlük/güvenlik</td><td data-i18n="cs.p.k5.v">Su altında fark edilir renk</td></tr>
+        <tr><td data-i18n="cs.p.k6.k">Üretim yöntemi</td><td data-i18n="cs.p.k6.v">FDM 3D baskıyla üretilebilir olmalı</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="case-section" id="konsept">
+    <div class="wrap">
+      <span class="eyebrow">04 — <span data-i18n="cs.eyebrow.konsept">Konsept Geliştirme</span></span>
+      <h2 data-i18n="cs.p.konsept.h">Torpido formuna neden karar verildi</h2>
+      <p data-i18n="cs.p.konsept.p">Küt ve konik burun formları arasında değerlendirme yapıldı. Konik/torpido formu, hem sürükleme katsayısı hem de sensörlerin ileri yönde engelsiz görüş açısı için daha uygun bulundu. Kanatçık (fin) yerleşimi, aracın su altında yön stabilitesini desteklemesi için gövdenin arka ucuna, simetrik şekilde konumlandırıldı.</p>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/cad-render-04-top.jpg" alt="Pioneer MKII baş modülü üstten görünüm, simetrik kanatçık yerleşimi"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/cad-render-05.jpg" alt="Pioneer MKII gövde formu, açılı render"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="sketch">
+    <div class="wrap">
+      <span class="eyebrow">05 — <span data-i18n="cs.eyebrow.sketch">Sketch</span></span>
+      <h2 data-i18n="cs.p.sketch.h">El eskizinden CAD'e geçiş</h2>
+      <p class="text-muted" data-i18n="cs.p.sketch.p">Bu proje form kararlarının büyük kısmını doğrudan CAD ortamında iteratif olarak aldı; ayrı bir el eskiz seti bu vaka analizine eklenecek şekilde arşivlenmedi.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="cad">
+    <div class="wrap">
+      <span class="eyebrow">06 — <span data-i18n="cs.eyebrow.cad">CAD Süreci</span></span>
+      <h2 data-i18n="cs.p.cad.h">Form ve içi birlikte modellemek</h2>
+      <p data-i18n="cs.p.cad.p">Dış kabuk ve iç braket, birbirini kısıtlayan iki parça olarak paralel geliştirildi — iç bileşenlerin yerleşimi değiştikçe dış form da yeniden şekillendi. Süreç, üretim öncesi montaj mantığını doğrulamak için patlamış görünüm (exploded view) modellemesiyle desteklendi.</p>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/cad-render-01.jpg" alt="Pioneer MKII CAD render, açılı görünüm"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/cad-render-02.jpg" alt="Pioneer MKII CAD render, üstten açılı görünüm"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="muhendislik">
+    <div class="wrap">
+      <span class="eyebrow">07 — <span data-i18n="cs.eyebrow.muhendislik">Mühendislik Kararları</span></span>
+      <h2 data-i18n="cs.p.muh.h">İç tutucu braket</h2>
+      <p data-i18n-html="cs.p.muh.p1">Sonar, kamera ve sensör bileşenlerini tutan iç braket, iki gereksinimi aynı anda karşılayacak şekilde tasarlandı: <strong>bileşenleri sıkıca sabitlemek</strong> ve <strong>bakım için sökülebilir olmak</strong>. Braket, gövdenin iç silindirine oturan, modüler bir alt yapı olarak kuruldu.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/bracket-detail.jpg" alt="Sensör tutucu iç braket detay render"></div>
+      <p data-i18n="cs.p.muh.p2">Dış kabuk tarafında ise gövde, sensörlerin görüş hattını kesmeyecek şekilde açık bölgeler bırakılarak şekillendirildi — kesit kalınlığı, yapısal sağlamlık ile açıklık ihtiyacı arasında noktasal olarak ayarlandı.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/cross-section.jpg" alt="Gövde iç kesit görünümü, konnektör ve kablo geçişleri"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="dfm">
+    <div class="wrap">
+      <span class="eyebrow">08 — <span data-i18n="cs.eyebrow.dfm">DFM / DFA</span></span>
+      <h2 data-i18n="cs.p.dfm.h">Üretim kısıtı, tasarım kararına dönüştü</h2>
+      <p data-i18n="cs.p.dfm.p1">Turuncu renk, su altında görünürlük ve güvenlik için bilinçli bir tasarım kararıydı. Ancak üretim aşamasında TEKNOFEST'e yetişme baskısı nedeniyle, elimizdeki FDM filamentiyle devam etmek zorunda kaldık — nihai fiziksel prototip farklı bir renkte üretildi.</p>
+      <div class="callout" data-i18n-html="cs.p.dfm.callout"><strong>Bilinçli olarak gizlemiyoruz:</strong> Bu, gerçek üretim baskısının tasarım kararlarını nasıl şekillendirdiğini gösteren bir detay — akademik projelerde nadir bulunan bir olgunluk sinyali.</div>
+      <p data-i18n="cs.p.dfm.p2">Montaj için braket, elle sökülüp takılabilecek şekilde modüler tutuldu (DFA) — sensör değişimi veya bakım gerektiğinde tüm gövdenin açılmasına gerek kalmıyor.</p>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/exploded-01.jpg" alt="Patlamış görünüm, montaj sırası"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/exploded-02.jpg" alt="Patlamış görünüm, bileşen detayları"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="prototip">
+    <div class="wrap">
+      <span class="eyebrow">09 — <span data-i18n="cs.eyebrow.prototip">Prototipleme</span></span>
+      <h2 data-i18n="cs.p.prototip.h">FDM 3D baskı ile fiziksel doğrulama</h2>
+      <p data-i18n="cs.p.prototip.p">Tasarım, FDM 3D baskı ile üretildi ve gerçek elektronik/sensör bileşenleriyle monte edildi.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/pool-test-stand.jpeg" alt="Fiziksel prototip, yarışma standında"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="testler">
+    <div class="wrap">
+      <span class="eyebrow">10 — <span data-i18n="cs.eyebrow.testler">Testler</span></span>
+      <h2 data-i18n="cs.p.testler.h">Havuz testi</h2>
+      <p data-i18n="cs.p.testler.p">Araç, gerçek havuz koşullarında test edildi — hem hareket kararlılığı hem de sensör paketinin fiziksel bütünlüğü doğrulandı.</p>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/pool-test-overhead.jpeg" alt="Havuz testi, üstten görünüm"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/pool-test-underwater.jpg" alt="Havuz testi, su altından görünüm"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="iterasyon">
+    <div class="wrap">
+      <span class="eyebrow">11 — <span data-i18n="cs.eyebrow.iterasyon">İterasyon</span></span>
+      <h2 data-i18n="cs.p.iter.h">Sınırlı ama gerçek bir geri bildirim döngüsü</h2>
+      <p data-i18n="cs.p.iter.p">Renk kararı (DFM bölümünde anlatılan) bu projenin en somut iterasyon örneği. Diğer geometrik revizyonlar CAD aşamasında, fiziksel baskıya geçmeden önce yapıldı — bu nedenle çok sayıda fiziksel prototip iterasyonu değil, tek, doğrulanmış bir üretim turu oldu.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="nihai">
+    <div class="wrap">
+      <span class="eyebrow">12 — <span data-i18n="cs.eyebrow.nihai">Nihai Tasarım</span></span>
+      <h2 data-i18n="cs.shared.result">Sonuç</h2>
+      <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/hero-nose-render.jpg" alt="Pioneer MKII baş modülü, nihai render"></div>
+      <div class="media-grid" style="margin-top: 12px;">
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/exploded-03.jpg" alt="Nihai patlamış görünüm"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/pioneer-mk2/cad-render-03.jpg" alt="Nihai gövde render"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section case-outcome" id="kazanim">
+    <div class="wrap">
+      <span class="eyebrow">13 — <span data-i18n="cs.eyebrow.kazanim">Kazanım</span></span>
+      <h2 data-i18n="cs.p.kazanim.h">TEKNOFEST — Dizayn ve Sunum Ödülü</h2>
+      <p data-i18n-html="cs.p.kazanim.p">Genel sıralamada derece alınmasa da, Pioneer MKII TEKNOFEST'te <strong>Dizayn ve Sunum kategorisinde</strong> ödüllendirildi — tam olarak bu vaka analizinin öne çıkardığı yetkinlikle örtüşen bir sonuç: form, mühendislik zarafeti ve sunum bütünlüğü.</p>
+      <div class="media-slot is-ready" style="margin-top: var(--sp-4);"><img src="../assets/img/pioneer-mk2/team-teknofest.jpeg" alt="Takım, TEKNOFEST standında"></div>
+    </div>
+  </section>
+
+  <nav class="case-pager wrap" aria-label="Project navigation">
+    <a class="case-pager__link case-pager__prev" href="spiegelau.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.prev">Previous project</span>
+      <span class="case-pager__name">&larr; Spiegelau</span>
+    </a>
+    <a class="case-pager__all" href="../index.html#work" data-i18n="cs.pager.all">All work</a>
+    <a class="case-pager__link case-pager__next" href="rockhounder.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.next">Next project</span>
+      <span class="case-pager__name">Rockhounder &rarr;</span>
+    </a>
+  </nav>
+
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="dim-mark" data-i18n="nav.contact">Contact</span>
+        <p style="margin-top:10px; font-size: var(--fs-500); color: var(--ink-900);" data-i18n="footer.cta">Let's build something.</p>
+        <p class="footer-quote" data-i18n-html="footer.quote">&ldquo;Good design is as little design as possible.&rdquo;<span>&mdash; Dieter Rams</span></p>
+      </div>
+      <div class="contact-links">
+        <p><a href="mailto:bedirhanckr.id@gmail.com">bedirhanckr.id@gmail.com</a></p>
+        <p><a href="https://linkedin.com/in/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.linkedin">LinkedIn</span> ↗</a></p>
+        <p><a href="https://behance.net/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.behance">Behance</span> ↗</a></p>
+        <p style="margin-top:12px;"><a href="../index.html#work" data-i18n="footer.backwork">Other work →</a></p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <input type="text" name="name" data-i18n-placeholder="contact.form.name" placeholder="Name" required>
+        <input type="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="Email" required>
+        <textarea name="message" data-i18n-placeholder="contact.form.message" placeholder="Message" rows="3" required></textarea>
+        <button type="submit" data-i18n="contact.form.send">Send &rarr;</button>
+        <p class="form-note" data-i18n="contact.form.note">Opens your email client with this pre-filled.</p>
+      </form>
+    </div>
+    <p class="legal" data-i18n="footer.legal">© Bedirhan Çakıroğlu. Paderborn, Germany.</p>
+  </div>
+</footer>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

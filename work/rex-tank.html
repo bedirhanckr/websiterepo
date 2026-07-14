@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REX — Tracked Mini Robot Kit | Bedirhan Çakıroğlu</title>
+<meta name="description" content="An Arduino-based tracked mini robot kit designed during a Robotistan internship, sold as a real product with its own assembly guide.">
+<meta property="og:title" content="REX — Tracked Mini Robot Kit | Bedirhan Çakıroğlu">
+<meta property="og:description" content="An Arduino-based tracked mini robot kit designed during a Robotistan internship, sold as a real product with its own assembly guide.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Bedirhan Çakıroğlu<small data-i18n="brand.role">Industrial Designer / Design Engineer</small></a>
+    <div style="display:flex; align-items:center;">
+      <nav class="primary-nav" id="primary-nav">
+        <a href="../index.html" data-i18n="nav.work">Work</a>
+        <a href="../about.html" data-i18n="nav.about">About</a>
+        <a href="../index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button><span class="sep">/</span><button data-lang="de" aria-pressed="false">DE</button><span class="sep">/</span><button data-lang="tr" aria-pressed="false">TR</button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="breadcrumb wrap" aria-label="breadcrumb">
+  <a href="../index.html" data-i18n="cs.crumb">Work</a><span>/</span><span>REX</span>
+</nav>
+<main id="main">
+
+  <section class="case-hero">
+    <div class="wrap wrap--narrow">
+      <span class="dim-mark" data-i18n="cs.rex.eyebrow">RX·22 — Ürün ve Montaj Tasarımı</span>
+      <h1 class="h1" data-i18n="cs.rex.h1">REX: Robotistan için Paletli Mini Robot Kiti</h1>
+      <p class="lede" data-i18n="cs.rex.lede">Robotistan bünyesindeki stajım sırasında tasarlanan, ultrasonik sensörlü ve Arduino tabanlı paletli bir mini robot kiti. Kendi montaj kılavuzuyla birlikte gerçek bir ürün olarak satışa sunuldu.</p>
+
+      <div class="meta-strip" style="margin-top: 0;">
+        <div class="item"><span data-i18n="cs.rex.role.l">Rol</span><span data-i18n="cs.rex.role.v">Ürün ve montaj kılavuzu tasarımı, Robotistan stajı</span></div>
+        <div class="item"><span data-i18n="cs.rex.product.l">Ürün</span><span data-i18n="cs.rex.product.v">REX, Arduino tabanlı paletli mini robot kiti</span></div>
+        <div class="item"><span data-i18n="cs.rex.result.l">Sonuç</span><span data-i18n="cs.rex.result.v">Satışa sunulan gerçek ürün, profesyonel montaj kılavuzu</span></div>
+        <div class="item"><span data-i18n="cs.rex.method.l">Yöntem</span><span data-i18n="cs.rex.method.v">CAD iterasyonu, elektronik entegrasyonu, montaj kılavuzu tasarımı</span></div>
+        <div class="item"><span data-i18n="cs.rex.tools.l">Araçlar</span><span data-i18n="cs.rex.tools.v">Rhino</span></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="case-subnav" aria-label="Vaka analizi bölümleri">
+    <div class="wrap">
+      <a href="#problem" data-i18n="cs.subnav.problem">Problem</a>
+      <a href="#arastirma" data-i18n="cs.subnav.arastirma">Araştırma</a>
+      <a href="#kriterler" data-i18n="cs.subnav.kriterler">Kriterler</a>
+      <a href="#konsept" data-i18n="cs.subnav.konsept">Konsept</a>
+      <a href="#cad" data-i18n="cs.subnav.cad">CAD</a>
+      <a href="#muhendislik" data-i18n="cs.subnav.muhendislik">Mühendislik</a>
+      <a href="#dfm">DFM/DFA</a>
+      <a href="#prototip" data-i18n="cs.subnav.prototip">Prototip</a>
+      <a href="#iterasyon" data-i18n="cs.subnav.iterasyon">İterasyon</a>
+      <a href="#nihai" data-i18n="cs.subnav.nihai">Nihai</a>
+      <a href="#kazanim" data-i18n="cs.subnav.kazanim">Kazanım</a>
+    </div>
+  </nav>
+
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <span class="eyebrow">01 — <span data-i18n="cs.eyebrow.problem">Problem</span></span>
+      <h2 data-i18n="cs.rex.problem.h">Eğitim robotik kitleri, montajda zorlanıyor</h2>
+      <p data-i18n="cs.rex.problem.p">Arduino tabanlı eğitim robotik kitlerinde asıl zorluk çoğu zaman elektronik değil, kullanıcının parçaları doğru sırayla ve doğru yönde monte edebilmesi. Kit, hem donanım hem de montaj deneyimi olarak tasarlanması gereken bir ürün.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="arastirma">
+    <div class="wrap">
+      <span class="eyebrow">02 — <span data-i18n="cs.eyebrow.arastirma">Araştırma</span></span>
+      <h2 data-i18n="cs.rex.arastirma.h">Mecanum tekerlek ve sensör yerleşimi</h2>
+      <p data-i18n="cs.rex.arastirma.p">Hareket kabiliyeti için mecanum tekerlek sistemi tercih edildi. Ultrasonik mesafe sensörlerinin (HC-SR04) ön yerleşimi ve Arduino Nano shield'inin gövde içindeki konumu, kablolama ve erişilebilirlik gözetilerek araştırıldı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="kriterler">
+    <div class="wrap">
+      <span class="eyebrow">03 — <span data-i18n="cs.eyebrow.kriterler">Tasarım Kriterleri</span></span>
+      <h2 data-i18n="cs.rex.kriterler.h">Neyin doğru olduğuna nasıl karar verdik</h2>
+      <table class="spec-table">
+        <tr><th data-i18n="cs.spec.criterion">Kriter</th><th data-i18n="cs.spec.requirement">Gereksinim</th></tr>
+        <tr><td data-i18n="cs.rex.k1.k">Montaj kolaylığı</td><td data-i18n="cs.rex.k1.v">Kullanıcı, elektronik deneyimi olmadan monte edebilmeli</td></tr>
+        <tr><td data-i18n="cs.rex.k2.k">Elektronik entegrasyonu</td><td data-i18n="cs.rex.k2.v">Arduino Nano, HC-05 Bluetooth ve HC-SR04 sensörler gövdeye sorunsuz oturmalı</td></tr>
+        <tr><td data-i18n="cs.rex.k3.k">Üretilebilirlik</td><td data-i18n="cs.rex.k3.v">Gövde lazer kesim akrilik parçalardan oluşmalı</td></tr>
+        <tr><td data-i18n="cs.rex.k4.k">Maliyet</td><td data-i18n="cs.rex.k4.v">Eğitim kiti fiyat aralığında kalmalı</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="case-section" id="konsept">
+    <div class="wrap">
+      <span class="eyebrow">04 — <span data-i18n="cs.eyebrow.konsept">Konsept Geliştirme</span></span>
+      <h2 data-i18n="cs.rex.konsept.h">Standoff tabanlı katmanlı gövde</h2>
+      <p data-i18n="cs.rex.konsept.p">Gövde, birbirine pirinç standoff'larla bağlanan katmanlı akrilik plakalardan oluşacak şekilde kurgulandı. Bu yaklaşım hem üretimi basitleştirdi hem de kullanıcının montaj sırasında hangi parçanın nereye gittiğini görsel olarak takip etmesini kolaylaştırdı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="cad">
+    <div class="wrap">
+      <span class="eyebrow">05 — <span data-i18n="cs.eyebrow.cad">CAD Süreci</span></span>
+      <h2 data-i18n="cs.rex.cad.h">Erken CAD çalışması</h2>
+      <p data-i18n="cs.rex.cad.p">İlk CAD modelleri, tekerlek yerleşimi ve gövde oranlarını netleştirmek için hızlıca birden fazla versiyon halinde geliştirildi.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/rex-tank/early-iteration.png" alt="REX robotun erken CAD versiyonu"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="muhendislik">
+    <div class="wrap">
+      <span class="eyebrow">06 — <span data-i18n="cs.eyebrow.muhendislik">Mühendislik Kararları</span></span>
+      <h2 data-i18n="cs.rex.muh.h">Elektronik bileşenlerin gövdeye entegrasyonu</h2>
+      <p data-i18n="cs.rex.muh.p">Arduino Nano shield, HC-05 Bluetooth modülü, iki adet HC-SR04 ultrasonik sensör, dişli DC motorlar ve pil tutucu, standoff yükseklikleri (12mm, 45mm gibi) ile katmanlar arasında belirli bir sırayla yerleştirilecek şekilde tanımlandı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="dfm">
+    <div class="wrap">
+      <span class="eyebrow">07 — <span data-i18n="cs.eyebrow.dfm">DFM / DFA</span></span>
+      <h2 data-i18n="cs.rex.dfm.h">Montaj kılavuzu, tasarımın bir parçası</h2>
+      <p data-i18n="cs.rex.dfm.p">Ürünün en somut montaj-için-tasarım (DFA) kanıtı, adım adım hazırlanan görsel montaj kılavuzu. Her adım, hangi standoff'un hangi uzunlukta ve hangi delikte kullanılacağını (A1, A2, Y1-Y4 gibi etiketlerle) net şekilde gösteriyor.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/rex-tank/assembly-guide.jpg" alt="REX montaj kılavuzundan bir sayfa, standoff yerleşimi adımları"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="prototip">
+    <div class="wrap">
+      <span class="eyebrow">08 — <span data-i18n="cs.eyebrow.prototip">Prototipleme</span></span>
+      <h2 data-i18n="cs.rex.prototip.h">Çok sayıda fiziksel revizyon</h2>
+      <p data-i18n="cs.rex.prototip.p">Dosya geçmişi, v2'den v4.2'ye kadar birden fazla fiziksel revizyonun üretildiğini gösteriyor. Her versiyon, önceki montajdan çıkan bir düzeltmeyi yansıtıyor.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="iterasyon">
+    <div class="wrap">
+      <span class="eyebrow">09 — <span data-i18n="cs.eyebrow.iterasyon">İterasyon</span></span>
+      <h2 data-i18n="cs.rex.iter.h">v2'den v4.2 finale</h2>
+      <p data-i18n="cs.rex.iter.p">Proje, tek bir versiyonla değil, art arda gelen düzeltmelerle olgunlaştı: v2, v3, v3.2, v3.3, v3.4, v3.5, v4, v4.1, ve son olarak v4.2. Bu sıralama, tekerlek montajı ve sensör yerleşiminde yapılan küçük ama kümülatif iyileştirmeleri yansıtıyor.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="nihai">
+    <div class="wrap">
+      <span class="eyebrow">10 — <span data-i18n="cs.eyebrow.nihai">Nihai Tasarım</span></span>
+      <h2 data-i18n="cs.shared.result">Sonuç</h2>
+      <div class="media-slot is-ready"><img src="../assets/img/rex-tank/hero-final.png" alt="REX robotun final render'ı"></div>
+    </div>
+  </section>
+
+  <section class="case-section case-outcome" id="kazanim">
+    <div class="wrap">
+      <span class="eyebrow">11 — <span data-i18n="cs.eyebrow.kazanim">Kazanım</span></span>
+      <h2 data-i18n="cs.rex.kazanim.h">Render'da kalmayan bir ürün</h2>
+      <p data-i18n="cs.rex.kazanim.p">REX, Robotistan markası altında gerçek bir ürün olarak satışa sunuldu, kendi kutusu ve montaj kılavuzuyla. Bu proje, tasarımın üretim ve kullanıcı deneyimiyle (montaj) birlikte düşünülmesi gerektiğinin somut bir örneği.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/rex-tank/cover-rex.jpg" alt="REX montaj kılavuzunun kapak sayfası, Robotistan markası"></div>
+    </div>
+  </section>
+
+  <nav class="case-pager wrap" aria-label="Project navigation">
+    <a class="case-pager__link case-pager__prev" href="rockhounder.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.prev">Previous project</span>
+      <span class="case-pager__name">&larr; Rockhounder</span>
+    </a>
+    <a class="case-pager__all" href="../index.html#work" data-i18n="cs.pager.all">All work</a>
+    <a class="case-pager__link case-pager__next" href="delta.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.next">Next project</span>
+      <span class="case-pager__name">Delta &rarr;</span>
+    </a>
+  </nav>
+
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="dim-mark" data-i18n="nav.contact">Contact</span>
+        <p style="margin-top:10px; font-size: var(--fs-500); color: var(--ink-900);" data-i18n="footer.cta">Let's build something.</p>
+        <p class="footer-quote" data-i18n-html="footer.quote">&ldquo;Good design is as little design as possible.&rdquo;<span>&mdash; Dieter Rams</span></p>
+      </div>
+      <div class="contact-links">
+        <p><a href="mailto:bedirhanckr.id@gmail.com">bedirhanckr.id@gmail.com</a></p>
+        <p><a href="https://linkedin.com/in/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.linkedin">LinkedIn</span> ↗</a></p>
+        <p><a href="https://behance.net/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.behance">Behance</span> ↗</a></p>
+        <p style="margin-top:12px;"><a href="../index.html#work" data-i18n="footer.backwork">Other work →</a></p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <input type="text" name="name" data-i18n-placeholder="contact.form.name" placeholder="Name" required>
+        <input type="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="Email" required>
+        <textarea name="message" data-i18n-placeholder="contact.form.message" placeholder="Message" rows="3" required></textarea>
+        <button type="submit" data-i18n="contact.form.send">Send &rarr;</button>
+        <p class="form-note" data-i18n="contact.form.note">Opens your email client with this pre-filled.</p>
+      </form>
+    </div>
+    <p class="legal" data-i18n="footer.legal">© Bedirhan Çakıroğlu. Paderborn, Germany.</p>
+  </div>
+</footer>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

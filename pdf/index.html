@@ -1,0 +1,1929 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedirhan Çakıroğlu — Portfolio Deck (draft)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:      #FCFCFB;
+    --surface:    #FFFFFF;
+    --ink-900:    #111214;
+    --ink-700:    #3A3D42;
+    --ink-500:    #6B6F76;
+    --ink-300:    #A6A9AE;
+    --line-100:   #ECEBE8;
+    --line-300:   #DAD8D3;
+    --signal:      #C1401F;
+    --signal-soft: #FBEDE9;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  body[data-font="alt"]{
+    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  }
+  .font-toggle{
+    position:fixed; top:16px; right:16px; z-index:10;
+    display:flex; gap:0; font-family:'JetBrains Mono', monospace; font-size:11px;
+    background:#000; border:1px solid #333; border-radius:3px; overflow:hidden;
+  }
+  .font-toggle button{
+    all:unset; cursor:pointer; padding:8px 14px; color:#888;
+  }
+  .font-toggle button.is-active{ background:var(--signal); color:#fff; }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:var(--ink-900); }
+  body{
+    font-family:var(--font-sans);
+    color:var(--ink-900);
+    display:flex; flex-direction:column; align-items:center;
+    padding:56px 0; gap:40px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .deck-label{
+    color:var(--ink-300); font-family:var(--font-mono); font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:-10px;
+  }
+  .slide{
+    width:1400px; height:900px; flex-shrink:0;
+    background:var(--paper);
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+    position:relative;
+    overflow:hidden;
+  }
+  .slide-pad{ padding:72px 80px; height:100%; display:flex; flex-direction:column; }
+
+  /* ============ PRINT / PDF EXPORT ============ */
+  /* Ctrl+P → Destination: Save as PDF → Margins: None → Background graphics: ON */
+  @page{ size:1400px 900px; margin:0; }
+  @media print{
+    html,body{ background:#fff; }
+    body{ display:block; padding:0; gap:0; }
+    .deck-label, .font-toggle{ display:none; }
+    .slide{
+      box-shadow:none;
+      break-after:page; page-break-after:always;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    .slide:last-of-type{ break-after:auto; page-break-after:auto; }
+  }
+
+  /* ============ SLIDE 1 — COVER ============ */
+  #cover .slide-pad{ justify-content:flex-end; padding:0; }
+  #cover .stroke-layer{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+  }
+  #cover .card{
+    position:relative; z-index:1;
+    width:420px;
+    padding:64px 72px 56px;
+  }
+  #cover .label{
+    font-size:34px; font-weight:600; letter-spacing:-.01em; color:var(--ink-900);
+  }
+  #cover .rule{ height:1px; background:var(--line-300); margin:14px 0 22px; }
+  #cover .name-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:30px; font-weight:400; color:var(--ink-900); line-height:1.28;
+  }
+  #cover .name-row .yr{ font-size:30px; color:var(--ink-500); font-weight:400; }
+  #cover .sub{
+    margin-top:20px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-500);
+  }
+
+  /* ============ SLIDE 2 — CV ============ */
+  #cv .cv-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding-bottom:20px; border-bottom:1px solid var(--line-300);
+  }
+  #cv .cv-head h2{ font-size:34px; font-weight:700; letter-spacing:-.01em; }
+  #cv .cv-head .role{ font-size:14px; color:var(--ink-500); margin-top:6px; font-family:var(--font-mono); letter-spacing:.02em; }
+  #cv .cv-contact{
+    text-align:right; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-500); line-height:1.9;
+  }
+  #cv .cv-body{
+    flex:1; display:grid; grid-template-columns:290px 1fr; gap:56px; padding-top:26px; min-height:0;
+  }
+  #cv .sidebar{ display:flex; flex-direction:column; gap:22px; }
+  #cv .photo{
+    width:150px; height:190px; object-fit:cover; object-position:top center;
+    border-radius:2px; filter:grayscale(100%); margin-bottom:4px;
+  }
+  #cv .side-block h4{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-900); border-bottom:1px solid var(--line-100); padding-bottom:6px; margin-bottom:8px;
+  }
+  #cv .side-block .row{ font-size:11.5px; color:var(--ink-700); margin-bottom:5px; line-height:1.45; }
+  #cv .side-block .row b{ color:var(--ink-900); font-weight:600; }
+  #cv .side-block .lang-row{ display:flex; justify-content:space-between; font-size:11.5px; margin-bottom:4px; }
+  #cv .side-block .lang-row span:last-child{ color:var(--ink-500); }
+  #cv .award{ margin-bottom:9px; }
+  #cv .award .yr{ font-family:var(--font-mono); font-size:10px; color:var(--signal); }
+  #cv .award .ti{ font-size:11.5px; font-weight:600; color:var(--ink-900); }
+  #cv .award .org{ font-size:10.5px; color:var(--ink-500); }
+
+  #cv .main{ display:flex; flex-direction:column; gap:20px; min-height:0; }
+  #cv .main h4{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-900); border-bottom:1px solid var(--line-100); padding-bottom:6px; margin-bottom:10px;
+  }
+  #cv .summary p{ font-size:13px; line-height:1.6; color:var(--ink-700); }
+  #cv .job{ margin-bottom:12px; }
+  #cv .job-top{ display:flex; justify-content:space-between; align-items:baseline; }
+  #cv .job-title{ font-size:14px; font-weight:700; color:var(--ink-900); }
+  #cv .job-company{ font-size:12px; color:var(--signal); font-weight:500; }
+  #cv .job-meta{ font-family:var(--font-mono); font-size:10.5px; color:var(--ink-500); text-align:right; white-space:nowrap; }
+  #cv .job ul{ list-style:none; margin-top:5px; }
+  #cv .job li{ font-size:11px; line-height:1.55; color:var(--ink-700); padding-left:12px; position:relative; }
+  #cv .job li::before{ content:"–"; position:absolute; left:0; color:var(--ink-300); }
+  #cv .edu-top{ display:flex; justify-content:space-between; align-items:baseline; }
+  #cv .edu-title{ font-size:14px; font-weight:700; color:var(--ink-900); }
+  #cv .edu-school{ font-size:12px; color:var(--signal); font-weight:500; }
+  #cv .edu-meta{ font-family:var(--font-mono); font-size:10.5px; color:var(--ink-500); text-align:right; }
+  #cv .edu-desc{ font-size:11.5px; line-height:1.55; color:var(--ink-700); margin-top:5px; }
+
+  /* ============ SLIDE 3 — CONTENTS ============ */
+  #contents .slide-pad{ justify-content:center; gap:0; }
+  #contents .ct-eyebrow{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-300); margin-bottom:40px;
+  }
+  #contents .ct-title{
+    font-size:52px; font-weight:700; letter-spacing:-.03em;
+    color:var(--ink-900); margin-bottom:52px; line-height:1;
+  }
+  #contents .ct-list{ list-style:none; width:100%; }
+  #contents .ct-item{
+    display:flex; align-items:center;
+    height:88px; overflow:hidden;
+    border-top:1px solid var(--line-100);
+    gap:0;
+  }
+  #contents .ct-item:last-child{ border-bottom:1px solid var(--line-100); }
+  #contents .ct-num{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-300);
+    letter-spacing:.06em; flex:0 0 72px;
+  }
+  #contents .ct-name{
+    font-size:26px; font-weight:600; letter-spacing:-.015em; color:var(--ink-900);
+    white-space:nowrap; flex:0 0 410px;
+  }
+  #contents .ct-thumb{
+    flex:0 0 400px; width:400px; height:88px;
+    overflow:hidden; background:var(--line-100); flex-shrink:0;
+  }
+  #contents .ct-thumb img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; opacity:0.7; }
+  #contents .ct-cat{
+    flex:1; text-align:right; padding-left:24px;
+  }
+  #contents .ct-cat{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-500); text-align:right;
+  }
+  #contents .ct-accent{
+    font-family:var(--font-mono); font-size:30px; font-weight:700;
+    color:var(--signal); letter-spacing:.02em; margin-right:20px;
+    display:inline; vertical-align:baseline;
+  }
+  #contents .ct-item{ cursor:pointer; }
+  #contents .ct-item:hover .ct-name{ color:var(--signal); }
+
+  /* ============ PROJECT PAGE INDICATOR ============ */
+  .proj-indicator{
+    position:absolute; right:26px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; align-items:flex-end; gap:7px;
+    z-index:20; pointer-events:none;
+  }
+  .pi-line{
+    height:2px; width:16px; background:#C8C5BE; border-radius:1px;
+  }
+  .pi-line.is-active{
+    width:28px; background:#C1401F;
+  }
+  .slide-page-num{
+    position:absolute; top:28px; right:52px;
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.06em;
+    color:#A6A9AE; z-index:20; pointer-events:none;
+  }
+  .proj-num-badge{
+    position:absolute; top:28px; left:52px;
+    font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:600;
+    letter-spacing:.08em; color:#C1401F; z-index:20; pointer-events:none;
+  }
+
+  /* ============ PROJECT SLIDES (4–8) ============ */
+  .proj-layout{
+    display:grid; grid-template-columns:820px 1fr; height:100%;
+  }
+  .proj-img{
+    position:relative; overflow:hidden; background:var(--ink-900);
+  }
+  .proj-img img{
+    width:100%; height:100%; object-fit:cover; object-position:center; display:block;
+  }
+  .proj-index{
+    position:absolute; bottom:28px; left:32px;
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
+    text-transform:uppercase; color:rgba(255,255,255,.45);
+  }
+  .proj-story{
+    padding:52px 48px 44px; display:flex; flex-direction:column;
+    background:var(--paper);
+  }
+  .proj-tag{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-300); margin-bottom:14px;
+  }
+  .proj-name{
+    font-size:38px; font-weight:700; letter-spacing:-.025em;
+    color:var(--ink-900); line-height:1.05; margin-bottom:20px;
+  }
+  .proj-brief{
+    font-size:13.5px; line-height:1.68; color:var(--ink-700); margin-bottom:22px;
+  }
+  .proj-secondary{
+    height:170px; overflow:hidden; border-radius:2px; margin-bottom:22px; flex-shrink:0;
+  }
+  .proj-secondary img{
+    width:100%; height:100%; object-fit:cover; object-position:center;
+  }
+  .proj-fact{
+    border-left:2px solid var(--signal); padding-left:16px; margin-bottom:22px;
+  }
+  .fact-label{
+    font-family:var(--font-mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--signal); margin-bottom:5px;
+  }
+  .fact-body{ font-size:12px; line-height:1.6; color:var(--ink-700); }
+  .proj-outcome{
+    display:flex; align-items:center; gap:10px; margin-bottom:20px;
+  }
+  .outcome-badge{
+    background:var(--signal); color:#fff; font-family:var(--font-mono);
+    font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+    padding:4px 9px; border-radius:2px; white-space:nowrap; flex-shrink:0;
+  }
+  .outcome-text{ font-size:12.5px; color:var(--ink-700); }
+  .proj-meta-row{
+    margin-top:auto; border-top:1px solid var(--line-100); padding-top:18px;
+    display:flex; flex-direction:column; gap:7px;
+  }
+  .meta-l{
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-300); display:inline-block;
+    width:46px; margin-right:8px;
+  }
+  .meta-v{ font-size:12px; color:var(--ink-700); }
+
+  /* ============ SPLIT SLIDE (image left + text right) ============ */
+  .split-slide{ display:flex; flex-direction:column; height:100%; }
+  .ss-head{
+    padding:30px 72px 22px; border-bottom:1px solid var(--line-100);
+    display:flex; align-items:baseline; gap:16px; flex-shrink:0;
+  }
+  .ss-head .proj-tag{ margin:0; }
+  .ss-body{ flex:1; display:grid; grid-template-columns:700px 1fr; min-height:0; }
+  .ss-left{ display:flex; flex-direction:column; overflow:hidden; }
+  .ss-img-main{ flex:1; overflow:hidden; }
+  .ss-img-main img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .ss-img-sub{ height:210px; overflow:hidden; border-top:4px solid var(--paper); }
+  .ss-img-sub img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .ss-right{
+    padding:40px 48px; display:flex; flex-direction:column;
+    border-left:1px solid var(--line-100);
+  }
+  .ss-label{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-300); margin-bottom:10px;
+  }
+  .ss-title{
+    font-size:30px; font-weight:700; letter-spacing:-.02em;
+    color:var(--ink-900); line-height:1.08; margin-bottom:20px;
+  }
+  .ss-text{ font-size:13px; line-height:1.68; color:var(--ink-700); margin-bottom:20px; }
+  .ss-callout{ border-left:2px solid var(--signal); padding-left:14px; margin-bottom:20px; }
+  .ss-callout .fact-label{
+    font-family:var(--font-mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--signal); margin-bottom:5px;
+  }
+  .ss-callout .fact-body{ font-size:12px; line-height:1.6; color:var(--ink-700); }
+  .ss-specs{
+    margin-top:auto; border-top:1px solid var(--line-100); padding-top:16px;
+    display:flex; flex-direction:column; gap:7px;
+  }
+  .ss-spec{ display:flex; gap:0; }
+  .spec-k{
+    font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--ink-300); width:88px; flex-shrink:0;
+  }
+  .spec-v{ font-size:12px; color:var(--ink-700); }
+
+  /* ============ PHOTO GRID (header + image pair + bar) ============ */
+  .photo-grid{ display:flex; flex-direction:column; height:100%; }
+  .pg-head{
+    padding:30px 72px 22px; border-bottom:1px solid var(--line-100);
+    display:flex; align-items:baseline; gap:16px; flex-shrink:0;
+  }
+  .pg-head .proj-tag{ margin:0; }
+  .pg-images{ flex:1; display:grid; min-height:0; }
+  .pg-images.col-2{ grid-template-columns:1fr 1fr; }
+  .pg-images.col-3{ grid-template-columns:1fr 1fr 1fr; }
+  .pg-images.col-1{ grid-template-columns:1fr; }
+  .pg-cell{ position:relative; overflow:hidden; }
+  .pg-cell + .pg-cell{ border-left:4px solid var(--paper); }
+  .pg-cell img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .pg-cell.fit-contain{ background:var(--line-100); }
+  .pg-cell.fit-contain img{ object-fit:contain; }
+  .pg-cap{
+    position:absolute; bottom:0; left:0; right:0;
+    background:rgba(17,18,20,.6); padding:9px 16px;
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:rgba(255,255,255,.72);
+  }
+  .pg-bar{
+    padding:18px 72px; border-top:1px solid var(--line-100);
+    display:flex; align-items:center; gap:36px; flex-shrink:0;
+  }
+  .bar-label{
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--signal); white-space:nowrap; flex-shrink:0;
+  }
+  .bar-text{ font-size:12.5px; color:var(--ink-700); line-height:1.55; }
+
+  /* ============ PLACEHOLDER / TBD SLOT ============ */
+  .placeholder-slide{ height:100%; display:flex; flex-direction:column; }
+  .placeholder-slide .ss-head{ padding:30px 72px 22px; border-bottom:1px solid var(--line-100); display:flex; align-items:baseline; gap:16px; flex-shrink:0; }
+  .placeholder-body{ flex:1; display:flex; align-items:center; justify-content:center; }
+  .placeholder-box{
+    width:1100px; height:560px; border:2px dashed var(--line-300); border-radius:10px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  }
+  .placeholder-tag{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--signal); font-weight:600;
+  }
+  .placeholder-note{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.02em; color:var(--ink-300);
+    text-align:center; max-width:560px; line-height:1.6;
+  }
+  .sketch-box{
+    width:100%; height:100%; border:2px dashed var(--line-300); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; background:var(--line-100);
+  }
+  .sketch-box .placeholder-note{ font-size:10.5px; }
+
+  /* ============ SECTION DIVIDER ============ */
+  .divider-slide{ height:100%; display:flex; flex-direction:column; justify-content:flex-end; padding:0 80px 80px; position:relative; background:var(--ink-900); }
+  .divider-slide .dv-eyebrow{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--signal); margin-bottom:18px;
+  }
+  .divider-slide .dv-title{
+    font-size:64px; font-weight:700; letter-spacing:-.03em; color:#fff;
+    line-height:1.02; margin-bottom:24px;
+  }
+  .divider-slide .dv-sub{
+    font-size:15px; line-height:1.6; color:rgba(255,255,255,.55); max-width:620px;
+  }
+
+  /* ============ MINI PROJECT SLIDE ============ */
+  .mini-slide{ display:flex; height:100%; }
+  .mini-img{ flex:0 0 660px; overflow:hidden; background:var(--ink-900); }
+  .mini-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .mini-body{ flex:1; padding:56px 52px; display:flex; flex-direction:column; justify-content:center; }
+  .mini-num{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-300); margin-bottom:16px;
+  }
+  .mini-title{ font-size:32px; font-weight:700; letter-spacing:-.02em; color:var(--ink-900); line-height:1.08; margin-bottom:16px; }
+  .mini-desc{ font-size:13.5px; line-height:1.68; color:var(--ink-700); margin-bottom:22px; }
+  .mini-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .mini-tag-pill{
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--ink-500); border:1px solid var(--line-300);
+    padding:5px 10px; border-radius:2px;
+  }
+  .mini-award{ display:flex; align-items:center; gap:10px; margin-top:auto; padding-top:20px; border-top:1px solid var(--line-100); }
+  .mini-award .outcome-badge{ background:var(--signal); color:#fff; font-family:var(--font-mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:4px 8px; border-radius:2px; white-space:nowrap; }
+  .mini-award span:last-child{ font-size:11.5px; color:var(--ink-700); }
+
+  /* ============ AWARDS GRID ============ */
+  .awards-slide{ padding:64px 80px; height:100%; display:flex; flex-direction:column; }
+  .awards-slide .aw-eyebrow{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-300); margin-bottom:14px;
+  }
+  .awards-slide .aw-title{ font-size:42px; font-weight:700; letter-spacing:-.025em; color:var(--ink-900); margin-bottom:44px; }
+  .aw-grid{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-100); border-top:1px solid var(--line-100); }
+  .aw-cell{ background:var(--paper); padding:28px 32px; display:flex; flex-direction:column; justify-content:center; }
+  .aw-yr{ font-family:var(--font-mono); font-size:11px; color:var(--signal); margin-bottom:8px; }
+  .aw-name{ font-size:19px; font-weight:700; color:var(--ink-900); margin-bottom:6px; }
+  .aw-org{ font-size:12px; color:var(--ink-500); }
+</style>
+</head>
+<body>
+
+  <div class="font-toggle">
+    <button data-set-font="default" class="is-active">Inter / JetBrains Mono</button>
+    <button data-set-font="alt">Space Grotesk</button>
+  </div>
+
+  <div class="deck-label">Cover</div>
+  <section class="slide" id="cover">
+    <div class="slide-pad">
+      <svg class="stroke-layer" viewBox="0 0 1400 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="crayon" x="-30%" y="-30%" width="160%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.06" numOctaves="3" seed="11" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="crayonFine" x="-30%" y="-30%" width="160%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.35" numOctaves="2" seed="4" result="grain"/>
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0" result="grainA"/>
+            <feComposite in="SourceGraphic" in2="grainA" operator="out" result="punched"/>
+            <feMerge>
+              <feMergeNode in="SourceGraphic"/>
+              <feMergeNode in="punched"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M 560 150 C 780 30, 1080 20, 1230 200 C 1350 350, 1300 520, 1120 580 C 980 625, 860 560, 870 470"
+          fill="none" stroke="#C1401F" stroke-width="30" stroke-linecap="round" opacity="0.85" filter="url(#crayon)"/>
+        <path d="M 560 150 C 780 30, 1080 20, 1230 200 C 1350 350, 1300 520, 1120 580 C 980 625, 860 560, 870 470"
+          fill="none" stroke="#C1401F" stroke-width="12" stroke-linecap="round" opacity="0.35" filter="url(#crayonFine)"/>
+        <g fill="#C1401F">
+          <circle cx="545" cy="130" r="3.2" opacity="0.5"/>
+          <circle cx="528" cy="148" r="2" opacity="0.35"/>
+          <circle cx="552" cy="172" r="2.6" opacity="0.4"/>
+          <circle cx="512" cy="120" r="1.6" opacity="0.3"/>
+          <circle cx="888" cy="452" r="2.8" opacity="0.45"/>
+          <circle cx="905" cy="430" r="2" opacity="0.3"/>
+          <circle cx="870" cy="490" r="1.8" opacity="0.35"/>
+          <circle cx="920" cy="465" r="1.4" opacity="0.25"/>
+        </g>
+      </svg>
+      <div class="card">
+        <div class="label">Portfolio</div>
+        <div class="rule"></div>
+        <div class="name-row"><span>Bedirhan</span><span class="yr">20</span></div>
+        <div class="name-row"><span>Çakıroğlu</span><span class="yr">26</span></div>
+        <div class="rule"></div>
+        <div class="sub">Industrial &amp; Mechanical Design Works</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">CV</div>
+  <section class="slide" id="cv">
+    <div class="slide-pad">
+
+      <div class="cv-head">
+        <div>
+          <h2>Bedirhan Çakıroğlu</h2>
+          <div class="role">Industrial Designer · Mechanical Design Engineer</div>
+        </div>
+        <div class="cv-contact">
+          bedirhanckr.id@gmail.com &nbsp;·&nbsp; +49 176 741 20 219<br>
+          linkedin.com/in/bedirhanckr &nbsp;·&nbsp; behance.net/bedirhanckr<br>
+          Paderborn, Germany
+        </div>
+      </div>
+
+      <div class="cv-body">
+        <div class="sidebar">
+          <img class="photo" src="../assets/img/about/portrait-full.jpg" alt="Bedirhan Çakıroğlu">
+
+          <div class="side-block">
+            <h4>Technical Skills</h4>
+            <div class="row"><b>CAD</b> HiCAD, SolidWorks, Rhino, Fusion 360</div>
+            <div class="row"><b>Rendering</b> KeyShot, V-Ray, Blender</div>
+            <div class="row"><b>Adobe</b> Photoshop, Illustrator</div>
+            <div class="row"><b>Prototyping</b> 3D Printing, Mock-Up Making, Hand Sketching</div>
+          </div>
+
+          <div class="side-block">
+            <h4>Languages</h4>
+            <div class="lang-row"><span>Turkish</span><span>Native</span></div>
+            <div class="lang-row"><span>English</span><span>C1</span></div>
+            <div class="lang-row"><span>German</span><span>B1</span></div>
+          </div>
+
+          <div class="side-block">
+            <h4>Honors &amp; Awards</h4>
+            <div class="award"><span class="yr">2023</span> <span class="ti">FURNITUR 2023</span><br><span class="org">Prize &amp; Mention — Türkiye Tasarım Vakfı</span></div>
+            <div class="award"><span class="yr">2023</span> <span class="ti">Graduation Awards</span><br><span class="org">2nd Prize — Istanbul Technical University</span></div>
+            <div class="award"><span class="yr">2022</span> <span class="ti">Design for Export</span><br><span class="org">Finalist — OAİB &amp; Ministry of Commerce</span></div>
+          </div>
+        </div>
+
+        <div class="main">
+          <div class="summary">
+            <h4>Professional Summary</h4>
+            <p>Industrial Designer and Mechanical Design Engineer with experience developing products from concept to production. Skilled in CAD modeling, technical drawings, prototyping, and design for manufacturing. Comfortable working across design, engineering, and production.</p>
+          </div>
+
+          <div class="experience">
+            <h4>Work Experience</h4>
+
+            <div class="job">
+              <div class="job-top">
+                <div><span class="job-title">Industrial Designer &amp; Mechanical Design Engineer</span> <span class="job-company">— TUS Metallbau</span></div>
+                <div class="job-meta">Jan 2024 – Present<br>Paderborn, Germany</div>
+              </div>
+              <ul>
+                <li>Design and develop balcony systems, canopies, railings, steel structures and glass facades, ensuring compliance with local engineering and building standards.</li>
+                <li>Create 3D models, assemblies and production drawings; formulate BOMs and support material procurement and production scheduling.</li>
+                <li>Carry out on-site measurements and incorporate site constraints into CAD models; optimize designs for manufacturing methods, tolerances and assembly.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="job-top">
+                <div><span class="job-title">Industrial Design Intern</span> <span class="job-company">— TUS Metallbau</span></div>
+                <div class="job-meta">Jun 2023 – Dec 2023<br>Paderborn, Germany</div>
+              </div>
+            </div>
+
+            <div class="job">
+              <div class="job-top">
+                <div><span class="job-title">Mechanical Design Engineer</span> <span class="job-company">— ITU ROV Team</span></div>
+                <div class="job-meta">Aug 2022 – Jun 2023<br>Istanbul, Turkey</div>
+              </div>
+              <ul>
+                <li>Designed watertight enclosures, structural chassis and mechanical mounting systems for ROVs; integrated components with underwater sensors and propulsion systems.</li>
+                <li>Represented ITU at the international MATE ROV Competition (Norway), securing 3rd place.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="job-top">
+                <div><span class="job-title">Product Design Intern</span> <span class="job-company">— Robotistan</span></div>
+                <div class="job-meta">Feb 2022 – Aug 2022<br>Istanbul, Turkey</div>
+              </div>
+              <ul>
+                <li>Developed Arduino-based educational robotic kits from concept to physical prototypes; designed injection-molded enclosures, snap-fits and mechanical linkages.</li>
+                <li>Created product renderings and technical illustrations for assembly manuals.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="education">
+            <h4>Education</h4>
+            <div class="edu-top">
+              <div><span class="edu-title">B.Sc. Industrial Design</span> <span class="edu-school">— Istanbul Technical University</span></div>
+              <div class="edu-meta">2018 – 2023<br>GPA 3.46 / 4.00</div>
+            </div>
+            <div class="edu-desc">Specialized in user-centered product development, product sketching, physical prototyping and CAD modeling. Developed multiple design projects from initial research and ideation to manufacturing preparation.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="deck-label">Contents</div>
+  <section class="slide" id="contents">
+    <div class="slide-pad">
+      <div class="ct-eyebrow">Portfolio · Bedirhan Çakıroğlu · 2026</div>
+      <div class="ct-title">Selected<br>Work</div>
+      <ul class="ct-list">
+        <li class="ct-item">
+          <span class="ct-num">04–09</span>
+          <span class="ct-name"><span class="ct-accent">01</span>Pioneer MKII</span>
+          <span class="ct-thumb"><img src="../assets/img/pioneer-mk2/hero-nose-render.jpg" alt="Pioneer MKII"></span>
+          <span class="ct-cat">Product Design · Mechatronics</span>
+        </li>
+        <li class="ct-item">
+          <span class="ct-num">10–15</span>
+          <span class="ct-name"><span class="ct-accent">02</span>Rockhounder</span>
+          <span class="ct-thumb"><img src="../assets/img/rockhounder/hero-render.png" alt="Rockhounder"></span>
+          <span class="ct-cat">Soft Goods · Industrial Design</span>
+        </li>
+        <li class="ct-item">
+          <span class="ct-num">16–21</span>
+          <span class="ct-name"><span class="ct-accent">03</span>REX Mini Tank</span>
+          <span class="ct-thumb"><img src="../assets/img/rex-tank/hero-final.png" alt="REX Mini Tank"></span>
+          <span class="ct-cat">Product Design · Electronics</span>
+        </li>
+        <li class="ct-item">
+          <span class="ct-num">22–27</span>
+          <span class="ct-name"><span class="ct-accent">04</span>Delta</span>
+          <span class="ct-thumb"><img src="../assets/img/delta/1.png" alt="Delta"></span>
+          <span class="ct-cat">Mechanism Design · Furniture</span>
+        </li>
+        <li class="ct-item">
+          <span class="ct-num">28–33</span>
+          <span class="ct-name"><span class="ct-accent">05</span>Electric Razor Redesign</span>
+          <span class="ct-thumb"><img src="../assets/img/razor/hero-final-black.png" alt="Razor"></span>
+          <span class="ct-cat">Consumer Electronics</span>
+        </li>
+        <li class="ct-item">
+          <span class="ct-num">34–53</span>
+          <span class="ct-name"><span class="ct-accent">06</span>Other Selected Work</span>
+          <span class="ct-thumb"><img src="../assets/img/spiegelau/champagne-set.jpg" alt="Spiegelau white wine set"></span>
+          <span class="ct-cat">Additional Projects · Awards</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="deck-label">Pioneer MKII</div>
+  <section class="slide" id="s-pioneer" data-page="1" data-total="6">
+    <div class="proj-layout">
+      <div class="proj-img">
+        <img src="../assets/img/pioneer-mk2/cad-render-05.jpg" alt="Pioneer MKII CAD render">
+        <div class="proj-index">Pioneer MKII</div>
+      </div>
+      <div class="proj-story">
+        <div class="proj-tag">Product Design · Mechatronics · FDM</div>
+        <h2 class="proj-name">Pioneer<br>MKII</h2>
+        <p class="proj-brief">An autonomous underwater vehicle where hydrodynamic form and FDM manufacturing constraints were resolved as one design problem — not in sequence.</p>
+        <div class="proj-secondary">
+          <img src="../assets/img/pioneer-mk2/pool-test-underwater.jpg" alt="Pool test, underwater">
+        </div>
+        <div class="proj-fact">
+          <div class="fact-label">Key decision</div>
+          <div class="fact-body">Torpedo–blowfish hybrid geometry reduces drag in forward motion while maintaining a flat reference face for FDM bed adhesion. Zero support material on the primary hull.</div>
+        </div>
+        <div class="proj-outcome">
+          <div class="outcome-badge">TEKNOFEST</div>
+          <span class="outcome-text">Design &amp; Presentation Award · 2023</span>
+        </div>
+        <div class="proj-meta-row">
+          <div><span class="meta-l">Role</span><span class="meta-v">Solo — concept through competition</span></div>
+          <div><span class="meta-l">Tools</span><span class="meta-v">Fusion 360 (model + render) · Photoshop</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PIONEER MK2 ═══════════════ -->
+
+  <div class="deck-label">Pioneer: Sketch / Ideation</div>
+  <section class="slide" id="s-pioneer-sketch" data-page="2" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Pioneer MKII</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <div class="sketch-box"><span class="placeholder-note">Sketch scan — add image<br>assets/img/pioneer-mk2/sketch-XX.jpg</span></div>
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Early hull<br>studies</h3>
+          <p class="ss-text">Placeholder — describe the sketch exploration that led to the torpedo–blowfish hull form: early hand studies, form alternatives considered, and the reasoning that narrowed the direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Pioneer: Form Decision</div>
+  <section class="slide" id="s-pioneer-form" data-page="3" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Pioneer MKII</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Form Decision</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/pioneer-mk2/cross-section.jpg" alt="Cross-section view">
+          </div>
+          <div class="ss-img-sub">
+            <img src="../assets/img/pioneer-mk2/exploded-02.jpg" alt="Exploded assembly">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">02 — Form strategy</div>
+          <h3 class="ss-title">Torpedo meets<br>blowfish</h3>
+          <p class="ss-text">The nose tapers for hydrodynamic entry. The mid-section swells to maximise internal volume for electronics and ballast. This is not aesthetic — it is an engineering argument made visible in the outer surface.</p>
+          <div class="ss-callout">
+            <div class="fact-label">FDM constraint resolved</div>
+            <div class="fact-body">The flat underside reference face means the entire hull prints without support material. One geometry solves hydrodynamics and manufacturability simultaneously.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Hull</span><span class="spec-v">FDM — PETG, 3-shell perimeter</span></div>
+            <div class="ss-spec"><span class="spec-k">Sections</span><span class="spec-v">4 watertight compartments, O-ring sealed</span></div>
+            <div class="ss-spec"><span class="spec-k">Assembly</span><span class="spec-v">Bayonet end caps, tool-free access</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Pioneer: Engineering Detail</div>
+  <section class="slide" id="s-pioneer-eng" data-page="4" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Pioneer MKII</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Engineering Detail</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/pioneer-mk2/bracket-detail.jpg" alt="Internal bracket">
+          <div class="pg-cap">Integrated bracket — cable routing included</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/pioneer-mk2/exploded-01.jpg" alt="Exploded assembly view">
+          <div class="pg-cap">Full component assembly</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Design decision</span>
+        <span class="bar-text">All internal brackets printed as single pieces with integrated cable routing channels. No secondary hardware beyond the O-ring sealed end caps — assembly complexity driven to zero.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Pioneer: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-pioneer-extra" data-page="5" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Pioneer MKII</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Built Hardware</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/pioneer-mk2/pool-test-stand.jpeg" alt="Pioneer MKII on its display stand at the competition pool">
+          <div class="pg-cap">Poolside on the stand, carbon fins and sealed mid-section</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/pioneer-mk2/pool-test-overhead.jpeg" alt="Pioneer MKII in the water, tether attached">
+          <div class="pg-cap">In the water, tether attached</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Physical build</span>
+        <span class="bar-text">The printed hull carries carbon fiber fins and a transparent electronics section. Both photos are from the competition pool. This is the built vehicle, not a render.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Pioneer: Pool Test & Award</div>
+  <section class="slide" id="s-pioneer-result" data-page="6" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Pioneer MKII</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Pool Test · TEKNOFEST 2023</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/pioneer-mk2/pool-test-underwater.jpg" alt="Underwater pool test">
+          <div class="pg-cap">Buoyancy verification — Hydraulics Lab, ITU</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/pioneer-mk2/team-teknofest.jpeg" alt="TEKNOFEST team">
+          <div class="pg-cap">TEKNOFEST 2023 — Design &amp; Presentation Award</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">TEKNOFEST 2023</span>
+        <span class="bar-text">Design &amp; Presentation Award. Evaluated on engineering documentation, design rationale, and physical prototype quality — competed nationally against 40+ teams.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ROCKHOUNDER ═══════════════ -->
+
+  <div class="deck-label">Rockhounder</div>
+  <section class="slide" id="s-rock" data-page="1" data-total="6">
+    <div class="proj-layout">
+      <div class="proj-img">
+        <img src="../assets/img/rockhounder/hero-render.png" alt="Rockhounder backpack">
+        <div class="proj-index">Rockhounder</div>
+      </div>
+      <div class="proj-story">
+        <div class="proj-tag">Recreational Design · Product + App System · Soft Goods</div>
+        <h2 class="proj-name">Rock-<br>hounder</h2>
+        <p class="proj-brief">Product and app proposal for recreational rock collecting. A specialist bag system — outer carry bag plus an inner tool bag that lifts out on-site — paired with a companion app. ITU 2nd Best Graduation Project.</p>
+        <div class="proj-fact">
+          <div class="fact-label">The system</div>
+          <div class="fact-body">No off-the-shelf bag addresses rock collecting as a system. Rockhounder proposes two interlocking pieces: the main bag stays at camp while the inner tool bag is carried to the extraction site, keeping specialist tools accessible and the main load stable.</div>
+        </div>
+        <div class="proj-outcome">
+          <div class="outcome-badge">ITU</div>
+          <span class="outcome-text">2nd Best Graduation Project · İTÜ Industrial Design</span>
+        </div>
+        <div class="proj-meta-row">
+          <div><span class="meta-l">Role</span><span class="meta-v">Solo — research through sewn prototype</span></div>
+          <div><span class="meta-l">Tools</span><span class="meta-v">Rhino (model) · V-Ray (render) · Photoshop</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Rockhounder: Sketch / Ideation</div>
+  <section class="slide" id="s-rock-sketch" data-page="2" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Rockhounder</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <div class="sketch-box"><span class="placeholder-note">Sketch scan — add image<br>assets/img/rockhounder/sketch-XX.jpg</span></div>
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Harness-first<br>silhouettes</h3>
+          <p class="ss-text">Placeholder — describe the sketch exploration of pack silhouettes and strap routing alternatives before the harness-compatible yoke was settled on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Rockhounder: Research</div>
+  <section class="slide" id="s-rock-research" data-page="3" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Rockhounder</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Research &amp; Problem</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/rockhounder/concept.jpg" alt="Concept development">
+          </div>
+          <div class="ss-img-sub">
+            <img src="../assets/img/rockhounder/use-scenario.jpg" alt="Use scenario">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">02 — Research</div>
+          <h3 class="ss-title">Harness first,<br>bag second</h3>
+          <p class="ss-text">Field observation with sport climbers revealed every existing pack was designed for hiking — then adapted for climbing. The harness is the primary wearable. The pack is secondary. The design process reversed this hierarchy.</p>
+          <div class="ss-callout">
+            <div class="fact-label">Friction points identified</div>
+            <div class="fact-body">Hip belt vs. harness leg loops. Lid access while roped up. Gear loops blocked by shoulder straps. Each became a design criterion — not a trade-off.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Users</span><span class="spec-v">Sport climbers, via ferrata, crag day trips</span></div>
+            <div class="ss-spec"><span class="spec-k">Primary</span><span class="spec-v">Wearable while harnessed and roped</span></div>
+            <div class="ss-spec"><span class="spec-k">Access</span><span class="spec-v">Top lid + front panel, single-handed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Rockhounder: Construction</div>
+  <section class="slide" id="s-rock-build" data-page="4" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Rockhounder</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Pattern &amp; Construction</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/rockhounder/cutting-pattern.jpg" alt="Cutting pattern">
+          <div class="pg-cap">Full-scale pattern — all pieces</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/rockhounder/drawings-compartments.jpg" alt="Compartment drawings">
+          <div class="pg-cap">Compartment layout &amp; dimensions</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Construction</span>
+        <span class="bar-text">All pattern pieces drawn to scale. Load paths verified at seam intersections before sewing — stress points reinforced with bartack stitching at every junction.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Rockhounder: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-rock-extra" data-page="5" data-total="6">
+    <div class="placeholder-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Rockhounder</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Additional Detail</span>
+      </div>
+      <div class="placeholder-body">
+        <div class="placeholder-box">
+          <span class="placeholder-tag">Placeholder</span>
+          <span class="placeholder-note">Open slot — add materials, hardware detail, fitting sessions, or any other Rockhounder content not yet covered.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Rockhounder: Result</div>
+  <section class="slide" id="s-rock-result" data-page="6" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Rockhounder</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Final Prototype</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/rockhounder/mockup-photos.jpg" alt="Physical prototype">
+          <div class="pg-cap">Sewn prototype — full scale</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/rockhounder/appendix-model-plans.jpg" alt="Final documentation">
+          <div class="pg-cap">Final production documentation</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Outcome</span>
+        <span class="bar-text">Fully functional sewn prototype — tested on-body with harness. Hip belt eliminated, shoulder load path rebalanced. ITU jury recognition for ergonomic rigour.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ REX TANK CLEANER ═══════════════ -->
+
+  <div class="deck-label">REX Mini Tank</div>
+  <section class="slide" id="s-rex" data-page="1" data-total="6">
+    <div class="proj-layout">
+      <div class="proj-img">
+        <img src="../assets/img/rex-tank/cover-rex.jpg" alt="REX Mini Tank">
+        <div class="proj-index">REX</div>
+      </div>
+      <div class="proj-story">
+        <div class="proj-tag">Product Design · Education · Coding</div>
+        <h2 class="proj-name">REX<br>Mini Tank</h2>
+        <p class="proj-brief">A line-following, obstacle-avoiding mini tank designed to teach children coding through a real product. The goal: show kids how design and engineering connect to the physical world — through a toy they can build and program.</p>
+        <div class="proj-fact">
+          <div class="fact-label">Scope</div>
+          <div class="fact-body">Full product design and assembly catalog. Ultrasonic distance sensors, line-following logic, modular chassis. Assembly documentation designed for classroom use — step-by-step, no prior knowledge assumed.</div>
+        </div>
+        <div class="proj-outcome">
+          <div class="outcome-badge">Education</div>
+          <span class="outcome-text">Product design + assembly catalog — designed by Bedirhan</span>
+        </div>
+        <div class="proj-meta-row">
+          <div><span class="meta-l">Role</span><span class="meta-v">Industrial Designer — product design, assembly catalog</span></div>
+          <div><span class="meta-l">Tools</span><span class="meta-v">Fusion 360 (model + render) · Photoshop</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">REX: Sketch / Ideation</div>
+  <section class="slide" id="s-rex-sketch" data-page="2" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">REX Mini Tank</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <div class="sketch-box"><span class="placeholder-note">Sketch scan — add image<br>assets/img/rex-tank/sketch-XX.jpg</span></div>
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Chassis &amp;<br>track layout</h3>
+          <p class="ss-text">Placeholder — describe the early sketch exploration of track-drive layouts and sensor placement before the final chassis geometry was chosen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">REX: Iteration</div>
+  <section class="slide" id="s-rex-iter" data-page="3" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">REX Mini Tank</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Design Iteration</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/rex-tank/early-iteration.png" alt="Early iteration">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">02 — Prototype to product</div>
+          <h3 class="ss-title">Three<br>generations</h3>
+          <p class="ss-text">The first iteration established the track-drive geometry. The second resolved the waterproofing strategy. The third locked tolerances, fastener types, and final seal geometry for production.</p>
+          <div class="ss-callout">
+            <div class="fact-label">Key revision</div>
+            <div class="fact-body">Switched from single gasket to dual O-ring groove at every panel joint. Field feedback from the first batch drove this decision — single gaskets degraded after UV exposure.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Drive</span><span class="spec-v">Dual tank tracks, independently driven</span></div>
+            <div class="ss-spec"><span class="spec-k">Sealing</span><span class="spec-v">Dual O-ring at all access panels</span></div>
+            <div class="ss-spec"><span class="spec-k">Housing</span><span class="spec-v">Layered acrylic + ABS chassis</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">REX: Assembly</div>
+  <section class="slide" id="s-rex-asm" data-page="4" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">REX Mini Tank</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Assembly Documentation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/rex-tank/assembly-guide.jpg" alt="Assembly guide">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">03 — Documentation</div>
+          <h3 class="ss-title">Built to be<br>rebuilt</h3>
+          <p class="ss-text">The assembly guide was developed in parallel with the product — not after. Sequence, seal inspection steps, and connector orientation all documented before production began.</p>
+          <div class="ss-callout">
+            <div class="fact-label">DFA principle</div>
+            <div class="fact-body">Component families consolidated to reduce unique part count. Keyed connectors eliminate assembly errors. Tool-free panel access for field maintenance.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Access</span><span class="spec-v">Tool-free panel removal, keyed connectors</span></div>
+            <div class="ss-spec"><span class="spec-k">Docs</span><span class="spec-v">BOM + assembly sequence + seal guide</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">REX: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-rex-extra" data-page="5" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">REX Mini Tank</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Assembly Catalog Pages</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell fit-contain">
+          <img src="../assets/img/rex-tank/catalog-page-steps-1-2.jpg" alt="REX assembly catalog, steps 1 and 2">
+          <div class="pg-cap">Steps 1–2, panel brackets onto the base plate</div>
+        </div>
+        <div class="pg-cell fit-contain">
+          <img src="../assets/img/rex-tank/catalog-page-steps-7-8.jpg" alt="REX assembly catalog, steps 7 and 8">
+          <div class="pg-cap">Steps 7–8, standoffs with keyed positions</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Catalog design</span>
+        <span class="bar-text">Pages from the printed assembly catalog. Every part is coded (P1, A1, Y1), every step shows one action, and rotation arrows carry the instruction without a single sentence of text.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">REX: Final</div>
+  <section class="slide" id="s-rex-final" data-page="6" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">REX Mini Tank</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Final Design</span>
+      </div>
+      <div class="pg-images col-1">
+        <div class="pg-cell">
+          <img src="../assets/img/rex-tank/hero-final.png" alt="REX final render">
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Shipped</span>
+        <span class="bar-text">REX went into production. Acrylic chassis layers expose internal component layout while maintaining structural integrity. Commercial product — not a student project.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DELTA ═══════════════ -->
+
+  <div class="deck-label">Delta</div>
+  <section class="slide" id="s-delta" data-page="1" data-total="6">
+    <div class="proj-layout">
+      <div class="proj-img">
+        <img src="../assets/img/delta/1.png" alt="Delta kinematic chair">
+        <div class="proj-index">Delta</div>
+      </div>
+      <div class="proj-story">
+        <div class="proj-tag">Convertible Furniture · Space-Constrained Users · Mechanism Design</div>
+        <h2 class="proj-name">Delta</h2>
+        <p class="proj-brief">Convertible furniture for space-constrained users, combining work and play in a single piece. A single telescopic hinge drives the full transition — no separate parts.</p>
+        <div class="proj-fact">
+          <div class="fact-label">The problem</div>
+          <div class="fact-body">Users with limited living space need furniture that shifts between a work mode (desk + upright seat) and a play/leisure mode (reclined + footrest). Delta solves this with a single sliding joint — no additional hardware required.</div>
+        </div>
+        <div class="proj-outcome">
+          <div class="outcome-badge">Finalist</div>
+          <span class="outcome-text">Design for Export · OAİB &amp; Ministry of Commerce</span>
+        </div>
+        <div class="proj-meta-row">
+          <div><span class="meta-l">Role</span><span class="meta-v">Solo — mechanism design through 3D print</span></div>
+          <div><span class="meta-l">Tools</span><span class="meta-v">SolidWorks (model) · Blender (render)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Delta: Sketch / Ideation</div>
+  <section class="slide" id="s-delta-sketch" data-page="2" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Delta</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <div class="sketch-box"><span class="placeholder-note">Sketch scan — add image<br>assets/img/delta/sketch-XX.jpg</span></div>
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Searching for<br>one joint</h3>
+          <p class="ss-text">Placeholder — describe the sketch exploration of multi-position seating mechanisms before the single telescopic hinge concept was identified as the simplest solution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Delta: Mechanism</div>
+  <section class="slide" id="s-delta-mech" data-page="3" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Delta</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Mechanism Detail</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/delta/5.png" alt="Telescopic hinge mechanism">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">02 — Single-hinge logic</div>
+          <h3 class="ss-title">One joint,<br>three states</h3>
+          <p class="ss-text">A telescopic sliding connection allows simultaneous angular and linear displacement along a single axis — backrest angle and seat depth change together, driven by one motion, locking at three discrete positions.</p>
+          <div class="ss-callout">
+            <div class="fact-label">Locking geometry</div>
+            <div class="fact-body">Red-tipped locking pins engage at three backrest angles. Pin geometry designed so that body weight tightens the lock — no spring-loaded release, no fatigue failure mode.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Positions</span><span class="spec-v">Work · Upright · Reclined</span></div>
+            <div class="ss-spec"><span class="spec-k">Joint</span><span class="spec-v">Single telescopic sliding hinge</span></div>
+            <div class="ss-spec"><span class="spec-k">Body</span><span class="spec-v">Plywood / hardwood — no secondary mechanisms</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Delta: Scale Prototype</div>
+  <section class="slide" id="s-delta-model" data-page="4" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Delta</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">1:5 Scale Prototype</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/delta/prototype-scale.jpg" alt="1:5 scale 3D printed model">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">03 — Verification</div>
+          <h3 class="ss-title">Mechanism<br>first</h3>
+          <p class="ss-text">Before committing to full-scale fabrication, the mechanism was validated at 1:5 scale in FDM. The model confirmed all three locking positions were reachable and that the joint self-locked under simulated load.</p>
+          <div class="ss-callout">
+            <div class="fact-label">What the model revealed</div>
+            <div class="fact-body">Pin clearance at the reclined position was too tight at 1:5 — identified before full-scale build and corrected in CAD. The scale model found the problem, not the final prototype.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Scale</span><span class="spec-v">1:5 — all joint proportions maintained</span></div>
+            <div class="ss-spec"><span class="spec-k">Method</span><span class="spec-v">FDM — PLA, 0.15 mm layer height</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Delta: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-delta-extra" data-page="5" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Delta</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Work Mode &amp; Exhibition</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/delta/9.png" alt="Delta in working position with desk surface and laptop">
+          <div class="pg-cap">Working position, desk surface in use</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/delta/award-ceremony.jpg" alt="Bedirhan at the exhibition with the Delta competition board">
+          <div class="pg-cap">Competition board at the exhibition</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Design for Export</span>
+        <span class="bar-text">Finalist in the smart furniture student category. The exhibited board summarises the mechanism story: use positions, parts and production, and 1:5 scale model photographs.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Delta: Final</div>
+  <section class="slide" id="s-delta-final" data-page="6" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Delta</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Final Design · Design for Export Finalist</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/delta/ODA1.jpg" alt="Delta — working position">
+          <div class="pg-cap">Working position</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/delta/ODA2.jpg" alt="Delta — reclined position">
+          <div class="pg-cap">Reclined position</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Design for Export</span>
+        <span class="bar-text">Finalist — OAİB &amp; Ministry of Commerce. Evaluated on export viability, engineering documentation, and design originality. The mechanism was the differentiator.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ RAZOR ═══════════════ -->
+
+  <div class="deck-label">Electric Razor Redesign</div>
+  <section class="slide" id="s-razor" data-page="1" data-total="6">
+    <div class="proj-layout">
+      <div class="proj-img">
+        <img src="../assets/img/razor/hero-final-black.png" alt="Razor shaving system">
+        <div class="proj-index">Electric Razor Redesign</div>
+      </div>
+      <div class="proj-story">
+        <div class="proj-tag">Consumer Electronics · Reverse Engineering · DFM</div>
+        <h2 class="proj-name">Electric Razor<br>Redesign</h2>
+        <p class="proj-brief">A premium shaving adapter system that began with a teardown, not a brief. Before sketching, every competitor was disassembled, documented, and mapped — constraints defined before form explored.</p>
+        <div class="proj-fact">
+          <div class="fact-label">Method</div>
+          <div class="fact-body">Competitive teardown first, then design. This reverses the typical process. The charging dock geometry was the last decision — not the first.</div>
+        </div>
+        <div class="proj-meta-row">
+          <div><span class="meta-l">Role</span><span class="meta-v">Solo — research through production-ready model</span></div>
+          <div><span class="meta-l">Tools</span><span class="meta-v">Rhino (model) · KeyShot (render)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Electric Razor: Sketch / Ideation</div>
+  <section class="slide" id="s-razor-sketch" data-page="2" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Electric Razor Redesign</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/razor/sketch-ideation.jpg" alt="Razor ideation sketches with disassembly annotations">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Sketching for<br>disassembly</h3>
+          <p class="ss-text">Form alternatives annotated with the questions that drove the redesign: fewer parts, snap assembly, tool-free battery access, horizontal disassembly. The teardown findings are written directly onto the sketches.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Electric Razor: Teardown</div>
+  <section class="slide" id="s-razor-teardown" data-page="3" data-total="6">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Electric Razor Redesign</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Competitive Teardown</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/razor/problem-board.jpg" alt="Problem analysis board">
+          </div>
+          <div class="ss-img-sub">
+            <img src="../assets/img/razor/teardown-adapter.jpg" alt="Adapter teardown">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">02 — Starting point</div>
+          <h3 class="ss-title">Disassemble<br>first</h3>
+          <p class="ss-text">Before a single sketch, competing products were opened, measured, and mapped. The teardown revealed shared failure points: the adapter locking mechanism and charging contact arrangement — both addressed in Razor.</p>
+          <div class="ss-callout">
+            <div class="fact-label">Key finding</div>
+            <div class="fact-body">All competitors used spring-friction locking. Razor uses a quarter-turn bayonet — positive engagement, single-handed operation, no spring fatigue failure mode.</div>
+          </div>
+          <div class="ss-specs">
+            <div class="ss-spec"><span class="spec-k">Method</span><span class="spec-v">Full disassembly + dimensional mapping</span></div>
+            <div class="ss-spec"><span class="spec-k">Failures</span><span class="spec-v">Locking, charging contact, seal degradation</span></div>
+            <div class="ss-spec"><span class="spec-k">Response</span><span class="spec-v">Bayonet lock, magnetic charge, dual O-ring</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Electric Razor: Form Development</div>
+  <section class="slide" id="s-razor-process" data-page="4" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Electric Razor Redesign</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Form Development</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/razor/foam-early.jpg" alt="Early foam prototype">
+          <div class="pg-cap">Early foam — grip ergonomics</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/razor/foam-final.jpg" alt="Final foam model">
+          <div class="pg-cap">Final foam — production geometry</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Iteration</span>
+        <span class="bar-text">Grip diameter and thumb saddle geometry iterated through multiple foam generations before CAD. Hand feel defined in foam — then locked into SolidWorks with tolerances.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Electric Razor: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-razor-extra" data-page="5" data-total="6">
+    <div class="placeholder-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Electric Razor Redesign</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Additional Detail</span>
+      </div>
+      <div class="placeholder-body">
+        <div class="placeholder-box">
+          <span class="placeholder-tag">Placeholder</span>
+          <span class="placeholder-note">Open slot — add charging dock detail, waterproofing test, or any other Electric Razor Redesign content not yet covered.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Electric Razor: Final</div>
+  <section class="slide" id="s-razor-final" data-page="6" data-total="6">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Electric Razor Redesign</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Final Design</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/razor/render-charging-dock.png" alt="Charging dock render">
+          <div class="pg-cap">Charging dock — magnetic contact</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/razor/technical-drawing.jpg" alt="Technical drawing">
+          <div class="pg-cap">Production-ready technical drawing</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Outcome</span>
+        <span class="bar-text">Production-ready documentation: 3D model, technical drawings, BOM, and assembly sequence. Bayonet lock, magnetic charging, tool-free battery access.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ OTHER SELECTED WORK ═══════════════ -->
+
+  <div class="deck-label">Section Divider</div>
+  <section class="slide" id="s-other-divider" data-page="1" data-total="20">
+    <div class="divider-slide">
+      <span class="dv-eyebrow">Section 02</span>
+      <h2 class="dv-title">Other<br>Selected Work</h2>
+      <p class="dv-sub">Projects outside the five flagships — shown briefly. Each represents a different design method: service design, urban systems, material craft, and jury-evaluated studio work.</p>
+    </div>
+  </section>
+
+  <div class="deck-label">Herptile</div>
+  <section class="slide" id="s-herptile" data-page="2" data-total="20">
+    <div class="mini-slide">
+      <div class="mini-img">
+        <img src="../assets/img/herptile/hero-render.jpg" alt="Herptile pregnancy pilates reformer">
+      </div>
+      <div class="mini-body">
+        <div class="mini-num">Herptile</div>
+        <h3 class="mini-title">Pregnancy<br>Pilates Station</h3>
+        <p class="mini-desc">A pilates reformer and coaching system designed for safe exercise during pregnancy — spanning sheet-metal engineering, a customer journey map, and app-based guidance as one product-service system.</p>
+        <div class="mini-tags">
+          <span class="mini-tag-pill">Sheet Metal</span>
+          <span class="mini-tag-pill">Service Design</span>
+          <span class="mini-tag-pill">Full CAD</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Herptile: Sketch / Ideation</div>
+  <section class="slide" id="s-herptile-sketch" data-page="3" data-total="20">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Herptile</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/herptile/ideation-sketches.jpg" alt="Herptile station ideation sketches">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Drawn to<br>dimension</h3>
+          <p class="ss-text">Dimensioned studies of the station body. Strap routing and control placement were explored on paper before any CAD, with target sizes noted directly on the sketch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Herptile: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-herptile-extra" data-page="4" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Herptile</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Structure &amp; Service</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/herptile/exploded-reformer.jpg" alt="Reformer exploded view">
+          <div class="pg-cap">Reformer exploded view, carriage and frame</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/herptile/customer-journey.jpg" alt="Customer journey map">
+          <div class="pg-cap">Customer journey map, discovery to sharing</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Product-service system</span>
+        <span class="bar-text">The reformer and the service were designed together. The journey map ties facility, mobile app and clinic touchpoints to the same product decisions carried through CAD.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Urn</div>
+  <section class="slide" id="s-urn" data-page="5" data-total="20">
+    <div class="mini-slide">
+      <div class="mini-img">
+        <img src="../assets/img/urn/hero-lifestyle-render.jpg" alt="Urn hot drink station">
+      </div>
+      <div class="mini-body">
+        <div class="mini-num">Urn</div>
+        <h3 class="mini-title">Hot Drink Station<br>for the Neighborhood</h3>
+        <p class="mini-desc">Starting from tea's role as a conversation starter in Turkish culture, this transit-card-operated station is an urban product system aimed at strengthening everyday neighborhood meeting points.</p>
+        <div class="mini-tags">
+          <span class="mini-tag-pill">AEIOU Research</span>
+          <span class="mini-tag-pill">Urban System</span>
+          <span class="mini-tag-pill">Production BOM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Urn: Sketch / Ideation</div>
+  <section class="slide" id="s-urn-sketch" data-page="6" data-total="20">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Urn</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/urn/sketch-tea-station.jpg" alt="Urn tea station interaction sketches">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Tea as a<br>meeting point</h3>
+          <p class="ss-text">Interaction sketches for the station: the serving body, a built-in chess surface, and the tea glass itself. The drawings work out how people gather around the station, not just how it looks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Urn: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-urn-extra" data-page="7" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Urn</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Production Details</span>
+      </div>
+      <div class="pg-images col-1">
+        <div class="pg-cell">
+          <img src="../assets/img/urn/production-details.jpg" alt="Urn exploded view with parts and materials table">
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">BOM</span>
+        <span class="bar-text">Fifteen numbered parts, each with material and manufacturing method: laser-cut 3 mm stainless body panels, injection and extrusion polycarbonate parts, and a 220 V heating unit.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Retroscent</div>
+  <section class="slide" id="s-retroscent" data-page="8" data-total="20">
+    <div class="mini-slide">
+      <div class="mini-img">
+        <img src="../assets/img/retroscent/hero-scene.png" alt="Retroscent furniture piece for 2050 world scenarios">
+      </div>
+      <div class="mini-body">
+        <div class="mini-num">Retroscent</div>
+        <h3 class="mini-title">Furniture for<br>2050 Scenarios</h3>
+        <p class="mini-desc">Furniture design responding to changing 2050 world scenarios, integrating aromatherapy as a sensory and emotional layer into organic mixed-material form.</p>
+        <div class="mini-tags">
+          <span class="mini-tag-pill">Furniture</span>
+          <span class="mini-tag-pill">Aromatherapy</span>
+          <span class="mini-tag-pill">2050 Scenarios</span>
+        </div>
+        <div class="mini-award">
+          <span class="outcome-badge">FURNITUR 2023</span>
+          <span>Prize &amp; Mention — Türkiye Tasarım Vakfı</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Retroscent: Sketch / Ideation</div>
+  <section class="slide" id="s-retroscent-sketch" data-page="9" data-total="20">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Retroscent</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <div class="sketch-box"><span class="placeholder-note">Sketch scan — add image<br>assets/img/retroscent/sketch-XX.jpg</span></div>
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Organic form,<br>aromatherapy</h3>
+          <p class="ss-text">Placeholder — describe the organic form studies and how aromatherapy integration was explored in response to FURNITUR 2023's brief on changing 2050 world scenarios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Retroscent: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-retroscent-extra" data-page="10" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Retroscent</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Material Detail</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/retroscent/detail-render.png" alt="Retroscent detail render, rear quarter">
+          <div class="pg-cap">Detail render, rear quarter</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/retroscent/orthographic.png" alt="Retroscent detail render, seat surfaces">
+          <div class="pg-cap">Detail render, seat surfaces</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Materials</span>
+        <span class="bar-text">Mixed-material composition in close-up: speckled cast base, wood-grain shell, fabric seat pads and perforated transitions between them, resolved as one continuous form.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Spiegelau</div>
+  <section class="slide" id="s-spiegelau" data-page="11" data-total="20">
+    <div class="mini-slide">
+      <div class="mini-img">
+        <img src="../assets/img/spiegelau/champagne-set.jpg" alt="Spiegelau white wine set — chiller, flute, coupe">
+      </div>
+      <div class="mini-body">
+        <div class="mini-num">Spiegelau</div>
+        <h3 class="mini-title">White Wine<br>Set Design</h3>
+        <p class="mini-desc">A three-piece white wine set — chiller, flute, and coupe — developed through Rhino surface modelling with full technical drawings for production.</p>
+        <div class="mini-tags">
+          <span class="mini-tag-pill">Rhino Surfacing</span>
+          <span class="mini-tag-pill">Glassware</span>
+          <span class="mini-tag-pill">Technical Drawing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Spiegelau: Sketch / Ideation</div>
+  <section class="slide" id="s-spiegelau-sketch" data-page="12" data-total="20">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Spiegelau</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/spiegelau/ideation-01.jpg" alt="Spiegelau glass profile ideation sketches">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">One set,<br>three vessels</h3>
+          <p class="ss-text">Profile ideation for the white wine set, drawn light on dark. Stem, bowl and foot variations were compared side by side before surface modelling; a carafe study sits alongside the glasses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Spiegelau: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-spiegelau-extra" data-page="13" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Spiegelau</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Technical Sections</span>
+      </div>
+      <div class="pg-images col-1">
+        <div class="pg-cell">
+          <img src="../assets/img/spiegelau/technical-dims.jpg" alt="Dimensioned glass profile sections">
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Dimensions</span>
+        <span class="bar-text">Profile sections drawn to dimension. Heights, foot diameters, rim and base radii are locked on the section before any surface modelling begins.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Kickboard</div>
+  <section class="slide" id="s-kickboard" data-page="14" data-total="20">
+    <div class="mini-slide">
+      <div class="mini-img">
+        <img src="../assets/img/Kickboard projesi/w5.2 final jury/renders1/iso1.png" alt="Kickboard for children final render">
+      </div>
+      <div class="mini-body">
+        <div class="mini-num">Kickboard for Children</div>
+        <h3 class="mini-title">Studio Project,<br>Final Jury</h3>
+        <p class="mini-desc">A kickboard designed for children learning to swim, developed across a full studio semester from concept sketches through final jury renders and a presentation model.</p>
+        <div class="mini-tags">
+          <span class="mini-tag-pill">Studio Project</span>
+          <span class="mini-tag-pill">Physical Model</span>
+          <span class="mini-tag-pill">Final Jury</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Kickboard: Development</div>
+  <section class="slide" id="s-kickboard-dev" data-page="15" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Kickboard for Children</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Process — Model to Render</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/Kickboard projesi/w5.2 final jury/makets/3.jpg" alt="Physical presentation model">
+          <div class="pg-cap">Physical presentation model</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/Kickboard projesi/w5.2 final jury/renders1/cocuklu render.png" alt="Use scenario render">
+          <div class="pg-cap">Use scenario render</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Process</span>
+        <span class="bar-text">Developed across five studio milestones — concept sketches, first jury feedback, ergonomic refinement, and final presentation renders and model.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Kickboard: Sketch / Ideation</div>
+  <section class="slide" id="s-kickboard-sketch" data-page="16" data-total="20">
+    <div class="split-slide">
+      <div class="ss-head">
+        <span class="proj-tag">Kickboard for Children</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Sketch / Ideation</span>
+      </div>
+      <div class="ss-body">
+        <div class="ss-left">
+          <div class="ss-img-main">
+            <img src="../assets/img/Kickboard projesi/w2.2/1.jpg" alt="Kickboard concept sketch sheet, four kick types">
+          </div>
+        </div>
+        <div class="ss-right">
+          <div class="ss-label">01 — Ideation</div>
+          <h3 class="ss-title">Kick types<br>drive the form</h3>
+          <p class="ss-text">The concept sheet maps four kick types around a smart metronome kickboard for children. Swimmer studies define where the board sits in the water for each stroke, drawn next to the first board form sketches.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Automotive Design</div>
+  <section class="slide" id="s-auto" data-page="17" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Automotive Design</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Coursework — Redesign Sketches</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/Automotive Design/Homework 01 Citroen Ami/Edited Ami Sport 2.jpg" alt="Citroen Ami redesign sketch">
+          <div class="pg-cap">Citroën Ami — sport redesign study</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/Automotive Design/Homework 01 Citroen Ami/Edited Ami Sketch.jpg" alt="Citroen Ami sketch">
+          <div class="pg-cap">Citroën Ami — form language sketch</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Coursework</span>
+        <span class="bar-text">Introduction to Automotive Design — digital sketch overpainting exercises exploring proportion, surface language, and brand redesign on existing production vehicles.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Automotive Design: Interior</div>
+  <section class="slide" id="s-auto-interior" data-page="18" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Automotive Design</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Coursework — Interior &amp; Concept Sketches</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/Automotive Design/Homework 03/my interior front.jpg" alt="Interior concept sketch">
+          <div class="pg-cap">Interior concept — front view</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/Automotive Design/Midterm Automotive design/mypontiac 1.png" alt="Pontiac redesign study">
+          <div class="pg-cap">Pontiac analysis &amp; redesign study</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Coursework</span>
+        <span class="bar-text">Interior layout sketching and historical vehicle analysis — part of a semester-long automotive design elective, included here for range rather than depth.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Automotive Design: Additional Detail (placeholder)</div>
+  <section class="slide" id="s-auto-extra" data-page="19" data-total="20">
+    <div class="photo-grid">
+      <div class="pg-head">
+        <span class="proj-tag">Automotive Design</span>
+        <span class="proj-tag" style="color:var(--ink-900);text-transform:none;letter-spacing:0">Coursework — Interior Packaging</span>
+      </div>
+      <div class="pg-images col-2">
+        <div class="pg-cell">
+          <img src="../assets/img/Automotive Design/Homework 02/Untitled-1.jpg" alt="Range Rover Evoque interior packaging study">
+          <div class="pg-cap">Evoque, existing interior drawn through the body</div>
+        </div>
+        <div class="pg-cell">
+          <img src="../assets/img/Automotive Design/Homework 02/Untitled-2.jpg" alt="Range Rover Evoque redesigned interior proposal">
+          <div class="pg-cap">Redesigned interior over the same footprint</div>
+        </div>
+      </div>
+      <div class="pg-bar">
+        <span class="bar-label">Coursework</span>
+        <span class="bar-text">A two-page Range Rover Evoque study: the existing seat and console packaging drawn see-through, then a redesigned interior proposed inside the same body.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck-label">Awards &amp; Recognition</div>
+  <section class="slide" id="s-awards" data-page="20" data-total="20">
+    <div class="awards-slide">
+      <span class="aw-eyebrow">Summary</span>
+      <h2 class="aw-title">Awards &amp; Recognition</h2>
+      <div class="aw-grid">
+        <div class="aw-cell">
+          <div class="aw-yr">2023</div>
+          <div class="aw-name">TEKNOFEST</div>
+          <div class="aw-org">Design &amp; Presentation Award — Pioneer MKII</div>
+        </div>
+        <div class="aw-cell">
+          <div class="aw-yr">2023</div>
+          <div class="aw-name">FURNITUR 2023</div>
+          <div class="aw-org">Prize &amp; Mention — Türkiye Tasarım Vakfı, Retroscent</div>
+        </div>
+        <div class="aw-cell">
+          <div class="aw-yr">2023</div>
+          <div class="aw-name">ITU Graduation Awards</div>
+          <div class="aw-org">2nd Prize — Istanbul Technical University</div>
+        </div>
+        <div class="aw-cell">
+          <div class="aw-yr">2022</div>
+          <div class="aw-name">Design for Export</div>
+          <div class="aw-org">Finalist — OAİB &amp; Ministry of Commerce, Delta</div>
+        </div>
+        <div class="aw-cell">
+          <div class="aw-yr">2023</div>
+          <div class="aw-name">MATE ROV Competition</div>
+          <div class="aw-org">3rd Place International — ITU ROV Team, Norway</div>
+        </div>
+        <div class="aw-cell">
+          <div class="aw-yr">—</div>
+          <div class="aw-name">Rockhounder</div>
+          <div class="aw-org">Jury recognition — ITU Industrial Design Studio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  // Build page indicators for all slides with data-page
+  document.querySelectorAll('.slide[data-page]').forEach(function(slide){
+    var page  = parseInt(slide.getAttribute('data-page'));
+    var total = parseInt(slide.getAttribute('data-total'));
+    var ind = document.createElement('div');
+    ind.className = 'proj-indicator';
+    for(var i = 1; i <= total; i++){
+      var line = document.createElement('div');
+      line.className = 'pi-line' + (i === page ? ' is-active' : '');
+      ind.appendChild(line);
+    }
+    slide.appendChild(ind);
+  });
+
+  // Add page numbers to every slide (top-right, consistent)
+  var allSlides = document.querySelectorAll('.slide');
+  var totalPages = allSlides.length;
+  allSlides.forEach(function(slide, idx){
+    var pn = document.createElement('div');
+    pn.className = 'slide-page-num';
+    pn.textContent = (idx + 1) + ' / ' + totalPages;
+    slide.appendChild(pn);
+  });
+
+  // Auto-number the deck labels from document order
+  document.querySelectorAll('.deck-label').forEach(function(label, idx){
+    label.textContent = 'Slide ' + (idx + 1) + ' — ' + label.textContent;
+  });
+
+  // Add project number badge to project slides
+  var projMap = {
+    's-pioneer':'01','s-pioneer-sketch':'01','s-pioneer-form':'01','s-pioneer-eng':'01','s-pioneer-extra':'01','s-pioneer-result':'01',
+    's-rock':'02','s-rock-sketch':'02','s-rock-research':'02','s-rock-build':'02','s-rock-extra':'02','s-rock-result':'02',
+    's-rex':'03','s-rex-sketch':'03','s-rex-iter':'03','s-rex-asm':'03','s-rex-extra':'03','s-rex-final':'03',
+    's-delta':'04','s-delta-sketch':'04','s-delta-mech':'04','s-delta-model':'04','s-delta-extra':'04','s-delta-final':'04',
+    's-razor':'05','s-razor-sketch':'05','s-razor-teardown':'05','s-razor-process':'05','s-razor-extra':'05','s-razor-final':'05',
+    's-other-divider':'06','s-herptile':'06','s-herptile-sketch':'06','s-herptile-extra':'06',
+    's-urn':'06','s-urn-sketch':'06','s-urn-extra':'06',
+    's-retroscent':'06','s-retroscent-sketch':'06','s-retroscent-extra':'06',
+    's-spiegelau':'06','s-spiegelau-sketch':'06','s-spiegelau-extra':'06',
+    's-kickboard':'06','s-kickboard-dev':'06','s-kickboard-sketch':'06',
+    's-auto':'06','s-auto-interior':'06','s-auto-extra':'06','s-awards':'06'
+  };
+  Object.keys(projMap).forEach(function(id){
+    var slide = document.getElementById(id);
+    if(!slide) return;
+    var badge = document.createElement('div');
+    badge.className = 'proj-num-badge';
+    badge.textContent = projMap[id];
+    slide.appendChild(badge);
+  });
+
+  // Contents rows jump to their project section
+  var ctTargets = ['s-pioneer','s-rock','s-rex','s-delta','s-razor','s-other-divider'];
+  document.querySelectorAll('#contents .ct-item').forEach(function(item, i){
+    item.addEventListener('click', function(){
+      var t = document.getElementById(ctTargets[i]);
+      if(t) t.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+
+  // Arrow / PageUp-PageDown keys step one slide at a time
+  document.addEventListener('keydown', function(e){
+    var fwd = (e.key === 'ArrowDown' || e.key === 'PageDown');
+    var back = (e.key === 'ArrowUp' || e.key === 'PageUp');
+    if(!fwd && !back) return;
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var mid = window.scrollY + window.innerHeight / 2;
+    var cur = 0;
+    slides.forEach(function(s, i){ if(s.offsetTop <= mid) cur = i; });
+    var next = fwd ? Math.min(cur + 1, slides.length - 1) : Math.max(cur - 1, 0);
+    slides[next].scrollIntoView({behavior:'smooth', block:'center'});
+    e.preventDefault();
+  });
+
+  document.querySelectorAll('.font-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var alt = btn.getAttribute('data-set-font') === 'alt';
+      document.body.setAttribute('data-font', alt ? 'alt' : 'default');
+      document.querySelectorAll('.font-toggle button').forEach(function(b){ b.classList.toggle('is-active', b === btn); });
+    });
+  });
+</script>
+</body>
+</html>

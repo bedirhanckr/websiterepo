@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philips MG7720 Redesign — Repairability Engineering | Bedirhan Çakıroğlu</title>
+<meta name="description" content="Redesigning the battery and charging experience of a cordless shaver so it can be repaired instead of thrown away. Teardown, foam prototyping, CAD.">
+<meta property="og:title" content="Philips MG7720 Redesign — Repairability Engineering | Bedirhan Çakıroğlu">
+<meta property="og:description" content="Redesigning the battery and charging experience of a cordless shaver so it can be repaired instead of thrown away. Teardown, foam prototyping, CAD.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Bedirhan Çakıroğlu<small data-i18n="brand.role">Industrial Designer / Design Engineer</small></a>
+    <div style="display:flex; align-items:center;">
+      <nav class="primary-nav" id="primary-nav">
+        <a href="../index.html" data-i18n="nav.work">Work</a>
+        <a href="../about.html" data-i18n="nav.about">About</a>
+        <a href="../index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button><span class="sep">/</span><button data-lang="de" aria-pressed="false">DE</button><span class="sep">/</span><button data-lang="tr" aria-pressed="false">TR</button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="breadcrumb wrap" aria-label="breadcrumb">
+  <a href="../index.html" data-i18n="cs.crumb">Work</a><span>/</span><span>Razor</span>
+</nav>
+<main id="main">
+
+  <section class="case-hero">
+    <div class="wrap wrap--narrow">
+      <span class="dim-mark" data-i18n="cs.razor.eyebrow">RZ·21 — Onarılabilirlik Mühendisliği</span>
+      <h1 class="h1" data-i18n="cs.razor.h1">Philips MG7720: Onarılabilirlik için Yeniden Tasarım</h1>
+      <p class="lede" data-i18n="cs.razor.lede">Pil bittiğinde elli ile yüz dolar arası bir tıraş makinesi çöpe gidiyor, oysa değişmesi gereken parça birkaç dolarlık bir pil. Bu proje sorunun kaynağına iniyor: erişim, araç ve güven eksikliği.</p>
+
+      <div class="meta-strip" style="margin-top: 0;">
+        <div class="item"><span data-i18n="cs.razor.role.l">Rol</span><span data-i18n="cs.razor.role.v">Ürün yeniden tasarımı, bireysel</span></div>
+        <div class="item"><span data-i18n="cs.razor.product.l">Ürün</span><span data-i18n="cs.razor.product.v">Philips MG7720 kablosuz tıraş makinesi</span></div>
+        <div class="item"><span data-i18n="cs.razor.result.l">Sonuç</span><span data-i18n="cs.razor.result.v">Foam prototip, iki renk varyantlı final tasarım</span></div>
+        <div class="item"><span data-i18n="cs.razor.method.l">Yöntem</span><span data-i18n="cs.razor.method.v">Teardown, foam prototipleme, CAD</span></div>
+        <div class="item"><span data-i18n="cs.razor.tools.l">Araçlar</span><span data-i18n="cs.razor.tools.v">Rhino</span></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="case-subnav" aria-label="Vaka analizi bölümleri">
+    <div class="wrap">
+      <a href="#problem" data-i18n="cs.subnav.problem">Problem</a>
+      <a href="#arastirma" data-i18n="cs.subnav.arastirma">Araştırma</a>
+      <a href="#kriterler" data-i18n="cs.subnav.kriterler">Kriterler</a>
+      <a href="#konsept" data-i18n="cs.subnav.konsept">Konsept</a>
+      <a href="#sketch" data-i18n="cs.subnav.sketch">Sketch</a>
+      <a href="#cad" data-i18n="cs.subnav.cad">CAD</a>
+      <a href="#muhendislik" data-i18n="cs.subnav.muhendislik">Mühendislik</a>
+      <a href="#dfm">DFM/DFA</a>
+      <a href="#prototip" data-i18n="cs.subnav.prototip">Prototip</a>
+      <a href="#testler" data-i18n="cs.subnav.testler">Testler</a>
+      <a href="#iterasyon" data-i18n="cs.subnav.iterasyon">İterasyon</a>
+      <a href="#nihai" data-i18n="cs.subnav.nihai">Nihai</a>
+      <a href="#kazanim" data-i18n="cs.subnav.kazanim">Kazanım</a>
+    </div>
+  </nav>
+
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <span class="eyebrow">01 — <span data-i18n="cs.eyebrow.problem">Problem</span></span>
+      <h2 data-i18n="cs.razor.problem.h">Pil değil, tüm cihaz atılıyor</h2>
+      <p data-i18n="cs.razor.problem.p1">Kablosuz tıraş makinelerinde pil kapasitesi düştüğünde ya da tamamen bittiğinde, kullanıcıların çoğu cihazı sökmeyi denemek yerine doğrudan yeni bir makine satın alıyor. Oysa arızalı olan parça, cihazın küçük bir bileşeni: dahili pil.</p>
+      <p data-i18n="cs.razor.problem.p2">Hedef kullanıcı grubu olarak öğrenciler belirlendi: bütçesi sınırlı, elinde özel bir sökme aracı yok, elektronik cihaz söküp takma konusunda deneyimsiz, ama teknolojiye yabancı da değil. Bu grup için elli ile yüz dolarlık bir cihazı, birkaç dolarlık bir pil yüzünden çöpe atmak hem ekonomik hem çevresel açıdan anlamsız.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/razor/problem-board.jpg" alt="Hedef kullanıcı grubu, konsept ve problem senaryosunu özetleyen çalışma panosu"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="arastirma">
+    <div class="wrap">
+      <span class="eyebrow">02 — <span data-i18n="cs.eyebrow.arastirma">Araştırma</span></span>
+      <h2 data-i18n="cs.razor.arastirma.h">Gerçek cihazı sökerek başlamak</h2>
+      <p data-i18n="cs.razor.arastirma.p">Problemi somutlaştırmak için gerçek bir Philips MG7720 ve şarj adaptörü elle söküldü. Pilin gövde içinde nereye yerleştirildiği, hangi tip vida ile sabitlendiği (Torx) ve kapağın hangi noktalardan klipslendiği tek tek incelendi. Bu inceleme, "kullanıcı bu cihazı aracı olmadan güvenle açabilir mi" sorusunun cevabını verdi: hayır.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/razor/teardown-adapter.jpg" alt="Şarj adaptörünün elle sökülmesi, iç bağlantı noktalarının incelenmesi"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="kriterler">
+    <div class="wrap">
+      <span class="eyebrow">03 — <span data-i18n="cs.eyebrow.kriterler">Tasarım Kriterleri</span></span>
+      <h2 data-i18n="cs.razor.kriterler.h">Neyin doğru olduğuna nasıl karar verdik</h2>
+      <table class="spec-table">
+        <tr><th data-i18n="cs.spec.criterion">Kriter</th><th data-i18n="cs.spec.requirement">Gereksinim</th></tr>
+        <tr><td data-i18n="cs.razor.k1.k">Erişilebilirlik</td><td data-i18n="cs.razor.k1.v">Pil bölmesi, özel bir alet gerektirmeden açılabilmeli</td></tr>
+        <tr><td data-i18n="cs.razor.k2.k">Güvenlik</td><td data-i18n="cs.razor.k2.v">Kullanıcı, elektronik bileşenlere kazayla temas etmemeli</td></tr>
+        <tr><td data-i18n="cs.razor.k3.k">Su geçirmezlik</td><td data-i18n="cs.razor.k3.v">Banyoda kullanım koşulunda contalama korunmalı</td></tr>
+        <tr><td data-i18n="cs.razor.k4.k">Şarj deneyimi</td><td data-i18n="cs.razor.k4.v">Şarj durumu ve dock hizalaması görsel olarak anlaşılır olmalı</td></tr>
+        <tr><td data-i18n="cs.razor.k5.k">Üretilebilirlik</td><td data-i18n="cs.razor.k5.v">Mevcut enjeksiyon kalıplama yöntemleriyle uyumlu kalmalı</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="case-section" id="konsept">
+    <div class="wrap">
+      <span class="eyebrow">04 — <span data-i18n="cs.eyebrow.konsept">Konsept Geliştirme</span></span>
+      <h2 data-i18n="cs.razor.konsept.h">Pil ve şarj deneyimi üzerine odaklanmak</h2>
+      <p data-i18n="cs.razor.konsept.p1">Konsept, tüm ürünü yeniden çizmek yerine tek bir odak noktasına kilitlendi: pil ve şarj deneyimi. Gövdenin arka yüzü, elle açılabilen ayrı bir kapak olarak yeniden tanımlandı. Şarj standı, cihazın dock üzerinde doğru hizalandığını görsel olarak gösterecek şekilde revize edildi.</p>
+      <p data-i18n="cs.razor.konsept.p2">İki farklı renk varyantı (siyah ve mavi) paralel olarak geliştirildi. Bu bir fonksiyon farkı değil, malzeme ve yüzey kararlarını karşılaştırmak için yapılan bilinçli bir çalışmaydı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="sketch">
+    <div class="wrap">
+      <span class="eyebrow">05 — <span data-i18n="cs.eyebrow.sketch">Sketch</span></span>
+      <h2 data-i18n="cs.razor.sketch.h">Söküm analizinden çıkan ilk fikirler</h2>
+      <p data-i18n="cs.razor.sketch.p">İlk kapak ve vida yerleşimi fikirleri, söküm analizinin hemen ardından, Problem bölümündeki çalışma panosunun içinde yer alan kesit eskizleriyle geliştirildi. Bu proje için ayrı, bağımsız bir eskiz seti bu vaka analizine eklenecek şekilde arşivlenmedi.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="cad">
+    <div class="wrap">
+      <span class="eyebrow">06 — <span data-i18n="cs.eyebrow.cad">CAD Süreci</span></span>
+      <h2 data-i18n="cs.razor.cad.h">İki renk varyantını paralel modellemek</h2>
+      <p data-i18n="cs.razor.cad.p">Gövde ve sökülebilir pil kapağı CAD ortamında modellendi. Siyah ve mavi varyantlar aynı geometri üzerinden, sadece malzeme ve yüzey ayarları değiştirilerek üretildi. Bu yaklaşım, tek bir kalıp tasarımının farklı pazar segmentlerine nasıl uyarlanabileceğini göstermeyi amaçladı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="muhendislik">
+    <div class="wrap">
+      <span class="eyebrow">07 — <span data-i18n="cs.eyebrow.muhendislik">Mühendislik Kararları</span></span>
+      <h2 data-i18n="cs.razor.muh.h">Sökülebilir kapak, gerçek ölçülerle</h2>
+      <p data-i18n="cs.razor.muh.p">Pil kapağının et kalınlığı, klips toleransı ve conta oturma yüzeyi teknik çizimde tek tek tanımlandı. Amaç, kapağın hem elle güvenle açılabilmesi hem de su geçirmezliği bozmayacak şekilde kapanabilmesiydi.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/razor/technical-drawing.jpg" alt="Tıraş makinesi gövdesinin ölçülü teknik çizimi"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="dfm">
+    <div class="wrap">
+      <span class="eyebrow">08 — <span data-i18n="cs.eyebrow.dfm">DFM / DFA</span></span>
+      <h2 data-i18n="cs.razor.dfm.h">Onarılabilirlik, montaj mantığına dönüştü</h2>
+      <p data-i18n="cs.razor.dfm.p">Orijinal cihazda pile ulaşmak gövdenin tamamen açılmasını gerektiriyordu. Yeniden tasarımda pil kapağı, gövdeden bağımsız, tek başına sökülüp takılabilen bir alt montaj olarak ayrıldı. Bu karar, hem üretim sırasında bağımsız test edilebilirliği hem de kullanıcı tarafından bakım yapılabilirliği artırdı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="prototip">
+    <div class="wrap">
+      <span class="eyebrow">09 — <span data-i18n="cs.eyebrow.prototip">Prototipleme</span></span>
+      <h2 data-i18n="cs.razor.prototip.h">Foam üzerinden form doğrulama</h2>
+      <p data-i18n="cs.razor.prototip.p">Form kararları, önce kaba bir hacim çalışmasıyla, ardından ölçülü ve detaylandırılmış bir foam maketle doğrulandı. Foam maket burada işlevsel bir prototip değil, elde tutuş ve oranları test etmek için kullanılan bir form çalışması.</p>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/razor/foam-early.jpg" alt="İlk aşama kaba foam hacim çalışması"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/razor/foam-final.jpg" alt="Detaylandırılmış ve ölçülü foam maket"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="testler">
+    <div class="wrap">
+      <span class="eyebrow">10 — <span data-i18n="cs.eyebrow.testler">Testler</span></span>
+      <h2 data-i18n="cs.razor.testler.h">Bu aşama dürüstçe belirtilmeli</h2>
+      <div class="callout" data-i18n-html="cs.razor.testler.callout"><strong>Netlik için:</strong> Bu proje bir foam form çalışmasıyla sonuçlandı, elektronik bileşenleri barındıran işlevsel bir prototip üretilmedi. Dolayısıyla su geçirmezlik veya gerçek kullanım testi bu aşamada yapılmadı. Doğrulama, elde tutuş ve montaj mantığı seviyesinde kaldı.</div>
+    </div>
+  </section>
+
+  <section class="case-section" id="iterasyon">
+    <div class="wrap">
+      <span class="eyebrow">11 — <span data-i18n="cs.eyebrow.iterasyon">İterasyon</span></span>
+      <h2 data-i18n="cs.razor.iter.h">Kaba hacimden final orana</h2>
+      <p data-i18n="cs.razor.iter.p">İlk foam çalışması, tarama derinliği ve tutuş açısını test etmek için kasıtlı olarak kaba bırakıldı. İkinci foam maket, bu ilk çalışmadan çıkan ölçü düzeltmeleriyle final orana yaklaştırıldı. Renk varyantı kararı (siyah / mavi) ise CAD aşamasında, malzeme ve yüzey karşılaştırması olarak ele alındı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="nihai">
+    <div class="wrap">
+      <span class="eyebrow">12 — <span data-i18n="cs.eyebrow.nihai">Nihai Tasarım</span></span>
+      <h2 data-i18n="cs.shared.result">Sonuç</h2>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/razor/hero-final-black.png" alt="Final tasarım, siyah varyant, yandan görünüm"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/razor/render-charging-dock.png" alt="Final tasarım, mavi varyant, şarj standında"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section case-outcome" id="kazanim">
+    <div class="wrap">
+      <span class="eyebrow">13 — <span data-i18n="cs.eyebrow.kazanim">Kazanım</span></span>
+      <h2 data-i18n="cs.razor.kazanim.h">Onarılabilirlik, sonradan eklenen bir özellik değil</h2>
+      <p data-i18n="cs.razor.kazanim.p">Bu proje bireysel bir tasarım çalışması olarak yürütüldü, bir şirket veya üretici için değil. Yine de gerçek bir üründen yola çıkan bir söküm analiziyle başlaması, kararların soyut değil, gözlemlenmiş bir soruna dayanmasını sağladı. Buradan çıkan temel ders: onarılabilirlik, ürün tamamlandıktan sonra eklenen bir özellik değil, pil kapağının nereye ve nasıl yerleşeceğine erken karar vermekle başlıyor.</p>
+    </div>
+  </section>
+
+  <nav class="case-pager wrap" aria-label="Project navigation">
+    <a class="case-pager__link case-pager__prev" href="delta.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.prev">Previous project</span>
+      <span class="case-pager__name">&larr; Delta</span>
+    </a>
+    <a class="case-pager__all" href="../index.html#work" data-i18n="cs.pager.all">All work</a>
+    <a class="case-pager__link case-pager__next" href="herptile.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.next">Next project</span>
+      <span class="case-pager__name">Herptile &rarr;</span>
+    </a>
+  </nav>
+
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="dim-mark" data-i18n="nav.contact">Contact</span>
+        <p style="margin-top:10px; font-size: var(--fs-500); color: var(--ink-900);" data-i18n="footer.cta">Let's build something.</p>
+        <p class="footer-quote" data-i18n-html="footer.quote">&ldquo;Good design is as little design as possible.&rdquo;<span>&mdash; Dieter Rams</span></p>
+      </div>
+      <div class="contact-links">
+        <p><a href="mailto:bedirhanckr.id@gmail.com">bedirhanckr.id@gmail.com</a></p>
+        <p><a href="https://linkedin.com/in/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.linkedin">LinkedIn</span> ↗</a></p>
+        <p><a href="https://behance.net/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.behance">Behance</span> ↗</a></p>
+        <p style="margin-top:12px;"><a href="../index.html#work" data-i18n="footer.backwork">Other work →</a></p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <input type="text" name="name" data-i18n-placeholder="contact.form.name" placeholder="Name" required>
+        <input type="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="Email" required>
+        <textarea name="message" data-i18n-placeholder="contact.form.message" placeholder="Message" rows="3" required></textarea>
+        <button type="submit" data-i18n="contact.form.send">Send &rarr;</button>
+        <p class="form-note" data-i18n="contact.form.note">Opens your email client with this pre-filled.</p>
+      </form>
+    </div>
+    <p class="legal" data-i18n="footer.legal">© Bedirhan Çakıroğlu. Paderborn, Germany.</p>
+  </div>
+</footer>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* ==========================================================================
+   DESIGN SYSTEM — Bedirhan Çakıroğlu Portfolio
+   v2.0
+
+   Yön: Braun / Dieter Rams fonksiyonel minimalizmi + İsviçre tipografi
+   geleneği + mühendislik hassasiyeti. Tam gri tonlama iskeleti üzerine
+   tek bir "sinyal" rengi (Braun kırmızısı geleneği). Süs yok, gölge yok,
+   gradient yok — her öğe bir işlevi karşılamak zorunda.
+   ========================================================================== */
+
+:root{
+  /* ---------- Renk: gri tonlama iskeleti ---------- */
+  --paper:      #FCFCFB;   /* zemin */
+  --surface:    #FFFFFF;   /* kart / panel */
+  --ink-900:    #111214;   /* birincil metin, başlıklar */
+  --ink-700:    #3A3D42;   /* gövde metni */
+  --ink-500:    #6B6F76;   /* ikincil metin */
+  --ink-300:    #A6A9AE;   /* devre dışı / çok düşük vurgu */
+  --line-100:   #ECEBE8;   /* saç çizgisi ayraç */
+  --line-300:   #DAD8D3;   /* güçlü ayraç, kenarlık */
+
+  /* ---------- Renk: sinyal (Braun kırmızısı — sadece işlevsel kullanım) --- */
+  --signal:      #C1401F;
+  --signal-soft: #FBEDE9;
+
+  /* ---------- Tipografi ---------- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Tip ölçeği — elle ayarlanmış, 1.333 civarı oran */
+  --fs-100: 0.6875rem;  /* 11px — mikro etiket */
+  --fs-200: 0.8125rem;  /* 13px — açıklama */
+  --fs-300: 0.9375rem;  /* 15px — küçük gövde */
+  --fs-400: 1.0625rem;  /* 17px — gövde */
+  --fs-500: 1.375rem;   /* 22px — alt başlık */
+  --fs-600: 1.75rem;    /* 28px — h3 */
+  --fs-700: 2.375rem;   /* 38px — h2 */
+  --fs-800: 3.25rem;    /* 52px — h1 (masaüstü) */
+  --fs-900: 4.5rem;     /* 72px — hero (masaüstü) */
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.3;
+  --lh-body:  1.6;
+
+  /* ---------- Boşluk — 8px temel ritim ---------- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 16px; --sp-4: 24px;
+  --sp-5: 32px; --sp-6: 48px; --sp-7: 64px; --sp-8: 96px; --sp-9: 128px;
+
+  /* ---------- Grid ---------- */
+  --col-max: 1200px;
+  --col-max-narrow: 760px;  /* case study okuma genişliği */
+  --edge: 32px;             /* sayfa kenar boşluğu, mobilde daralır */
+
+  /* ---------- Hareket ---------- */
+  --ease: cubic-bezier(.4,0,.2,1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 360ms;
+
+  /* ---------- Kenar / çizgi ---------- */
+  --radius: 2px; /* neredeyse sıfır — "yazılım" değil "alet" hissi */
+}
+
+@media (max-width: 640px){
+  :root{
+    --edge: 20px;
+    --fs-800: 2.5rem;
+    --fs-900: 2.75rem;
+    --fs-700: 1.875rem;
+  }
+}
+
+@media (prefers-color-scheme: dark){
+  /* Şimdilik bilinçli olarak tek şema. Portfolyo, teknik çizim kağıdı
+     gibi okunmalı — ileride gerekirse buraya dark-mode tokenları eklenir. */
+}

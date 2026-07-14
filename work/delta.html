@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta — Kinematic Furniture Mechanism | Bedirhan Çakıroğlu</title>
+<meta name="description" content="A telescopic hinge mechanism that transitions a single body between working and reclining positions. Design for Export finalist.">
+<meta property="og:title" content="Delta — Kinematic Furniture Mechanism | Bedirhan Çakıroğlu">
+<meta property="og:description" content="A telescopic hinge mechanism that transitions a single body between working and reclining positions. Design for Export finalist.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Bedirhan Çakıroğlu<small data-i18n="brand.role">Industrial Designer / Design Engineer</small></a>
+    <div style="display:flex; align-items:center;">
+      <nav class="primary-nav" id="primary-nav">
+        <a href="../index.html" data-i18n="nav.work">Work</a>
+        <a href="../about.html" data-i18n="nav.about">About</a>
+        <a href="../index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button><span class="sep">/</span><button data-lang="de" aria-pressed="false">DE</button><span class="sep">/</span><button data-lang="tr" aria-pressed="false">TR</button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="breadcrumb wrap" aria-label="breadcrumb">
+  <a href="../index.html" data-i18n="cs.crumb">Work</a><span>/</span><span>Delta</span>
+</nav>
+<main id="main">
+
+  <section class="case-hero">
+    <div class="wrap wrap--narrow">
+      <span class="dim-mark" data-i18n="cs.delta.eyebrow">DL·21 — Kinematik Mekanizma</span>
+      <h1 class="h1" data-i18n="cs.delta.h1">Delta: Üç Pozisyonlu Kinematik Oturma Mekanizması</h1>
+      <p class="lede" data-i18n="cs.delta.lede">Bu bir mobilya tasarımı değil, bir kinematik mekanizma problemi. Tek bir teleskopik menteşe, çalışma ve uzanma pozisyonları arasında geçişi sağlıyor.</p>
+
+      <div class="meta-strip" style="margin-top: 0;">
+        <div class="item"><span data-i18n="cs.delta.role.l">Rol</span><span data-i18n="cs.delta.role.v">Ürün ve mekanizma tasarımı, bireysel</span></div>
+        <div class="item"><span data-i18n="cs.delta.result.l">Sonuç</span><span data-i18n="cs.delta.result.v">Design for Export yarışması finalisti</span></div>
+        <div class="item"><span data-i18n="cs.delta.scale.l">Ölçek</span><span data-i18n="cs.delta.scale.v">1:5 model</span></div>
+        <div class="item"><span data-i18n="cs.delta.method.l">Yöntem</span><span data-i18n="cs.delta.method.v">CAD, teleskopik menteşe, 3D baskı model</span></div>
+        <div class="item"><span data-i18n="cs.delta.tools.l">Araçlar</span><span data-i18n="cs.delta.tools.v">Blender</span></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="case-subnav" aria-label="Vaka analizi bölümleri">
+    <div class="wrap">
+      <a href="#problem" data-i18n="cs.subnav.problem">Problem</a>
+      <a href="#arastirma" data-i18n="cs.subnav.arastirma">Araştırma</a>
+      <a href="#kriterler" data-i18n="cs.subnav.kriterler">Kriterler</a>
+      <a href="#konsept" data-i18n="cs.subnav.konsept">Konsept</a>
+      <a href="#sketch" data-i18n="cs.subnav.sketch">Sketch</a>
+      <a href="#cad" data-i18n="cs.subnav.cad">CAD</a>
+      <a href="#muhendislik" data-i18n="cs.subnav.muhendislik">Mühendislik</a>
+      <a href="#dfm">DFM/DFA</a>
+      <a href="#prototip" data-i18n="cs.subnav.prototip">Prototip</a>
+      <a href="#testler" data-i18n="cs.subnav.testler">Testler</a>
+      <a href="#iterasyon" data-i18n="cs.subnav.iterasyon">İterasyon</a>
+      <a href="#nihai" data-i18n="cs.subnav.nihai">Nihai</a>
+      <a href="#kazanim" data-i18n="cs.subnav.kazanim">Kazanım</a>
+    </div>
+  </nav>
+
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <span class="eyebrow">01 — <span data-i18n="cs.eyebrow.problem">Problem</span></span>
+      <h2 data-i18n="cs.delta.problem.h">Çok işlevli mobilya, çoğunlukla ayrık parçalar demek</h2>
+      <p data-i18n="cs.delta.problem.p">Küçük yaşam alanlarında birden fazla pozisyona hizmet eden mobilyaya ihtiyaç var, ama çoğu "çok işlevli" çözüm ayrı ayrı parçaların birleşiminden oluşuyor. Buradaki soru farklıydı: tek bir mekanizma, ayrık parçalara ihtiyaç duymadan birden fazla pozisyonu nasıl sağlayabilir?</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="arastirma">
+    <div class="wrap">
+      <span class="eyebrow">02 — <span data-i18n="cs.eyebrow.arastirma">Araştırma</span></span>
+      <h2 data-i18n="cs.delta.arastirma.h">Tek eksende kayan bir bağlantı</h2>
+      <p data-i18n="cs.delta.arastirma.p">Katlanan ve teleskopik menteşe tipleri karşılaştırıldı. Teleskopik bir bağlantı, aynı eksende hem açı hem uzunluk değişimine izin verdiği için, tek bir mekanizma noktasından birden fazla pozisyon türetmeye en uygun çözüm olarak belirlendi.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="kriterler">
+    <div class="wrap">
+      <span class="eyebrow">03 — <span data-i18n="cs.eyebrow.kriterler">Tasarım Kriterleri</span></span>
+      <h2 data-i18n="cs.delta.kriterler.h">Neyin doğru olduğuna nasıl karar verdik</h2>
+      <table class="spec-table">
+        <tr><th data-i18n="cs.spec.criterion">Kriter</th><th data-i18n="cs.spec.requirement">Gereksinim</th></tr>
+        <tr><td data-i18n="cs.delta.k1.k">Mekanizma sadeliği</td><td data-i18n="cs.delta.k1.v">Pozisyon geçişi tek bir bağlantı noktasından yönetilmeli</td></tr>
+        <tr><td data-i18n="cs.delta.k2.k">Yapısal süreklilik</td><td data-i18n="cs.delta.k2.v">Gövde malzemesi (ahşap/kontrplak) pozisyon değişse de görsel bütünlüğünü korumalı</td></tr>
+        <tr><td data-i18n="cs.delta.k3.k">Kilitlenme</td><td data-i18n="cs.delta.k3.v">Her pozisyonda mekanizma güvenle sabitlenebilmeli</td></tr>
+        <tr><td data-i18n="cs.delta.k4.k">Üretilebilirlik</td><td data-i18n="cs.delta.k4.v">1:5 ölçekte 3D baskıyla doğrulanabilir olmalı</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="case-section" id="konsept">
+    <div class="wrap">
+      <span class="eyebrow">04 — <span data-i18n="cs.eyebrow.konsept">Konsept Geliştirme</span></span>
+      <h2 data-i18n="cs.delta.konsept.h">Bir mekanizma, iki kullanım modu</h2>
+      <p data-i18n="cs.delta.konsept.p">Konsept, aynı gövde etrafında kurulu iki farklı kullanım modunu birleştirdi: masayla çalışma modu ve sırt açısının uzandığı, ayak desteğinin çıktığı dinlenme modu. İkisi arasındaki geçiş, gövdeye ek parça eklemeden, tek teleskopik menteşe ile sağlanıyor.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="sketch">
+    <div class="wrap">
+      <span class="eyebrow">05 — <span data-i18n="cs.eyebrow.sketch">Sketch</span></span>
+      <h2 data-i18n="cs.delta.sketch.h">Form kararları doğrudan CAD'de</h2>
+      <p class="text-muted" data-i18n="cs.delta.sketch.p">Bu proje için ayrı bir eskiz seti bu vaka analizine eklenecek şekilde arşivlenmedi. Mekanizma geometrisi, doğrudan CAD ortamında yinelemeli olarak geliştirildi.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="cad">
+    <div class="wrap">
+      <span class="eyebrow">06 — <span data-i18n="cs.eyebrow.cad">CAD Süreci</span></span>
+      <h2 data-i18n="cs.delta.cad.h">Kontrplak gövde, tek parça mantığı</h2>
+      <p data-i18n="cs.delta.cad.p">Gövde, kayar ahşap ayak formu ve döşemeli oturma/sırt yüzeyleri CAD ortamında tanımlandı. Kırmızı vurgu, mekanizmanın kilit noktalarını işaret ediyor.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/delta/1.png" alt="Delta mekanizmasının stüdyo CAD render'ı"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="muhendislik">
+    <div class="wrap">
+      <span class="eyebrow">07 — <span data-i18n="cs.eyebrow.muhendislik">Mühendislik Kararları</span></span>
+      <h2 data-i18n="cs.delta.muh.h">Teleskopik menteşe detayı</h2>
+      <p data-i18n="cs.delta.muh.p">Mekanizmanın kalbi, sırt ve oturma yüzeylerini aynı eksende kaydıran teleskopik bir bağlantı. Kırmızı uçlu kilit noktaları, mekanizmanın hangi konumlarda sabitlendiğini gösteriyor.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/delta/5.png" alt="Teleskopik menteşe mekanizmasının önden görünümü"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="dfm">
+    <div class="wrap">
+      <span class="eyebrow">08 — <span data-i18n="cs.eyebrow.dfm">DFM / DFA</span></span>
+      <h2 data-i18n="cs.delta.dfm.h">Tek mekanizma tipi, montaj sadeliği</h2>
+      <p data-i18n="cs.delta.dfm.p">Tasarım kasıtlı olarak tek bir mekanizma tipine (teleskopik kayar bağlantı) bağlı kaldı. Bu, farklı pozisyonlar için ayrı menteşe veya kilit sistemleri eklemek yerine, tek bir parça ailesiyle montajı basitleştirdi.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="prototip">
+    <div class="wrap">
+      <span class="eyebrow">09 — <span data-i18n="cs.eyebrow.prototip">Prototipleme</span></span>
+      <h2 data-i18n="cs.delta.prototip.h">1:5 ölçekte 3D baskı model</h2>
+      <p data-i18n="cs.delta.prototip.p">Mekanizma, 1:5 ölçekte 3D baskı ile üretilip fiziksel olarak doğrulandı. Model, gerçek ölçü referansıyla (cetvel) fotoğraflandı, iddia edilen ölçek açıkça belirtilsin diye.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/delta/prototype-scale.jpg" alt="1:5 ölçek 3D baskı model, dinlenme pozisyonunda, cetvelle"></div>
+    </div>
+  </section>
+
+  <section class="case-section" id="testler">
+    <div class="wrap">
+      <span class="eyebrow">10 — <span data-i18n="cs.eyebrow.testler">Testler</span></span>
+      <div class="callout" data-i18n-html="cs.delta.testler.callout"><strong>Netlik için:</strong> Bu proje 1:5 ölçekte model olarak geliştirildi. Tam ölçekte yük ve dayanıklılık doğrulaması yapılmadı. Bu, gizlenmeden açıkça belirtiliyor.</div>
+    </div>
+  </section>
+
+  <section class="case-section" id="iterasyon">
+    <div class="wrap">
+      <span class="eyebrow">11 — <span data-i18n="cs.eyebrow.iterasyon">İterasyon</span></span>
+      <h2 data-i18n="cs.delta.iter.h">Tek gövdeden iki pozisyona</h2>
+      <p data-i18n="cs.delta.iter.p">Ölçekli model üzerinde, mekanizmanın her iki pozisyonda da (çalışma ve dinlenme) sabit kalıp kalmadığı test edildi. Kilit noktalarının konumu, bu testler sonucunda ayarlandı.</p>
+    </div>
+  </section>
+
+  <section class="case-section" id="nihai">
+    <div class="wrap">
+      <span class="eyebrow">12 — <span data-i18n="cs.eyebrow.nihai">Nihai Tasarım</span></span>
+      <h2 data-i18n="cs.delta.nihai.h">İki pozisyon, tek gövde</h2>
+      <div class="media-grid">
+        <div class="media-slot is-ready"><img src="../assets/img/delta/ODA1.jpg" alt="Delta, çalışma pozisyonunda oda render'ı"></div>
+        <div class="media-slot is-ready"><img src="../assets/img/delta/ODA2.jpg" alt="Delta, dinlenme pozisyonunda oda render'ı"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section case-outcome" id="kazanim">
+    <div class="wrap">
+      <span class="eyebrow">13 — <span data-i18n="cs.eyebrow.kazanim">Kazanım</span></span>
+      <h2 data-i18n="cs.delta.kazanim.h">Design for Export finalisti</h2>
+      <p data-i18n="cs.delta.kazanim.p">Delta, OAİB ve Ticaret Bakanlığı tarafından düzenlenen Design for Export yarışmasında finalist oldu ve sergilendi. Projeyi güçlü kılan, mobilya estetiği değil, tek bir mekanizmayla birden fazla pozisyonu çözen mühendislik kararıydı.</p>
+      <div class="media-slot is-ready"><img src="../assets/img/delta/award-ceremony.jpg" alt="Delta projesi, Design for Export sergisinde"></div>
+    </div>
+  </section>
+
+  <nav class="case-pager wrap" aria-label="Project navigation">
+    <a class="case-pager__link case-pager__prev" href="rex-tank.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.prev">Previous project</span>
+      <span class="case-pager__name">&larr; REX</span>
+    </a>
+    <a class="case-pager__all" href="../index.html#work" data-i18n="cs.pager.all">All work</a>
+    <a class="case-pager__link case-pager__next" href="razor.html">
+      <span class="case-pager__dir" data-i18n="cs.pager.next">Next project</span>
+      <span class="case-pager__name">Razor &rarr;</span>
+    </a>
+  </nav>
+
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="dim-mark" data-i18n="nav.contact">Contact</span>
+        <p style="margin-top:10px; font-size: var(--fs-500); color: var(--ink-900);" data-i18n="footer.cta">Let's build something.</p>
+        <p class="footer-quote" data-i18n-html="footer.quote">&ldquo;Good design is as little design as possible.&rdquo;<span>&mdash; Dieter Rams</span></p>
+      </div>
+      <div class="contact-links">
+        <p><a href="mailto:bedirhanckr.id@gmail.com">bedirhanckr.id@gmail.com</a></p>
+        <p><a href="https://linkedin.com/in/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.linkedin">LinkedIn</span> ↗</a></p>
+        <p><a href="https://behance.net/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.behance">Behance</span> ↗</a></p>
+        <p style="margin-top:12px;"><a href="../index.html#work" data-i18n="footer.backwork">Other work →</a></p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <input type="text" name="name" data-i18n-placeholder="contact.form.name" placeholder="Name" required>
+        <input type="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="Email" required>
+        <textarea name="message" data-i18n-placeholder="contact.form.message" placeholder="Message" rows="3" required></textarea>
+        <button type="submit" data-i18n="contact.form.send">Send &rarr;</button>
+        <p class="form-note" data-i18n="contact.form.note">Opens your email client with this pre-filled.</p>
+      </form>
+    </div>
+    <p class="legal" data-i18n="footer.legal">© Bedirhan Çakıroğlu. Paderborn, Germany.</p>
+  </div>
+</footer>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
