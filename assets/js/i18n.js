@@ -7,7 +7,7 @@
 window.I18N = {
   en: {
     // --- nav & global ---
-    "nav.work": "Work",
+    "nav.work": "Works",
     "nav.about": "About",
     "nav.contact": "Contact",
     "skip": "Skip to content",
