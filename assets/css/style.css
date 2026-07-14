@@ -257,7 +257,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 
 /* Single-page: smooth anchor scroll + sticky-header offset */
 html{ scroll-behavior: smooth; }
-#work, #about{ scroll-margin-top: 84px; }
+#work, #about, #contact{ scroll-margin-top: 84px; }
 @media (prefers-reduced-motion: reduce){ html{ scroll-behavior: auto; } }
 
 /* Hero with portrait */
