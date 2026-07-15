@@ -616,3 +616,53 @@ html{ scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce){
   .consent-banner{ transition: none; }
 }
+
+/* ==========================================================================
+   11. Motion layer — scroll reveal + card hover
+   IntersectionObserver in main.js adds .is-visible on entering viewport.
+   prefers-reduced-motion honored via a single override at the bottom.
+   ========================================================================== */
+
+[data-reveal]{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 520ms var(--ease), transform 520ms var(--ease);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children of a [data-reveal-stagger] container — 80ms per step.
+   Apply data-reveal to the children AND data-reveal-stagger to the parent. */
+[data-reveal-stagger] > [data-reveal]:nth-child(1){ transition-delay:  0ms; }
+[data-reveal-stagger] > [data-reveal]:nth-child(2){ transition-delay: 80ms; }
+[data-reveal-stagger] > [data-reveal]:nth-child(3){ transition-delay: 160ms; }
+[data-reveal-stagger] > [data-reveal]:nth-child(4){ transition-delay: 240ms; }
+[data-reveal-stagger] > [data-reveal]:nth-child(5){ transition-delay: 320ms; }
+[data-reveal-stagger] > [data-reveal]:nth-child(6){ transition-delay: 400ms; }
+
+/* Card image — subtle scale on hover (project-card + featured-work) */
+.project-card .thumb img,
+.fw-thumb img{
+  transition: transform 500ms var(--ease);
+}
+.project-card:hover .thumb img,
+.fw-card:hover .fw-thumb img{
+  transform: scale(1.035);
+}
+/* project-card already has an arrow that translates on hover — keep that;
+   only the image gains scale. */
+
+/* Case-pager link — arrow character in ::after slides subtly */
+.case-pager__link{ transition: color var(--dur-base) var(--ease); }
+
+/* Blanket override — respect user preference across every rule above */
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity: 1; transform: none; transition: none; }
+  .project-card .thumb img,
+  .fw-thumb img{ transition: none; }
+  .project-card:hover .thumb img,
+  .fw-card:hover .fw-thumb img{ transform: none; }
+}
