@@ -56,7 +56,7 @@ window.I18N = {
     "home.portfolio.behance": "View on Behance",
     "home.portfolio.pdf": "Download PDF",
     "home.portfolio.pdfnote": "Online view and PDF coming soon.",
-    "home.portfolio.online": "View online",
+    "home.portfolio.online": "Online portfolio",
 
     // --- home work ---
     "home.work.eyebrow": "Selected Work",
@@ -504,7 +504,7 @@ window.I18N = {
     "home.portfolio.behance": "Auf Behance ansehen",
     "home.portfolio.pdf": "PDF herunterladen",
     "home.portfolio.pdfnote": "Online-Ansicht und PDF folgen in Kürze.",
-    "home.portfolio.online": "Online ansehen",
+    "home.portfolio.online": "Online-Portfolio",
 
     "home.work.eyebrow": "Ausgewählte Projekte",
     "home.work.h2": "Fünf Fallstudien, ein roter Faden: ein echter Entscheidungsprozess",
@@ -945,7 +945,7 @@ window.I18N = {
     "home.portfolio.behance": "Behance'te görüntüle",
     "home.portfolio.pdf": "PDF indir",
     "home.portfolio.pdfnote": "Çevrimiçi görüntüleme ve PDF çok yakında.",
-    "home.portfolio.online": "Çevrimiçi görüntüle",
+    "home.portfolio.online": "Online portfolyo",
 
     "home.work.eyebrow": "Seçili İşler",
     "home.work.h2": "Beş vaka analizi, tek ortak payda: gerçek bir karar süreci",
