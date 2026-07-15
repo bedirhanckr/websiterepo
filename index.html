@@ -9,19 +9,19 @@
 <meta property="og:title" content="Bedirhan Çakıroğlu — Industrial Designer / Design Engineer">
 <meta property="og:description" content="Industrial designer and design engineer working with manufacturing in mind. Underwater robotics, product design and steel structure projects.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://cakiroglu.netlify.app/assets/img/pioneer-mk2/hero-nose-render.png?v=20260715">
+<meta property="og:image" content="https://bedirhancakiroglu.com/assets/img/pioneer-mk2/hero-nose-render.png?v=20260715">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
 <meta property="og:image:alt" content="Bedirhan Çakıroğlu portfolio">
-<meta property="og:url" content="https://cakiroglu.netlify.app/">
+<meta property="og:url" content="https://bedirhancakiroglu.com/">
 <meta property="og:site_name" content="Bedirhan Çakıroğlu">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cakiroglu.netlify.app/assets/img/pioneer-mk2/hero-nose-render.png?v=20260715">
-<link rel="canonical" href="https://cakiroglu.netlify.app/">
+<meta name="twitter:image" content="https://bedirhancakiroglu.com/assets/img/pioneer-mk2/hero-nose-render.png?v=20260715">
+<link rel="canonical" href="https://bedirhancakiroglu.com/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="alternate icon" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="assets/css/tokens.css?v=20260714">
 <link rel="stylesheet" href="assets/css/style.css?v=20260714">
 </head>
@@ -66,6 +66,31 @@
           <img src="assets/img/about/portrait-full.jpg" alt="Bedirhan Çakıroğlu" width="1023" height="1537">
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="featured-work" aria-label="Featured work preview">
+    <div class="wrap">
+      <a href="work/pioneer-mk2.html" class="fw-card">
+        <div class="fw-thumb"><img src="assets/img/pioneer-mk2/hero-nose-render.png?v=20260715" alt="Pioneer MKII" loading="lazy"></div>
+        <span class="fw-name">Pioneer MKII</span>
+        <span class="fw-tag" data-i18n="fw.pioneer.tag">Underwater · TEKNOFEST</span>
+      </a>
+      <a href="work/rockhounder.html" class="fw-card">
+        <div class="fw-thumb"><img src="assets/img/rockhounder/hero-render.png" alt="Rockhounder" loading="lazy"></div>
+        <span class="fw-name">Rockhounder</span>
+        <span class="fw-tag" data-i18n="fw.rockhounder.tag">Product + App · İTÜ 2.</span>
+      </a>
+      <a href="work/rex-tank.html" class="fw-card">
+        <div class="fw-thumb"><img src="assets/img/rex-tank/hero-final.png" alt="REX Mini Tank" loading="lazy"></div>
+        <span class="fw-name">REX Mini Tank</span>
+        <span class="fw-tag" data-i18n="fw.rex.tag">Shipped · Robotistan</span>
+      </a>
+      <a href="work/delta.html" class="fw-card">
+        <div class="fw-thumb"><img src="assets/img/delta/ODA1.jpg" alt="Delta" loading="lazy"></div>
+        <span class="fw-name">Delta</span>
+        <span class="fw-tag" data-i18n="fw.delta.tag">Convertible Furniture</span>
+      </a>
     </div>
   </section>
 
@@ -283,9 +308,12 @@
         <p><a href="https://behance.net/bedirhanckr" target="_blank" rel="noopener"><span data-i18n="contact.behance">Behance</span> ↗</a></p>
         <p style="margin-top:12px;"><a href="pdf/" target="_blank" rel="noopener" data-i18n="home.portfolio.online">Online portfolio</a> ↗</p>
       </div>
-      <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/?sent=1">
-        <input type="hidden" name="form-name" value="contact">
-        <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/bedirhanckr.id@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Portfolio contact — bedirhancakiroglu.com">
+        <input type="hidden" name="_next" value="https://bedirhancakiroglu.com/?sent=1">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <p hidden><label>Leave this empty: <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
         <input type="text" name="name" data-i18n-placeholder="contact.form.name" placeholder="Name" required>
         <input type="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="Email" required>
         <textarea name="message" data-i18n-placeholder="contact.form.message" placeholder="Message" rows="3" required></textarea>

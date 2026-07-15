@@ -8,6 +8,10 @@ window.I18N = {
   en: {
     // --- nav & global ---
     "nav.work": "Works",
+    "fw.pioneer.tag": "Underwater · TEKNOFEST",
+    "fw.rockhounder.tag": "Product + App · ITU 2nd",
+    "fw.rex.tag": "Shipped · Robotistan",
+    "fw.delta.tag": "Convertible Furniture",
     "nav.about": "About",
     "nav.contact": "Contact",
     "skip": "Skip to content",
@@ -466,6 +470,10 @@ window.I18N = {
 
   de: {
     "nav.work": "Projekte", "nav.about": "Über mich", "nav.contact": "Kontakt",
+    "fw.pioneer.tag": "Unterwasser · TEKNOFEST",
+    "fw.rockhounder.tag": "Produkt + App · ITU 2.",
+    "fw.rex.tag": "Verkauft · Robotistan",
+    "fw.delta.tag": "Wandelbare Möbel",
     "skip": "Zum Inhalt springen",
     "brand.role": "Industriedesigner / Konstruktionsingenieur",
     "footer.cta": "Sie haben eine Idee, die Sie umsetzen möchten? Sprechen wir.",
@@ -907,6 +915,10 @@ window.I18N = {
 
   tr: {
     "nav.work": "İşler", "nav.about": "Hakkımda", "nav.contact": "İletişim",
+    "fw.pioneer.tag": "Sualtı · TEKNOFEST",
+    "fw.rockhounder.tag": "Ürün + App · İTÜ 2.",
+    "fw.rex.tag": "Satılıyor · Robotistan",
+    "fw.delta.tag": "Dönüştürülebilir Mobilya",
     "skip": "İçeriğe geç",
     "brand.role": "Endüstriyel Tasarımcı / Tasarım Mühendisi",
     "footer.cta": "Hayata geçirmek istediğin bir fikrin mi var? Konuşalım.",

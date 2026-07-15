@@ -1,3 +1,29 @@
+/* Self-hosted fonts — Google CDN dependency removed (GDPR + perf).
+   Inter Variable: single file, all weights 100-900 (~338 KB, cache 1 year).
+   JetBrains Mono: two static weights (Regular + Medium), matches mono use in header/badges. */
+@font-face{
+  font-family: 'Inter Variable';
+  src: url('../fonts/InterVariable.woff2') format('woff2-variations'),
+       url('../fonts/InterVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrainsMono-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================================================
    DESIGN SYSTEM — Bedirhan Çakıroğlu Portfolio
    v2.0
@@ -24,7 +50,7 @@
   --signal-soft: #FBEDE9;
 
   /* ---------- Tipografi ---------- */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* Tip ölçeği — elle ayarlanmış, 1.333 civarı oran */

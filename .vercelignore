@@ -1,0 +1,14 @@
+# Non-production files — kept in git, not deployed to bedirhancakiroglu.com
+.git
+.gitignore
+docs/
+scripts/
+bodies/
+*.md
+build.py
+serve.ps1
+rebuild-stage.ps1
+start-server.bat
+netlify-linux.zip
+CV-*.pdf
+__pycache__/
