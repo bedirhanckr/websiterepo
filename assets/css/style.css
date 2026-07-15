@@ -541,3 +541,42 @@ html{ scroll-behavior: smooth; }
 :root[data-theme="dark"] .theme-toggle .icon-sun{ display: block; }
 :root[data-theme="light"] .theme-toggle .icon-moon{ display: block; }
 :root[data-theme="light"] .theme-toggle .icon-sun{ display: none; }
+
+/* ---------- Featured-work strip (hero'nun altında, iş görsel sinyali) ---------- */
+.featured-work{
+  padding: var(--sp-5) 0 var(--sp-6);
+  border-top: 1px solid var(--line-100);
+  border-bottom: 1px solid var(--line-100);
+}
+.featured-work .wrap{
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+}
+.fw-card{
+  display: block; text-decoration: none; color: inherit;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.fw-card:hover{ opacity: 0.85; }
+.fw-thumb{
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border: 1px solid var(--line-100);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.fw-thumb img{
+  width: 100%; height: 100%; object-fit: cover;
+}
+.fw-name{
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--fs-300); font-weight: 600; color: var(--ink-900);
+  letter-spacing: -0.01em;
+}
+.fw-tag{
+  display: block; margin-top: 2px;
+  font-family: var(--font-mono); font-size: var(--fs-100); letter-spacing: 0.04em;
+  color: var(--ink-500);
+}
+@media (max-width: 860px){
+  .featured-work .wrap{ grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+}
