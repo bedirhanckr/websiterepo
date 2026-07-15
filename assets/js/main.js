@@ -81,8 +81,68 @@
     document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-visible"); });
   }
 
-  // Contact: submitted via Netlify Forms (data-netlify="true" on the <form>).
-  // After success Netlify redirects to /?sent=1 — show a small confirmation.
+  // Consent banner (Google Consent Mode v2). Denied by default in the gtag
+  // script; if the visitor accepts, we call gtag('consent','update') and let
+  // Analytics start writing cookies. Decision persists to localStorage so
+  // returning visitors don't see the banner again.
+  function readConsent(){
+    try{ return localStorage.getItem("consent"); }catch(e){ return null; }
+  }
+  function writeConsent(v){
+    try{ localStorage.setItem("consent", v); }catch(e){}
+  }
+  function grantAnalytics(){
+    if(typeof window.gtag === "function"){
+      window.gtag('consent','update',{
+        'analytics_storage':'granted',
+        'ad_storage':'denied',
+        'ad_user_data':'denied',
+        'ad_personalization':'denied'
+      });
+    }
+  }
+  var storedConsent = readConsent();
+  if(storedConsent === "granted"){
+    grantAnalytics();
+  } else if(storedConsent !== "denied"){
+    // First visit — show banner. Text uses i18n if available, otherwise EN.
+    var lang = document.documentElement.getAttribute("lang") || "en";
+    var d = (window.I18N && window.I18N[lang]) || {};
+    var msg = d["consent.msg"]
+      || "This site uses analytics cookies to understand visitor patterns. You can decline.";
+    var accept = d["consent.accept"] || "Accept";
+    var decline = d["consent.decline"] || "Decline";
+
+    var banner = document.createElement("div");
+    banner.className = "consent-banner";
+    banner.setAttribute("role","dialog");
+    banner.setAttribute("aria-live","polite");
+    banner.setAttribute("aria-label","Cookie consent");
+    var p = document.createElement("p"); p.textContent = msg;
+    var group = document.createElement("div"); group.className = "consent-buttons";
+    var btnD = document.createElement("button");
+    btnD.className = "consent-decline"; btnD.type = "button"; btnD.textContent = decline;
+    var btnA = document.createElement("button");
+    btnA.className = "consent-accept"; btnA.type = "button"; btnA.textContent = accept;
+    group.appendChild(btnD); group.appendChild(btnA);
+    banner.appendChild(p); banner.appendChild(group);
+    document.body.appendChild(banner);
+    setTimeout(function(){ banner.classList.add("is-in"); }, 20);
+
+    function dismiss(){
+      banner.classList.remove("is-in");
+      setTimeout(function(){ banner.remove(); }, 320);
+    }
+    btnA.addEventListener("click", function(){
+      writeConsent("granted"); grantAnalytics(); dismiss();
+    });
+    btnD.addEventListener("click", function(){
+      writeConsent("denied"); dismiss();
+    });
+  }
+
+  // Contact: submitted via formsubmit.co (see index.html <form action>).
+  // After success formsubmit redirects to /?sent=1 — show a small confirmation.
   try{
     var qs = new URLSearchParams(window.location.search);
     if(qs.get("sent") === "1"){

@@ -14,6 +14,9 @@ window.I18N = {
     "fw.delta.tag": "Convertible Furniture",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "consent.msg": "This site uses analytics cookies to understand visitor patterns. You can decline.",
+    "consent.accept": "Accept",
+    "consent.decline": "Decline",
     "skip": "Skip to content",
     "brand.role": "Industrial Designer / Design Engineer",
     "footer.cta": "Have something you want to build? Let's talk.",
@@ -470,6 +473,9 @@ window.I18N = {
 
   de: {
     "nav.work": "Projekte", "nav.about": "Über mich", "nav.contact": "Kontakt",
+    "consent.msg": "Diese Seite verwendet Analyse-Cookies, um Besucherverhalten zu verstehen. Ablehnen ist möglich.",
+    "consent.accept": "Akzeptieren",
+    "consent.decline": "Ablehnen",
     "fw.pioneer.tag": "Unterwasser · TEKNOFEST",
     "fw.rockhounder.tag": "Produkt + App · ITU 2.",
     "fw.rex.tag": "Verkauft · Robotistan",
@@ -915,6 +921,9 @@ window.I18N = {
 
   tr: {
     "nav.work": "İşler", "nav.about": "Hakkımda", "nav.contact": "İletişim",
+    "consent.msg": "Bu site ziyaretçi eğilimlerini anlamak için analitik çerezler kullanır. Reddedebilirsin.",
+    "consent.accept": "Kabul",
+    "consent.decline": "Reddet",
     "fw.pioneer.tag": "Sualtı · TEKNOFEST",
     "fw.rockhounder.tag": "Ürün + App · İTÜ 2.",
     "fw.rex.tag": "Satılıyor · Robotistan",
