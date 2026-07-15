@@ -580,3 +580,39 @@ html{ scroll-behavior: smooth; }
 @media (max-width: 860px){
   .featured-work .wrap{ grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
 }
+
+/* ---------- Consent banner (Google Consent Mode v2) ---------- */
+.consent-banner{
+  position: fixed; bottom: var(--sp-4); left: var(--sp-4);
+  max-width: 400px; width: calc(100% - 32px);
+  background: var(--paper); color: var(--ink-700);
+  border: 1px solid var(--line-300); border-radius: 3px;
+  padding: 20px 22px;
+  box-shadow: 0 20px 40px -12px rgba(20, 19, 17, 0.20);
+  z-index: 200;
+  font-size: var(--fs-300); line-height: 1.55;
+  transform: translateY(24px); opacity: 0;
+  transition: transform 300ms var(--ease), opacity 300ms var(--ease);
+}
+.consent-banner.is-in{ transform: translateY(0); opacity: 1; }
+.consent-banner p{ margin: 0 0 var(--sp-3); color: var(--ink-700); }
+.consent-buttons{ display: flex; gap: 10px; justify-content: flex-end; }
+.consent-buttons button{
+  font-family: var(--font-mono); font-size: var(--fs-100);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 8px 14px; border: 1px solid var(--line-300); color: var(--ink-500);
+  cursor: pointer; background: transparent;
+  transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.consent-buttons button:hover{
+  color: var(--ink-900); border-color: var(--ink-900);
+}
+.consent-buttons .consent-accept{
+  border-color: var(--ink-900); color: var(--ink-900);
+}
+.consent-buttons .consent-accept:hover{
+  background: var(--ink-900); color: var(--surface);
+}
+@media (prefers-reduced-motion: reduce){
+  .consent-banner{ transition: none; }
+}
