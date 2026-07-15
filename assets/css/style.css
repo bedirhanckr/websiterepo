@@ -152,13 +152,14 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 
 /* ---------- 6. Ortak bileşenler ---------- */
 
-/* dimension-mark: teknik çizim ölçü çizgisinden ilham alan imza öğesi */
+/* Mono uppercase label. Sinyal kırmızısıyla renk yeter — dekoratif
+   "accent bar" (önceki ::before) AI-jenerik design pattern havası
+   veriyordu, kaldırıldı. */
 .dim-mark{
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-block;
   font-family: var(--font-mono); font-size: var(--fs-100);
   letter-spacing: 0.06em; color: var(--signal); text-transform: uppercase;
 }
-.dim-mark::before{ content: ""; width: 20px; height: 1px; background: var(--signal); }
 
 .btn{
   display: inline-flex; align-items: center; gap: 8px;
@@ -399,7 +400,7 @@ html{ scroll-behavior: smooth; }
   font-size: var(--fs-400); padding: 14px 0; border-bottom: 1px solid var(--line-100);
   padding-left: var(--sp-4); position: relative;
 }
-.award-list li::before{ content: ""; position: absolute; left: 0; top: 22px; width: 8px; height: 1px; background: var(--signal); }
+.award-list li::before{ content: ""; position: absolute; left: 0; top: 22px; width: 8px; height: 1px; background: var(--line-300); }
 .skill-block{ padding-top: var(--sp-3); border-top: 2px solid var(--ink-900); margin-bottom: var(--sp-3); }
 .skill-block h3{ font-size: var(--fs-400); margin-bottom: 6px; }
 
