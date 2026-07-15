@@ -81,6 +81,20 @@
     document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-visible"); });
   }
 
+  // Featured-work cross-fade carousel — each card cycles its 2 images
+  // every ~5 s with a staggered start so they don't flip in sync.
+  // prefers-reduced-motion → skipped.
+  var fwCards = document.querySelectorAll(".fw-card");
+  if(fwCards.length && !reduceMotion){
+    fwCards.forEach(function(card, i){
+      setTimeout(function(){
+        setInterval(function(){
+          card.classList.toggle("fw-flipped");
+        }, 4800);
+      }, i * 350);
+    });
+  }
+
   // Hero parallax — portrait lags behind scroll for a subtle depth effect.
   // Only above 720px viewport (mobile portrait is too small to benefit).
   // Capped to the first 900px of scroll so it stops applying once hero is past.
