@@ -81,6 +81,26 @@
     document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-visible"); });
   }
 
+  // Hero parallax — portrait lags behind scroll for a subtle depth effect.
+  // Only above 720px viewport (mobile portrait is too small to benefit).
+  // Capped to the first 900px of scroll so it stops applying once hero is past.
+  var heroPortrait = document.querySelector(".hero-portrait");
+  if(heroPortrait && !reduceMotion && window.matchMedia("(min-width: 720px)").matches){
+    var parallaxTicking = false;
+    function updateParallax(){
+      var y = Math.min(window.scrollY, 900);
+      heroPortrait.style.transform = "translate3d(0," + (y * 0.14) + "px,0)";
+      parallaxTicking = false;
+    }
+    window.addEventListener("scroll", function(){
+      if(!parallaxTicking){
+        window.requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+      }
+    }, { passive: true });
+    updateParallax();
+  }
+
   // Consent banner (Google Consent Mode v2). Denied by default in the gtag
   // script; if the visitor accepts, we call gtag('consent','update') and let
   // Analytics start writing cookies. Decision persists to localStorage so
