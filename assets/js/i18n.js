@@ -31,7 +31,6 @@ window.I18N = {
     "contact.form.email": "Email",
     "contact.form.message": "Message",
     "contact.form.send": "Send →",
-    "contact.form.note": "Opens your email client with this pre-filled.",
 
     // --- home hero ---
     "home.location": "Paderborn, Germany",
@@ -64,6 +63,7 @@ window.I18N = {
     "home.portfolio.pdf": "Download PDF",
     "home.portfolio.pdfnote": "Online view and PDF coming soon.",
     "home.portfolio.online": "Online portfolio",
+    "contact.cv": "CV (PDF)",
 
     // --- home work ---
     "home.work.eyebrow": "Selected Work",
@@ -488,7 +488,7 @@ window.I18N = {
     "footer.quote": "„Gutes Design ist so wenig Design wie möglich.“<span>— Dieter Rams</span>",
     "contact.email": "E-Mail", "contact.linkedin": "LinkedIn", "contact.behance": "Behance",
     "contact.form.name": "Name", "contact.form.email": "E-Mail", "contact.form.message": "Nachricht",
-    "contact.form.send": "Senden →", "contact.form.note": "Öffnet Ihr E-Mail-Programm mit dieser vorausgefüllten Nachricht.",
+    "contact.form.send": "Senden →",
 
     "home.location": "Paderborn, Deutschland",
     "home.h1": "Ich gestalte Produkte und will wissen, wie sie entstehen.",
@@ -519,6 +519,7 @@ window.I18N = {
     "home.portfolio.pdf": "PDF herunterladen",
     "home.portfolio.pdfnote": "Online-Ansicht und PDF folgen in Kürze.",
     "home.portfolio.online": "Online-Portfolio",
+    "contact.cv": "Lebenslauf (PDF)",
 
     "home.work.eyebrow": "Ausgewählte Projekte",
     "home.work.h2": "Fünf Fallstudien, ein roter Faden: ein echter Entscheidungsprozess",
@@ -936,7 +937,7 @@ window.I18N = {
     "footer.quote": "“İyi tasarım, olabildiğince az tasarımdır.”<span>— Dieter Rams</span>",
     "contact.email": "E-posta", "contact.linkedin": "LinkedIn", "contact.behance": "Behance",
     "contact.form.name": "İsim", "contact.form.email": "E-posta", "contact.form.message": "Mesaj",
-    "contact.form.send": "Gönder →", "contact.form.note": "E-posta uygulamanızı bu mesajla önceden doldurulmuş şekilde açar.",
+    "contact.form.send": "Gönder →",
 
     "home.location": "Paderborn, Almanya",
     "home.h1": "Ürünler tasarlıyorum ve nasıl üretildiklerini bilmeyi seviyorum.",
@@ -967,6 +968,7 @@ window.I18N = {
     "home.portfolio.pdf": "PDF indir",
     "home.portfolio.pdfnote": "Çevrimiçi görüntüleme ve PDF çok yakında.",
     "home.portfolio.online": "Online portfolyo",
+    "contact.cv": "CV (PDF)",
 
     "home.work.eyebrow": "Seçili İşler",
     "home.work.h2": "Beş vaka analizi, tek ortak payda: gerçek bir karar süreci",
