@@ -285,19 +285,19 @@ html{ scroll-behavior: smooth; }
 /* Hero with portrait */
 .hero-grid{ display: grid; grid-template-columns: 1fr 300px; gap: var(--sp-7); align-items: center; }
 .hero-portrait{ width: 100%; will-change: transform; }
-/* Portre kaynağı grayscale — dark modda subject koyu zemine karışıyor.
-   Daha güçlü brightness + drop-shadow ile subject'i koyudan öne çıkar. */
+/* Portre kartı hem light hem dark modda SICAK KREM KAĞIT gibi kalır —
+   "portrait on paper" motif. Subject grayscale olduğu için tema-adaptif
+   koyu kart subject'i muddy gösteriyordu; sabit krem zemin bunu çözer.
+   Filter yok — subject kaynak dosyadaki gibi görünür. */
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .hero-portrait img,
-  :root:not([data-theme="light"]) .about-portrait img{
-    filter: brightness(1.20) contrast(0.90)
-            drop-shadow(0 0 24px rgba(241,237,228,0.08));
+  :root:not([data-theme="light"]) .about-portrait{
+    background: #F1EDE2;
+    border-color: rgba(0, 0, 0, 0.08);
   }
 }
-:root[data-theme="dark"] .hero-portrait img,
-:root[data-theme="dark"] .about-portrait img{
-  filter: brightness(1.20) contrast(0.90)
-          drop-shadow(0 0 24px rgba(241,237,228,0.08));
+:root[data-theme="dark"] .about-portrait{
+  background: #F1EDE2;
+  border-color: rgba(0, 0, 0, 0.08);
 }
 @media (max-width: 720px){
   .hero-grid{ grid-template-columns: 1fr; gap: var(--sp-5); }
