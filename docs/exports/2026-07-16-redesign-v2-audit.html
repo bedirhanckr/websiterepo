@@ -1,0 +1,846 @@
+<title>Redesign V2 — Audit & Roadmap</title>
+<style>
+  :root{
+    --ground: #F6F3EC;
+    --panel:  #FDFBF6;
+    --ink:    #141311;
+    --muted:  #6E6B65;
+    --line:   #DAD5C8;
+    --line-2: #EDE7DA;
+    --accent: #C1401F;
+    --accent-soft: #F5E1D9;
+    --ok:     #3E7A54;
+    --ok-soft: #E1EDE3;
+    --warn:   #B87A17;
+    --warn-soft: #F3E7CE;
+    --shadow: 0 1px 2px rgba(20,19,17,0.04), 0 10px 34px -14px rgba(20,19,17,0.10);
+    --serif: "Iowan Old Style","Palatino Linotype","Palatino","URW Palladio L","Book Antiqua",Georgia,serif;
+    --sans:  -apple-system,BlinkMacSystemFont,"Segoe UI","Inter",system-ui,sans-serif;
+    --mono:  "SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#131211;
+      --panel: #1B1A17;
+      --ink:   #EFEBE1;
+      --muted: #928F87;
+      --line:  #2A2825;
+      --line-2:#242220;
+      --accent:#D95A3A;
+      --accent-soft:#3A1E17;
+      --ok:    #6BAE83;
+      --ok-soft: #1D2A22;
+      --warn:  #D19638;
+      --warn-soft: #2E2417;
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 14px 44px -14px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#F6F3EC;--panel:#FDFBF6;--ink:#141311;--muted:#6E6B65;
+    --line:#DAD5C8;--line-2:#EDE7DA;--accent:#C1401F;--accent-soft:#F5E1D9;
+    --ok:#3E7A54;--ok-soft:#E1EDE3;--warn:#B87A17;--warn-soft:#F3E7CE;
+    --shadow: 0 1px 2px rgba(20,19,17,0.04), 0 10px 34px -14px rgba(20,19,17,0.10);
+  }
+  :root[data-theme="dark"]{
+    --ground:#131211;--panel:#1B1A17;--ink:#EFEBE1;--muted:#928F87;
+    --line:#2A2825;--line-2:#242220;--accent:#D95A3A;--accent-soft:#3A1E17;
+    --ok:#6BAE83;--ok-soft:#1D2A22;--warn:#D19638;--warn-soft:#2E2417;
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 14px 44px -14px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0; font-family:var(--sans); background:var(--ground); color:var(--ink);
+    font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","cv02";
+  }
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent}
+  a:hover{border-bottom-color:currentColor}
+  code, .mono{font-family:var(--mono); font-size:0.88em}
+
+  .frame{
+    max-width:1200px; margin:0 auto; padding:56px 32px 96px;
+    display:grid; grid-template-columns:230px 1fr; gap:56px;
+  }
+  @media (max-width:960px){
+    .frame{grid-template-columns:1fr; gap:32px; padding:32px 20px 64px}
+    .toc{position:static !important; border-right:none !important; padding-right:0 !important;
+         border-bottom:1px solid var(--line); padding-bottom:24px}
+  }
+
+  /* Masthead */
+  .masthead{
+    grid-column:1/-1; border-bottom:1px solid var(--line);
+    padding-bottom:32px; margin-bottom:8px;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .masthead .kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:16px;
+  }
+  .masthead h1{
+    font-family:var(--serif); font-weight:400; font-style:italic;
+    font-size:clamp(36px, 4.8vw, 60px); line-height:1.02; margin:0;
+    text-wrap:balance; letter-spacing:-0.01em;
+  }
+  .masthead .lede{
+    color:var(--muted); max-width:52ch; font-size:15.5px; margin:16px 0 0;
+  }
+  .masthead .meta{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-align:right; line-height:1.85;
+  }
+  .masthead .meta b{color:var(--ink); font-weight:600}
+
+  /* ToC */
+  .toc{
+    position:sticky; top:32px; align-self:start;
+    font-family:var(--mono); font-size:12px;
+    padding-right:28px; border-right:1px solid var(--line);
+  }
+  .toc .toc-label{
+    text-transform:uppercase; color:var(--muted); font-size:10px;
+    letter-spacing:0.18em; margin-bottom:12px;
+  }
+  .toc ol{list-style:none; padding:0; margin:0; counter-reset:t}
+  .toc li{margin-bottom:8px; counter-increment:t}
+  .toc li::before{
+    content:counter(t, decimal-leading-zero);
+    color:var(--muted); margin-right:10px; font-size:10px;
+  }
+  .toc a{color:var(--ink); border:none}
+  .toc a:hover{color:var(--accent)}
+
+  main{min-width:0}
+  section{margin-bottom:64px}
+  section > h2{
+    font-family:var(--serif); font-weight:400; font-size:clamp(26px, 2.6vw, 34px);
+    margin:0 0 10px; letter-spacing:-0.01em; text-wrap:balance;
+  }
+  section > .section-kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  section > p.intro{
+    color:var(--muted); max-width:64ch; margin:0 0 28px; font-size:15px;
+  }
+
+  /* Executive summary card */
+  .summary{
+    background:var(--panel); border:1px solid var(--line);
+    padding:32px 36px; border-radius:3px; margin-bottom:56px;
+    box-shadow:var(--shadow);
+  }
+  .summary .verdict{
+    font-family:var(--serif); font-style:italic; font-size:22px; line-height:1.35;
+    margin:0 0 20px; color:var(--ink); text-wrap:balance;
+  }
+  .summary .verdict::before{content:"“"; color:var(--accent); margin-right:2px}
+  .summary .verdict::after{content:"”"; color:var(--accent); margin-left:2px}
+  .summary .points{
+    display:grid; grid-template-columns:1fr 1fr; gap:24px 40px;
+  }
+  @media (max-width:640px){.summary .points{grid-template-columns:1fr}}
+  .summary h3{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--muted); font-weight:600; margin:0 0 6px;
+  }
+  .summary p{margin:0; font-size:15px; line-height:1.55}
+
+  /* Audit table */
+  .audit-table{
+    width:100%; border-collapse:collapse; font-size:14.5px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .audit-table th, .audit-table td{
+    text-align:left; padding:14px 14px; border-bottom:1px solid var(--line-2);
+    vertical-align:top;
+  }
+  .audit-table th{
+    font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--muted); background:var(--panel);
+  }
+  .audit-table th:first-child, .audit-table td:first-child{width:56px; color:var(--muted); text-align:right; padding-right:20px}
+  .audit-table th:nth-child(2), .audit-table td:nth-child(2){width:26%; font-weight:600}
+  .audit-table tr:last-child td{border-bottom:none}
+  .audit-table code{
+    background:var(--line-2); padding:1px 6px; border-radius:2px;
+    font-size:12px; border:1px solid var(--line);
+  }
+
+  /* Review cards */
+  .review-grid{display:grid; gap:18px}
+  .review-card{
+    background:var(--panel); border:1px solid var(--line);
+    padding:22px 26px; border-radius:2px; border-left:3px solid var(--muted);
+  }
+  .review-card.p-hi{border-left-color:var(--accent)}
+  .review-card.p-md{border-left-color:var(--warn)}
+  .review-card.p-lo{border-left-color:var(--muted)}
+  .review-card header{
+    display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+    margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid var(--line-2);
+  }
+  .review-card h3{
+    font-family:var(--serif); font-weight:400; font-size:21px; margin:0;
+    letter-spacing:-0.005em;
+  }
+  .review-card .ref{
+    font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.03em;
+    margin-left:auto;
+  }
+  .rating{
+    display:inline-flex; align-items:center; gap:4px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.05em;
+    padding:4px 10px; border-radius:999px;
+    background:var(--line-2); border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .rating b{font-size:12.5px; font-weight:700}
+  .rating.r1, .rating.r2, .rating.r3{background:var(--accent-soft); color:var(--accent); border-color:var(--accent)}
+  .rating.r4, .rating.r5{background:var(--warn-soft); color:var(--warn); border-color:var(--warn)}
+  .rating.r6, .rating.r7{background:var(--line-2); color:var(--ink); border-color:var(--line)}
+  .rating.r8, .rating.r9, .rating.r10{background:var(--ok-soft); color:var(--ok); border-color:var(--ok)}
+  .priority{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; border:1px solid transparent;
+  }
+  .priority.hi{background:var(--accent-soft); color:var(--accent); border-color:var(--accent)}
+  .priority.md{background:var(--warn-soft); color:var(--warn); border-color:var(--warn)}
+  .priority.lo{background:var(--line-2); color:var(--muted); border-color:var(--line)}
+  .review-card dl{margin:0}
+  .review-card dt{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--muted); margin-top:12px; margin-bottom:4px; font-weight:600;
+  }
+  .review-card dd{margin:0; font-size:14.5px; line-height:1.6; color:var(--ink)}
+  .review-card dd + dt{margin-top:14px}
+
+  /* Direction manifesto */
+  .manifesto{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    background:var(--line); border:1px solid var(--line); border-radius:2px;
+    margin-top:32px;
+  }
+  @media (max-width:720px){.manifesto{grid-template-columns:repeat(2, 1fr)}}
+  @media (max-width:480px){.manifesto{grid-template-columns:1fr}}
+  .man-item{
+    background:var(--panel); padding:22px 24px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .man-item h4{
+    font-family:var(--serif); font-style:italic; font-weight:400; font-size:22px;
+    margin:0; letter-spacing:-0.01em;
+  }
+  .man-item p{
+    font-size:13.5px; color:var(--muted); line-height:1.55; margin:0;
+  }
+
+  .anti-list{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:24px;
+    padding:16px 20px; background:var(--panel); border:1px solid var(--line); border-radius:2px;
+  }
+  .anti-list .anti-label{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--muted); margin-right:8px; align-self:center;
+  }
+  .anti-chip{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.04em;
+    padding:4px 12px; border-radius:999px;
+    background:transparent; border:1px solid var(--line);
+    color:var(--muted); text-decoration:line-through; text-decoration-color:var(--accent);
+    text-decoration-thickness:1.5px;
+  }
+
+  /* Roadmap timeline */
+  .roadmap{
+    display:grid; gap:16px; margin-top:8px;
+  }
+  .rm-item{
+    background:var(--panel); border:1px solid var(--line);
+    padding:22px 26px; border-radius:2px;
+    display:grid; grid-template-columns:90px 1fr; gap:22px;
+  }
+  @media (max-width:640px){.rm-item{grid-template-columns:1fr}}
+  .rm-tag{
+    font-family:var(--mono); font-size:16px; letter-spacing:0.03em; font-weight:700;
+    color:var(--accent); border-right:1px solid var(--line);
+    padding-right:22px; align-self:start;
+  }
+  @media (max-width:640px){.rm-tag{border-right:none; padding:0 0 12px; border-bottom:1px solid var(--line-2)}}
+  .rm-body h4{
+    font-family:var(--serif); font-weight:400; font-size:19px; margin:0 0 8px;
+    letter-spacing:-0.005em;
+  }
+  .rm-body p{margin:0 0 8px; font-size:14.5px; color:var(--ink)}
+  .rm-body .rm-meta{
+    display:flex; gap:16px; margin-top:12px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
+    color:var(--muted);
+  }
+  .rm-body .rm-meta span b{color:var(--ink)}
+
+  /* Problem / Opportunity / Risk lists */
+  .bullet-list{
+    padding-left:0; list-style:none;
+  }
+  .bullet-list li{
+    padding:14px 20px; margin-bottom:8px; background:var(--panel);
+    border:1px solid var(--line); border-left:3px solid var(--muted);
+    border-radius:2px; font-size:14.5px;
+    display:grid; grid-template-columns:24px 1fr; gap:14px; align-items:baseline;
+  }
+  .bullet-list li::before{
+    content:""; width:6px; height:6px; border-radius:50%;
+    background:var(--muted); align-self:start; margin-top:8px;
+  }
+  .bullet-list.problems li{border-left-color:var(--accent)}
+  .bullet-list.problems li::before{background:var(--accent)}
+  .bullet-list.opportunities li{border-left-color:var(--ok)}
+  .bullet-list.opportunities li::before{background:var(--ok)}
+  .bullet-list.risks li{border-left-color:var(--warn)}
+  .bullet-list.risks li::before{background:var(--warn)}
+  .bullet-list li b{color:var(--ink); font-weight:600}
+
+  hr.rule{border:none; border-top:1px solid var(--line); margin:64px 0}
+
+  .colophon{
+    grid-column:1/-1; padding-top:40px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.05em; color:var(--muted);
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;
+  }
+  strong{font-weight:600}
+  em{font-style:italic; color:var(--ink)}
+</style>
+
+<div class="frame">
+
+  <header class="masthead">
+    <div>
+      <div class="kicker">Redesign V2 · Audit & Roadmap</div>
+      <h1>Yıkmadan geliştirmek — bir kimliğin evrimi için tam envanter</h1>
+      <p class="lede">Bedirhan'ın V1'i şu an "yeterince iyi" ile "gerçekten hafıza bırakan" arasındaki eşikte duruyor. Bu rapor 20 madde audit + bölüm-bölüm design review + tek-bölüm iterasyonlu V2 roadmap içerir. Kod yok, öneri var. Onay bekliyor.</p>
+    </div>
+    <div class="meta">
+      <b>2026-07-16</b><br>
+      Branch · main (post-PR #11)<br>
+      Framework · Static HTML/CSS/JS<br>
+      Deploy · Vercel · bedirhancakiroglu.com
+    </div>
+  </header>
+
+  <aside class="toc" aria-label="İçindekiler">
+    <div class="toc-label">İçindekiler</div>
+    <ol>
+      <li><a href="#ozet">Yönetici özeti</a></li>
+      <li><a href="#audit">Audit — 20 madde</a></li>
+      <li><a href="#review">Design Review</a></li>
+      <li><a href="#direction">V2 Design Direction</a></li>
+      <li><a href="#roadmap">Roadmap V2.1–V2.7</a></li>
+      <li><a href="#problems">Problems</a></li>
+      <li><a href="#opportunities">Opportunities</a></li>
+      <li><a href="#risks">Risks</a></li>
+    </ol>
+  </aside>
+
+  <main>
+
+    <!-- ================================ YÖNETİCİ ÖZET ================================ -->
+    <section id="ozet" style="margin-bottom:32px">
+      <div class="summary">
+        <p class="verdict">V1 kimlik kazanmış, sistem oturmuş — ama hero'da "ne yapan biri" ilk 2 saniyede görsel olarak henüz teslim edilmiyor, tipografide tek plak (Inter) çalıyor, bazı kopyalar ise her tasarımcının yazabileceği bir dille konuşuyor. V2'de <em>replace</em> değil, <em>rebalance</em> gerekli.</p>
+        <div class="points">
+          <div>
+            <h3>Elimizde ne var</h3>
+            <p>9 tam vaka çalışması, 3 dil (EN/DE/TR), Braun/Rams tabanlı token sistemi, sağlam motion katmanı (Phase 1+2+3), Vercel oto-deploy, GDPR-uyumlu analytics, custom domain, %64 optimize edilmiş görsel yükü. Teknik alt zemin V1'e kadar solid.</p>
+          </div>
+          <div>
+            <h3>Neyi geliştiriyoruz</h3>
+            <p>Hero anatomisi (portre + iş), tipografi (display serif tanıtımı), kopya sesi (sharp), work grid asimetrisi, case study'nin 13-aşama yükünün rebalance'ı, motion'ın "gösterişten anlama" geçişi. Roadmap'te tek-bölümlü 7 sürüm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ AUDIT ================================ -->
+    <section id="audit">
+      <div class="section-kicker">01 — Envanter</div>
+      <h2>Audit · 20 teknik + yapısal madde</h2>
+      <p class="intro">Kod tabanının şu anki durumu, isim isim, dosya dosya. V2 kararlarını bu masaya yaslanacak.</p>
+
+      <table class="audit-table">
+        <thead>
+          <tr><th>#</th><th>Alan</th><th>Şu anki durum</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td>Framework</td>
+              <td>Static HTML/CSS/JS. Framework yok. Basit ve hızlı. Trade-off: component reuse yok, 13 vaka sayfası aynı yapıyı tekrarlar (i18n key'lerinde çakışma riski, HTML de duplike).</td></tr>
+          <tr><td>02</td><td>Folder structure</td>
+              <td><code>./</code> kök (HTML), <code>assets/{css,js,fonts,img}</code>, <code>work/</code>, <code>pdf/</code>, <code>docs/</code> (private, .vercelignore), <code>scripts/</code>. Cruft: <code>bodies/</code> (bozuk build sistemi), <code>pdf/deck-v2.html</code> (100KB, stale).</td></tr>
+          <tr><td>03</td><td>Component hierarchy</td>
+              <td>CSS-driven komponentler (~15): <code>.project-card</code>, <code>.fw-card</code>, <code>.media-slot</code>, <code>.callout</code>, <code>.tl-item</code>, <code>.site-header</code>, <code>.primary-nav</code>, <code>.lang-switch</code>, <code>.theme-toggle</code>, <code>.consent-banner</code>, <code>.featured-work</code>, <code>.hero-portrait</code>, <code>.case-pager</code>, <code>.principle-grid</code>, <code>.dim-mark</code>.</td></tr>
+          <tr><td>04</td><td>Routing</td>
+              <td>File-based. <code>index.html</code>, <code>work/{slug}.html</code>, <code>pdf/index.html</code>. Vercel <code>vercel.json</code>'da: <code>/pdf</code> → <code>/pdf/index.html</code> rewrite. <code>/about</code>, <code>/about.html</code> → <code>/#about</code> 301. Case-study prev/next static <code>.case-pager</code> ile.</td></tr>
+          <tr><td>05</td><td>Styling system</td>
+              <td>CSS custom properties (<code>tokens.css</code>, ~8 KB) + <code>style.css</code> (11 mantıksal bölüm başlıklı, ~32 KB). Inline styles az miktarda leak (index.html'de <code>grid-column</code> attr). Cascade layer yok, ama gerekmiyor.</td></tr>
+          <tr><td>06</td><td>Animation libraries</td>
+              <td>Kütüphane yok. Vanilla JS + CSS. IntersectionObserver reveal, rAF-throttled hero parallax, <code>setInterval</code> featured-work carousel, CSS transitions hover/reveal. <code>prefers-reduced-motion</code> her yerde honor. Bundle size sıfır.</td></tr>
+          <tr><td>07</td><td>Typography</td>
+              <td>Inter Variable (338 KB, self-hosted, tüm ağırlıklar) + JetBrains Mono Regular/Medium (~92 KB her biri). Hierarchy <code>--fs-100</code> (11 px) → <code>--fs-900</code> (72 px). Tek sans + tek mono — display serif yok. Editorial karakter zayıflığının kaynağı.</td></tr>
+          <tr><td>08</td><td>Color tokens</td>
+              <td>Braun grayscale (<code>--paper, --ink-{900,700,500,300}, --line-{100,300}</code>) + signal (<code>#C1401F</code> light, <code>#E5654A</code> dark). Dark tema flip'te <code>--nihai-bg</code> sabit koyu kalır (finale showcase). Tertiary/semantic renk yok — Braun disiplini burada bilinçli.</td></tr>
+          <tr><td>09</td><td>Spacing system</td>
+              <td>8 px base rhythm. <code>--sp-1</code> = 4 px → <code>--sp-9</code> = 128 px. Consistent, ihlal yok. Layout gap'ları hep token ile.</td></tr>
+          <tr><td>10</td><td>Hero implementation</td>
+              <td>2 kolon grid (text solda, portre sağda). Portre alpha PNG + <code>--surface</code> bg (dark modda krem — post PR #12). H1 max 4 satır, <code>text-wrap: balance</code>. Meta strip 3 kolon (Focus/Highlight/Background). Portrait parallax %14. <b>Öne çıkan iş görseli yok.</b></td></tr>
+          <tr><td>11</td><td>Project grid</td>
+              <td>3 katmanlı: <em>featured-work</em> (4 kart, cross-fade carousel), <em>work grid</em> (5 flagship <code>.project-card</code>), <em>Selected Works</em> (4 kısa vaka). Grid'de kartlar aynı boyut, hierarchy zayıf.</td></tr>
+          <tr><td>12</td><td>Project detail</td>
+              <td>13 aşama template (Problem → Araştırma → Kriter → Konsept → Sketch → CAD → Mühendislik → DFM/DFA → Prototip → Test → İterasyon → Nihai → Kazanım). Sticky <code>.case-subnav</code>, <code>.media-slot</code>/<code>.media-grid</code> (>860 px'de breakout genişler), <code>#nihai</code> full-bleed Ken Burns. <code>.case-pager</code> prev/next.</td></tr>
+          <tr><td>13</td><td>About section</td>
+              <td>Single-page <code>#about</code>. Kicker + lede + process-oku (mono). <code>.principle-grid</code> 4 kart. Kart başlıklarında ses biraz jenerik ("Constraints stay visible" vs).</td></tr>
+          <tr><td>14</td><td>Experience</td>
+              <td>Timeline (5 <code>.tl-item</code>). TUS current, TUS intern, ITÜ ROV, Robotistan, ITÜ BSc. Sol rail (2 px line-300), tarih signal-red, reveal animasyonu. Yerinde.</td></tr>
+          <tr><td>15</td><td>Contact</td>
+              <td>Footer <code>#contact</code>. Formsubmit.co ile POST. Kicker + copy + email + LinkedIn + Behance + portfolyo linki. Toast <code>?sent=1</code> handler. Consent banner buraya karışmıyor.</td></tr>
+          <tr><td>16</td><td>Responsive</td>
+              <td>Breakpoints: 480, 640, 720, 860 px. Mobile nav full-screen overlay (backdrop-filter kaldırıldı, artık düzgün). Hero grid 1-col ≤720 px. Case media breakout ≤860 px kapanıyor.</td></tr>
+          <tr><td>17</td><td>Build system</td>
+              <td>Yok. Static dosyalar direkt serve. <code>scripts/optimize_images.py</code> (Python, manuel çağrı). CSS/JS minification yok. Hash-based cache-busting yok (yalnızca <code>?v=</code> query, manuel bump).</td></tr>
+          <tr><td>18</td><td>Deployment</td>
+              <td>Vercel <code>bedirhanckr/websiterepo</code> main branch'ine bağlı. Push → auto-deploy. Custom domain <code>bedirhancakiroglu.com</code>. <code>.vercelignore</code>: <code>docs/</code>, <code>scripts/</code>, <code>bodies/</code>, <code>*.md</code>. <code>vercel.json</code>: redirects + cache headers (CSS/JS revalidate, images 1h, fonts 1yr).</td></tr>
+          <tr><td>19</td><td>Performance risks</td>
+              <td>Retroscent hero 3.2 MB PNG (grotesk). Portre 774 KB PNG hero'da eager load. i18n.js 168 KB her sayfaya. Featured-work 8 görsel yükler (4 primary + 4 alt). Hero image <code>&lt;picture&gt;</code> tag yok (WebP muadili var ama unused). GA gtag her sayfaya.</td></tr>
+          <tr><td>20</td><td>Accessibility</td>
+              <td>Skip-link ✓, focus-visible outline ✓, alt attr ✓, aria-label buton/nav ✓, semantic tags ✓, <code>prefers-reduced-motion</code> ✓. <b>Zayıflıklar:</b> renk kontrast <code>--muted</code>/<code>--paper</code> WCAG AA sınırında; bazı SVG'lerin <code>aria-hidden</code>'ı var, decorative label yok; PDF deck skip-to-content yok.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ================================ DESIGN REVIEW ================================ -->
+    <section id="review">
+      <div class="section-kicker">02 — Creative Director gözü</div>
+      <h2>Design Review · bölüm bölüm</h2>
+      <p class="intro">Her bölüm için: mevcut kalite (1–10) + problems + improvement ideas + priority. Öncelik rengi: <span class="priority hi">Yüksek</span> <span class="priority md">Orta</span> <span class="priority lo">Düşük</span>.</p>
+
+      <div class="review-grid">
+
+        <!-- 1. Header / Nav -->
+        <div class="review-card p-lo">
+          <header>
+            <span class="rating r8"><b>8</b>/10</span>
+            <h3>Header / Navigation</h3>
+            <span class="ref">.site-header · .primary-nav · .theme-toggle · .lang-switch</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>Sticky, minimal, mobil overlay artık düzgün. Tema toggle + i18n switcher iki güçlü fonksiyonel katman. Ürünün "profesyonel araç" hissiyatı burada başlıyor.</dd>
+            <dt>Problems</dt>
+            <dd>Nav item hover underline default (border-bottom transparent → signal). Scroll pozisyonuna göre aktif bölüm işareti yok. Header BG şeffaf → içerik scroll'lanınca "yüzen" hissi bazen belirsiz.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Aktif bölüm indikatörü (IntersectionObserver ile #about, #work, #contact aktifken underline signal-red). Header'da opsiyonel small progress bar (sayfa scroll yüzdesi). Brand small-caps line-height ince ayar.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority lo">Düşük</span> — mevcut hâli kabul edilebilir. V2.7'de motion refinement ile birlikte.</dd>
+          </dl>
+        </div>
+
+        <!-- 2. Hero -->
+        <div class="review-card p-hi">
+          <header>
+            <span class="rating r6"><b>6</b>/10</span>
+            <h3>Hero</h3>
+            <span class="ref">.hero · .hero-grid · .hero-intro · .hero-portrait</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>Text left + portre right kompozisyon temiz. Meta strip 3 nokta (Focus/Highlight/Background) analitik veriyor. Parallax subtle.</dd>
+            <dt>Problems</dt>
+            <dd><b>Kritik: ilk 2 saniyede bir iş görseli yok.</b> Ziyaretçi "ne yapan biri" cevabını yazıdan almak zorunda. Portre dark modda krem kart iş çözüldü ama <em>engineered workaround</em> hissi var — kimlik seçimi değil, uzlaşma. Meta strip 3 kolonu dense, tarama zor. H1 4 satır bazı viewport'larda kırpılıyor.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Hero anatomisi restructure: (a) portre daha küçük, sağa yaslanmış chip (~120 px); (b) hero'nun <em>ana görseli</em> Pioneer MKII ya da REX render'ı — büyük, sinema oranı; (c) H1 daha kısa ve editorial serif (display face); (d) meta strip 1-satırlık orbital metaya (dim-mark + tek satır).</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority hi">Yüksek</span> — V2.1'in konusu. En yüksek ROI.</dd>
+          </dl>
+        </div>
+
+        <!-- 3. Featured-Work -->
+        <div class="review-card p-md">
+          <header>
+            <span class="rating r7"><b>7</b>/10</span>
+            <h3>Featured-Work strip</h3>
+            <span class="ref">.featured-work · cross-fade carousel</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>4 flagship kart + cross-fade carousel (4.8 s staggered) hareket katmanı ekliyor. Fikir güzel: hero altında "canlı iş" pencereleri.</dd>
+            <dt>Problems</dt>
+            <dd>Aynı 4 proje (Pioneer, Rockhounder, REX, Delta) alt work grid'de tekrar görünüyor → duplication. Kartlar aynı boyut, hierarchy yok. Cross-fade animasyonu premium hisse bir tık kaçıyor (yumuşak ama <em>signature</em> değil).</dd>
+            <dt>Improvement ideas</dt>
+            <dd>İki yol: (a) featured-work'ü hero'ya <em>ent</em>egre et (hero'nun sağ paneline dev bir featured görsel + rotasyon), work grid altta kalır → duplication kaybolur; (b) featured-work kalsın ama premium bir "ürün lansmanı" hissiyle re-imagine: daha büyük tek kart, sağda küçük thumbnails, 3-view carousel.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority md">Orta</span> — hero restructure kararına bağlı. V2.1'in bir varyantında birleşir.</dd>
+          </dl>
+        </div>
+
+        <!-- 4. About / Principles -->
+        <div class="review-card p-md">
+          <header>
+            <span class="rating r7"><b>7</b>/10</span>
+            <h3>About / Principles</h3>
+            <span class="ref">.principles · .principle-grid · .principle</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>4 principle kartı, mono uppercase kicker + serif-hissi olmayan kısa başlıklar + kısa açıklama. Grid layout mobil-ilkelere sadık. Process oku ("Market research → idea → sketching → CAD → …") mühendislik disiplinini iyi taşıyor.</dd>
+            <dt>Problems</dt>
+            <dd>Kopya sesi yer yer jenerik: "Constraints stay visible", "Designed as a system" — her tasarımcı yazabilir. Karakter yerine ilke belirtiyor. Kartlar aynı ağırlıkta, hierarchy yok.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Kopyayı Bedirhan'ın <em>gerçek</em> sesiyle re-write (mesela: "Prototipsiz karar vermem", "Rendering'i konseptin ispatı sanmam", "BOM'u tasarımın parçası olarak yazarım"). Kart hierarchy: 1'i vurgulanmış (büyük), 3'ü sıradan. Icon değil, tek bir teknik motif — dimension mark tarzı.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority md">Orta</span> — V2.5'in konusu.</dd>
+          </dl>
+        </div>
+
+        <!-- 5. Capabilities / How I work -->
+        <div class="review-card p-md">
+          <header>
+            <span class="rating r6"><b>6</b>/10</span>
+            <h3>Capabilities · "How I work"</h3>
+            <span class="ref">.case-section · .grid-12 · .skill-block</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>5 skill bloğu (Design, CAD, Manufacturing, Prototyping, Languages) grid'de listeli. Text-heavy, hepsi <code>text-small text-muted</code> — okuma emeği düşük ama görsel anchor yok.</dd>
+            <dt>Problems</dt>
+            <dd>CV'den kopyala-yapıştır hissi. "Rhino · Fusion 360 · KeyShot · V-Ray · Blender" bir mühendisin CV maddesi, hero'nun altında editorial değil. Skill blokları aynı ağırlıkta, hangi yeteneğin bu portfolyodaki işlerde <em>rolü</em> olduğu belli değil.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Alt-ilkelerle re-frame: her skill'in yanında 1 proje referansı ("HiCAD → TUS Metallbau balkon sistemleri"). Ya da vaka ile ilişkilendirilmiş dot-network görsel (hangi yetenek hangi projede kullanıldı). Language chip'i signal-red yerine subtle.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority md">Orta</span> — V2.5'in ikinci ayağı.</dd>
+          </dl>
+        </div>
+
+        <!-- 6. Timeline -->
+        <div class="review-card p-lo">
+          <header>
+            <span class="rating r8"><b>8</b>/10</span>
+            <h3>Timeline · Experience</h3>
+            <span class="ref">.timeline · .tl-item</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>Sol rail + tarih signal-red + reveal animasyonu. Engineering-doc hissi tam yerinde. Her item Bedirhan'ın kariyerini sıralı okumaya sokuyor.</dd>
+            <dt>Problems</dt>
+            <dd>Küçük: TUS Metallbau projeleri "compliance ile 3D modelleme" gibi jenerik açıklamalarla geçiliyor (gizlilik zorluğu — kabul edilebilir). ITU BSc satırı sadece GPA verdiği için thin.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Her item'e 1 mikro-görsel (küçük thumbnail, opsiyonel). TUS için: "Representative projects: not shown due to confidentiality" satırı zaten güven veriyor, koru. Motion: item enter animasyonu subtle sequential zaten var.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority lo">Düşük</span> — dokunma ihtimali düşük. En sağlam bölüm.</dd>
+          </dl>
+        </div>
+
+        <!-- 7. Work grid main -->
+        <div class="review-card p-md">
+          <header>
+            <span class="rating r7"><b>7</b>/10</span>
+            <h3>Work grid</h3>
+            <span class="ref">#work · .project-card · Selected Works</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>5 flagship + 4 selected. Kartlar temiz (.thumb + .info + arrow micro-interaction). Hover'da image scale (Phase 1 motion). "Full case study" chip signal-red.</dd>
+            <dt>Problems</dt>
+            <dd>Kartlar aynı büyüklük, hierarchy yok. Pioneer (TEKNOFEST ödüllü) ve Rockhounder (İTÜ 2.) diğerleriyle aynı görsel ağırlıkta. Grid dense — 4 kart yan yana desktop'ta çok küçük.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Asimetrik layout: 1 flagship büyük sol (hero-scale), 2 supporting sağa üst üste dikey. Selected Works ayrı bir görsel bloğa dönüş (list-view + micro-thumbnail). "Award / shipped / prototype" işareti mikro chip olarak kart üstünde — kredibiliteyi anında görürsün.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority md">Orta</span> — V2.3'ün konusu.</dd>
+          </dl>
+        </div>
+
+        <!-- 8. Case study pages -->
+        <div class="review-card p-md">
+          <header>
+            <span class="rating r8"><b>8</b>/10</span>
+            <h3>Case study pages</h3>
+            <span class="ref">work/*.html · 13-stage template · #nihai</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>13 aşama derin, industrial-design süreç anlatımı. Sticky subnav navigasyonu güçlü. Reveal animasyonları subtle. #nihai finalinin dark full-bleed + Ken Burns'ü sinema hissi. Case-pager prev/next okuyucuyu döngüde tutuyor.</dd>
+            <dt>Problems</dt>
+            <dd>13 aşama çoğu projede fazlasıyla. Retroscent 8 aşamada iyi, Pioneer 13'te yorucu. Bazı vakalarda "Sketch" section boş (placeholder), gözle görülür. Media grid'de bazı görseller portre orientation için cover-crop ile kesik.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Template'i esnet: her vakanın kendi ideal sayısı (7–13). Boş sketch slot'ları placeholder olarak gösterme, direkt gizle. Görsel oranı per-project ayarla (portre orientation için <code>object-fit: contain</code>, dark BG opsiyonu).</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority md">Orta</span> — V2.4'ün konusu.</dd>
+          </dl>
+        </div>
+
+        <!-- 9. PDF deck -->
+        <div class="review-card p-lo">
+          <header>
+            <span class="rating r7"><b>7</b>/10</span>
+            <h3>PDF deck</h3>
+            <span class="ref">pdf/index.html · 53 slide</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>Sinema oranı slide-deck (1400×900). Cover + CV + Contents + 5 flagship × 6 slide + Other Works 20 slide. Print CSS Ctrl+P PDF export yönlendirmesi. Mobil viewport <code>width=1500</code> hack pinch-zoom fit.</dd>
+            <dt>Problems</dt>
+            <dd>Deck placeholder slot'ları hâlâ var (Pioneer sketch, Rockhounder sketch+extra vs). Deck standalone kimlik değil — site'ın küçük bir kardeşi hissi, bağımsız güçlü bir portfolyo hissi vermiyor.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Placeholder'lar dolunca deck'i standalone güçlendir: cover'a Bedirhan'ın imzası, arkaya kapak (contact tarafı), footer'a sayfa X/53 + progress bar. Deck de V2 dilini paylaşmalı (display serif).</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority lo">Düşük</span> — placeholder dolunca 30 dk iş.</dd>
+          </dl>
+        </div>
+
+        <!-- 10. Footer / Contact -->
+        <div class="review-card p-lo">
+          <header>
+            <span class="rating r7"><b>7</b>/10</span>
+            <h3>Footer · Contact</h3>
+            <span class="ref">.site-footer · #contact · form</span>
+          </header>
+          <dl>
+            <dt>Current quality</dt>
+            <dd>Kicker + copy + form + email + LinkedIn + Behance + portfolio. Consent banner buraya karışmıyor. Formsubmit → toast.</dd>
+            <dt>Problems</dt>
+            <dd>"Have something you want to build? Let's talk." kopya OK ama vedalaşma anı zayıf. Ziyaretçi son satırda site'tan tam ne aldığını hissetmeden çıkıyor. Form ve linkler aynı gri ton, hierarchy yok.</dd>
+            <dt>Improvement ideas</dt>
+            <dd>Signature moment: kısa bir alıntı (Dieter Rams'ın "as little design as possible" alıntısı zaten var — daha görünür). Kişisel el yazısı imza SVG. Contact form daha küçük, yardımcı; asıl CTA "email me" büyük buton.</dd>
+            <dt>Priority</dt>
+            <dd><span class="priority lo">Düşük</span> — V2.6.</dd>
+          </dl>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ================================ DESIGN DIRECTION ================================ -->
+    <section id="direction">
+      <div class="section-kicker">03 — V2 pusulası</div>
+      <h2>Design Direction · site nasıl hissetmeli</h2>
+      <p class="intro">Layer Design, Marc Newson ve Karim Rashid'in <em>prensiplerinden</em> öğrendiklerimizin özgün bir dile dönüştürülmüş hâli. Layout / renk / brand kopyalanmayacak.</p>
+
+      <div class="manifesto">
+        <div class="man-item">
+          <h4>Calm</h4>
+          <p>Negatif alan yalvarır. Aynı ekranda 3 vurgu değil, 1 vurgu + 2 destek. Sayfa scroll'lanırken göze dinlenme molası verir.</p>
+        </div>
+        <div class="man-item">
+          <h4>Premium</h4>
+          <p>Kısıtlı accent, ornament yok. Editorial yoğunluk — her satır bir şey söylüyor. Küçük detayların özenle çözülmüş olması hissedilir.</p>
+        </div>
+        <div class="man-item">
+          <h4>Engineered</h4>
+          <p>Görünür oranlar, hizalamalar, teknik çizim motifleri. Dim-mark subtle kalır, referans olarak — süs değil.</p>
+        </div>
+        <div class="man-item">
+          <h4>Editorial</h4>
+          <p>Display serif tanıtılır (Fraunces veya Iowan Old Style ailesi). Cömert kolonlar, ölçeklenmiş tipografi hierarchy. Portfolyo bir dergi gibi taranır.</p>
+        </div>
+        <div class="man-item">
+          <h4>Minimal</h4>
+          <p>Gradient yok, box-shadow yok — Braun disiplini korunur. Motion sadece bilgi taşırken var; süsleme değil.</p>
+        </div>
+        <div class="man-item">
+          <h4>Industrial</h4>
+          <p>Ortografik görüntüler, ürün fotoğrafı disiplini, teknik çizim izleri. "Bu adam bir mühendis" ilk ekranda söylenir.</p>
+        </div>
+      </div>
+
+      <div class="anti-list">
+        <span class="anti-label">Kaçınılacak</span>
+        <span class="anti-chip">trendy</span>
+        <span class="anti-chip">flashy</span>
+        <span class="anti-chip">SaaS</span>
+        <span class="anti-chip">developer portfolio</span>
+        <span class="anti-chip">gradient hero</span>
+        <span class="anti-chip">acid green accent</span>
+        <span class="anti-chip">cursor-follow shimmer</span>
+        <span class="anti-chip">character-by-character intro</span>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ================================ ROADMAP ================================ -->
+    <section id="roadmap">
+      <div class="section-kicker">04 — Iterasyon planı</div>
+      <h2>Roadmap · V2.1 → V2.7</h2>
+      <p class="intro">Her sürüm SADECE tek bir bölümü modifiye eder. Her sürüm ayrı bir PR, ayrı bir geri-alınabilirlik. Sıra ROI'ye göre.</p>
+
+      <div class="roadmap">
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.1</div>
+          <div class="rm-body">
+            <h4>Hero — anatomi + tipografi + görsel yön</h4>
+            <p>Hero'yu <em>rebalance</em>: portre chip'e küçülür (~120–160 px sağa yaslı); ana görsel Pioneer MKII veya REX render'ı büyük sinema oranı; H1 kısalır ve <b>display serif</b>'e geçer (Fraunces / Iowan Old Style variable); meta strip 1 satırlık orbital metaya. İlk 2 saniyede "ne yapan biri" görsel olarak teslim.</p>
+            <div class="rm-meta">
+              <span>Süre · <b>1–1.5 gün</b></span>
+              <span>Risk · <b>Orta</b> (kimliği sarsmadan denge)</span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.2</div>
+          <div class="rm-body">
+            <h4>Typography — display serif sistemi</h4>
+            <p>V2.1'de hero'da tanıttığımız display face'i tüm h1/h2 hiyerarşisine yayarız. Body Inter kalır (okunabilirlik). Font-pair'in son teknik ayarları (letter-spacing, line-height, weight scale). Fraunces variable ise +opsz eksenini de kullanırız (küçük başlıklarda otomatik optical size). Bundle: +80–120 KB tek variable font.</p>
+            <div class="rm-meta">
+              <span>Süre · <b>0.5 gün</b></span>
+              <span>Risk · <b>Düşük</b></span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.3</div>
+          <div class="rm-body">
+            <h4>Work grid — asimetrik hierarchy</h4>
+            <p>5 flagship'te göze eşit ağırlık verilmiyor — 1 dev flagship (hero-scale sol), 2 orta supporting (sağa dikey), 2 daha küçük altta. Selected Works ayrı görsel bloğa (list-view + mikro thumbnail). Kart üstüne mikro chip: "Award / Shipped / Prototype". Featured-work strip ile duplication çözülür (birleştir ya da kaldır).</p>
+            <div class="rm-meta">
+              <span>Süre · <b>1 gün</b></span>
+              <span>Risk · <b>Orta</b></span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.4</div>
+          <div class="rm-body">
+            <h4>Case study — 13 aşamayı esnet</h4>
+            <p>Template katı kalmasın — her vaka kendi ideal aşama sayısı (7–13). Boş <em>sketch</em> slot'ları gizle (placeholder gösterme). Media grid orientation-aware: portre görsel için <code>object-fit: contain</code>. Sub-nav'ı vakanın gerçek aşamalarına göre üret. #nihai Ken Burns korunur.</p>
+            <div class="rm-meta">
+              <span>Süre · <b>1–1.5 gün</b></span>
+              <span>Risk · <b>Orta</b> (9 vaka × düzenleme)</span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.5</div>
+          <div class="rm-body">
+            <h4>About / Principles + Capabilities — sesin keskinleşmesi</h4>
+            <p>Principle kartlarındaki kopya Bedirhan'ın <em>gerçek</em> sesine döndürülür (jenerik → spesifik). Örn: "Prototipsiz karar vermem"; "Rendering'i konseptin ispatı sanmam". 1 kart öne çıkar (hero-scale), 3 destek. Capabilities section skill blokları vaka referanslarıyla ilişkilendirilir (HiCAD → TUS balkon; SolidWorks → Delta).</p>
+            <div class="rm-meta">
+              <span>Süre · <b>0.5 gün</b></span>
+              <span>Risk · <b>Düşük</b> — sadece kopya + hierarchy</span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.6</div>
+          <div class="rm-body">
+            <h4>Footer / Contact — signature moment</h4>
+            <p>Vedalaşmayı editorial hale getir. Rams alıntısı zaten var, daha görünür — kendi el yazısı SVG signature. Contact form küçülür (yardımcı), asıl CTA büyük "email me" buton. LinkedIn / Behance / portfolio alt satırda mono chips.</p>
+            <div class="rm-meta">
+              <span>Süre · <b>0.5 gün</b></span>
+              <span>Risk · <b>Düşük</b></span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-item">
+          <div class="rm-tag">V2.7</div>
+          <div class="rm-body">
+            <h4>Motion refinement — anlam katsın, gösterişten çıksın</h4>
+            <p>Parallax'ı reconsider (kaldır ya da daha subtle). Nav'a scroll-position aktif bölüm indikatörü (IntersectionObserver). Hero title reveal on load (subtle stagger, 400 ms tek seferlik). Featured-work carousel timing rebalance (4.8 s → 6 s, daha "premium" tempo). Case-subnav item hover'da geometrik dim-mark micro-anim.</p>
+            <div class="rm-meta">
+              <span>Süre · <b>0.5–1 gün</b></span>
+              <span>Risk · <b>Düşük</b></span>
+              <span>PR · <b>tek</b></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ================================ PROBLEMS ================================ -->
+    <section id="problems">
+      <div class="section-kicker">05 — Kritik sorunlar</div>
+      <h2>Problems</h2>
+      <p class="intro">Bugün canlı sitede öne çıkan, hemen dokunulmamış olan bulgular.</p>
+
+      <ul class="bullet-list problems">
+        <li><span></span><span><b>Hero'da iş görseli yok</b> — ilk 2 saniyede "endüstriyel tasarımcı" görsel olarak teslim edilmiyor. En yüksek etkili tek sorun.</span></li>
+        <li><span></span><span><b>Tipografi tek plak</b> — sadece Inter. Editorial voice zayıflığının kaynağı. Display serif'in yokluğu.</span></li>
+        <li><span></span><span><b>Kopya sesi bazı yerlerde jenerik</b> — özellikle principles: "Constraints stay visible", "Designed as a system". Bedirhan'ın <em>kendi</em> sesi değil.</span></li>
+        <li><span></span><span><b>Retroscent hero 3.2 MB PNG</b> — performance ciddi risk. 4G bağlantıda 5+ saniye. Optimize edilmeli.</span></li>
+        <li><span></span><span><b>Portre dark modda krem kart</b> — çalışıyor ama <em>engineered workaround</em> hissi. Kimlik seçimi değil, uzlaşma. Renkli portre ile temeli değiştir.</span></li>
+        <li><span></span><span><b>Featured-work duplication</b> — 4 flagship kart hem featured-work'te hem work grid'de. Ziyaretçi aynı 4 projeyi ard arda görür.</span></li>
+        <li><span></span><span><b>Case study 13 aşama katı</b> — bazı vakalarda 8 aşama yeter (Retroscent zaten kısa, dürüst), bazıları placeholder ile geçiyor. Şablon esnetilmeli.</span></li>
+        <li><span></span><span><b>Kart hierarchy yok</b> — hem work grid hem featured-work eşit ağırlıklı kartlarla dolu. En güçlü proje (Pioneer, TEKNOFEST) diğerleriyle aynı görsel-ağırlıkta.</span></li>
+        <li><span></span><span><b>Contact/footer vedalaşma zayıf</b> — kompozisyon kesme noktası (site kapanışı) hissedilmiyor. Signature moment yok.</span></li>
+      </ul>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ================================ OPPORTUNITIES ================================ -->
+    <section id="opportunities">
+      <div class="section-kicker">06 — Kapıda bekleyen kazanımlar</div>
+      <h2>Opportunities</h2>
+      <p class="intro">Elimizde hazır olan güçlü zeminler ve bunları nasıl unlock ederiz.</p>
+
+      <ul class="bullet-list opportunities">
+        <li><span></span><span><b>Kimlik zaten kazanılmış</b> — Braun/Rams tabanlı token sistemi V1'in en güçlü sermayesi. V2 diline yayarken bu koruma altında kalır.</span></li>
+        <li><span></span><span><b>Doğrulanabilir sonuçlar</b> — TEKNOFEST ödülü + İTÜ 2. + Robotistan'da satılan REX + FURNITUR 2023 (Retroscent). Bu 4 rozet henüz görsel olarak yeterince öne çıkmıyor.</span></li>
+        <li><span></span><span><b>Tam EN/DE/TR desteği</b> — Almanya iş pazarı için nadir bir sinyal. Recruiter'e "Almanca konuşabilen tasarımcı" bilgisi mühimdir; hero'da tek satırlık bir referans olabilir.</span></li>
+        <li><span></span><span><b>Motion altyapısı sağlam</b> — IntersectionObserver + reveal + carousel + parallax + Ken Burns. V2.7'de refinement için altyapı zaten var, sıfırdan başlanmayacak.</span></li>
+        <li><span></span><span><b>Case study derinliği bir moat</b> — 9 tam vaka, 13 aşama şablonu, gerçek görseller. Rakiplerin çoğu 3–4 vakaya yer verirken Bedirhan'ın derinliği kredibilite.</span></li>
+        <li><span></span><span><b>Vercel + auto-deploy + Cloudflare-ready</b> — teknik altzemin V2 boyunca engelsiz push edeceğimiz iterasyonlar için hazır.</span></li>
+        <li><span></span><span><b>PDF deck standalone silahı</b> — recruiter'e "site + deck" birlikte gönderilebilir. Silahın gücü placeholder'lar dolunca artar.</span></li>
+      </ul>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ================================ RISKS ================================ -->
+    <section id="risks">
+      <div class="section-kicker">07 — Uzak durulacaklar</div>
+      <h2>Risks</h2>
+      <p class="intro">V2'de ne yapmazsak kaybederiz.</p>
+
+      <ul class="bullet-list risks">
+        <li><span></span><span><b>Yıkıcı redesign kimliği bozar</b> — Bedirhan'ın V1'de kazandığı Braun/Rams disiplinini heba etme riski. Her sürüm tek bölümlü olmalı; toplu revizyon yasak.</span></li>
+        <li><span></span><span><b>Tipografi swap Inter-detay sayfalarını sarsabilir</b> — case study'lerin okunabilirliği inter'e alışkın. Display serif'i sadece h-display + h1/h2'de kullan; body ve UI Inter kalsın.</span></li>
+        <li><span></span><span><b>Motion abartısı AI-jenerik hissi getirir</b> — audit'in "sakın yapma" listesi hâlâ geçerli: parallax sürekli, cursor shimmer, intro sequence, neon glow. V2.7'de anlam üstünde durulmalı.</span></li>
+        <li><span></span><span><b>Deadline (10 Ağustos) 25 gün var</b> — 7 sürüm × ~1 gün = 7 gün. Ekstra iterasyon marjı düşük. Placeholder scan + testimonial toplama + son polish için buffer bırak.</span></li>
+        <li><span></span><span><b>Portre iterasyon döngüsü</b> — son 12 saatte 8 portre commit'i oldu. Bir "done" state seçmeli. Renkli portre + Adobe alpha + subtle brightness = final sözü verilmeli, dönmemeli.</span></li>
+        <li><span></span><span><b>Hero restructure duplication yaratabilir</b> — hero'ya iş görseli koyunca featured-work strip gereksizleşebilir. Karar V2.1'de birlikte verilmeli, V2.3'e ertelenmemeli.</span></li>
+        <li><span></span><span><b>PR merge örüntüsü tekrarlıyor</b> — 7 kere yetim commit yaşandı. V2'de her PR açtığımda "N commit hazır, hepsini gördüğünü doğrula" imzasıyla göndereceğim; sen merge etmeden önce Commits sekmesine bak.</span></li>
+      </ul>
+    </section>
+
+    <div class="colophon">
+      <div>Audit — Claude Code oturumu · main post-PR #11 · Vercel deploy live</div>
+      <div>Bedirhan Çakıroğlu · Redesign V2 v0 · 2026-07-16</div>
+    </div>
+
+  </main>
+</div>
