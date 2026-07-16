@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Bedirhan Çakıroğlu · Industrial Designer / Design Engineer</title>
+<meta name="description" content="Curriculum vitae — Bedirhan Çakıroğlu, industrial designer and design engineer based in Paderborn, Germany.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bedirhancakiroglu.com/cv/">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+<style>
+  :root{
+    --paper:      #FCFCFB;
+    --ink-900:    #111214;
+    --ink-700:    #3A3D42;
+    --ink-500:    #6B6F76;
+    --ink-300:    #A6A9AE;
+    --line-100:   #ECEBE8;
+    --line-300:   #DAD8D3;
+    --signal:     #C1401F;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#4A4A48; }
+  body{
+    font-family:var(--sans); color:var(--ink-900);
+    -webkit-font-smoothing:antialiased;
+    padding:32px 16px 80px;
+    display:flex; flex-direction:column; align-items:center; gap:20px;
+  }
+
+  /* screen-only toolbar */
+  .toolbar{
+    position:sticky; top:16px; z-index:10;
+    display:flex; gap:10px; align-items:center;
+    background:var(--paper); border:1px solid var(--line-300);
+    border-radius:3px; padding:9px 14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-700);
+  }
+  .toolbar .tip{ color:var(--ink-500); font-size:10.5px; letter-spacing:.04em; text-transform:none; }
+  .toolbar button{
+    all:unset; cursor:pointer;
+    padding:7px 14px; background:var(--ink-900); color:#fff; border-radius:2px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  }
+  .toolbar button:hover{ background:var(--signal); }
+
+  /* the single A4 page */
+  .page{
+    width:210mm; min-height:297mm;
+    background:var(--paper);
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
+    padding:14mm 15mm;
+    display:flex; flex-direction:column;
+  }
+
+  .cv-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding-bottom:12px; border-bottom:1px solid var(--line-300);
+  }
+  .cv-head h1{ font-size:26px; font-weight:700; letter-spacing:-.01em; color:var(--ink-900); }
+  .cv-head .role{ font-size:11.5px; color:var(--ink-500); margin-top:5px; font-family:var(--mono); letter-spacing:.02em; }
+  .cv-contact{
+    text-align:right; font-family:var(--mono); font-size:9.5px; color:var(--ink-500); line-height:1.85;
+  }
+  .cv-contact a{ color:inherit; text-decoration:none; }
+  .cv-contact a:hover{ color:var(--signal); }
+
+  .cv-body{
+    flex:1; display:grid; grid-template-columns:60mm 1fr; gap:12mm;
+    padding-top:8mm; min-height:0;
+  }
+
+  .sidebar{ display:flex; flex-direction:column; gap:14px; }
+  .photo{
+    width:100%; max-width:44mm; height:56mm; object-fit:cover; object-position:center 30%;
+    border-radius:2px; filter:grayscale(100%); margin-bottom:2px;
+  }
+  .side-block h4, .main h4{
+    font-family:var(--mono); font-size:9px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--ink-900); border-bottom:1px solid var(--line-100); padding-bottom:5px; margin-bottom:7px;
+  }
+  .side-block .row{ font-size:10px; color:var(--ink-700); margin-bottom:4px; line-height:1.45; }
+  .side-block .row b{ color:var(--ink-900); font-weight:600; }
+  .side-block .lang-row{ display:flex; justify-content:space-between; font-size:10px; margin-bottom:3px; }
+  .side-block .lang-row span:last-child{ color:var(--ink-500); }
+  .award{ margin-bottom:7px; }
+  .award .yr{ font-family:var(--mono); font-size:9px; color:var(--signal); }
+  .award .ti{ font-size:10px; font-weight:600; color:var(--ink-900); }
+  .award .org{ font-size:9.5px; color:var(--ink-500); line-height:1.4; display:block; margin-top:1px; }
+
+  .main{ display:flex; flex-direction:column; gap:12px; min-height:0; }
+  .summary p{ font-size:10.5px; line-height:1.55; color:var(--ink-700); }
+  .job{ margin-bottom:9px; }
+  .job:last-child{ margin-bottom:0; }
+  .job-top{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .job-title{ font-size:11px; font-weight:700; color:var(--ink-900); }
+  .job-company{ font-size:10px; color:var(--signal); font-weight:500; }
+  .job-meta{ font-family:var(--mono); font-size:8.5px; color:var(--ink-500); text-align:right; white-space:nowrap; }
+  .job ul{ list-style:none; margin-top:4px; }
+  .job li{ font-size:9.5px; line-height:1.5; color:var(--ink-700); padding-left:10px; position:relative; margin-bottom:2px; }
+  .job li::before{ content:"–"; position:absolute; left:0; color:var(--ink-300); }
+  .edu-top{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .edu-title{ font-size:11px; font-weight:700; color:var(--ink-900); }
+  .edu-school{ font-size:10px; color:var(--signal); font-weight:500; }
+  .edu-meta{ font-family:var(--mono); font-size:8.5px; color:var(--ink-500); text-align:right; white-space:nowrap; }
+  .edu-desc{ font-size:9.5px; line-height:1.5; color:var(--ink-700); margin-top:4px; }
+
+  /* Print — one A4 page, no chrome */
+  @page{ size:A4; margin:0; }
+  @media print{
+    html,body{ background:#fff; padding:0; }
+    body{ display:block; padding:0; gap:0; }
+    .toolbar{ display:none !important; }
+    .page{
+      box-shadow:none;
+      width:210mm; height:297mm;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      break-after:auto; page-break-after:auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar" role="toolbar" aria-label="CV actions">
+  <span>CV</span>
+  <button type="button" onclick="window.print()">Download PDF</button>
+  <span class="tip">Ctrl / ⌘ + P → Save as PDF · Margins: None · Background graphics: on</span>
+</div>
+
+<article class="page" aria-label="Curriculum vitae — Bedirhan Çakıroğlu">
+
+  <header class="cv-head">
+    <div>
+      <h1>Bedirhan Çakıroğlu</h1>
+      <div class="role">Industrial Designer · Design Engineer</div>
+    </div>
+    <address class="cv-contact">
+      <a href="mailto:bedirhanckr.id@gmail.com">bedirhanckr.id@gmail.com</a> &nbsp;·&nbsp; +49 176 741 20 219<br>
+      <a href="https://bedirhancakiroglu.com" target="_blank" rel="noopener">bedirhancakiroglu.com</a><br>
+      <a href="https://linkedin.com/in/bedirhanckr" target="_blank" rel="noopener">linkedin.com/in/bedirhanckr</a> &nbsp;·&nbsp; <a href="https://behance.net/bedirhanckr" target="_blank" rel="noopener">behance.net/bedirhanckr</a><br>
+      Paderborn, Germany
+    </address>
+  </header>
+
+  <div class="cv-body">
+
+    <aside class="sidebar">
+      <img class="photo" src="../assets/img/about/portrait-full.jpg" alt="Bedirhan Çakıroğlu">
+
+      <div class="side-block">
+        <h4>Technical Skills</h4>
+        <div class="row"><b>CAD</b> HiCAD, SolidWorks, Rhino, Fusion 360</div>
+        <div class="row"><b>Rendering</b> KeyShot, V-Ray, Blender</div>
+        <div class="row"><b>Adobe</b> Photoshop, Illustrator</div>
+        <div class="row"><b>Prototyping</b> 3D Printing, Mock-Up Making, Hand Sketching</div>
+      </div>
+
+      <div class="side-block">
+        <h4>Languages</h4>
+        <div class="lang-row"><span>Turkish</span><span>Native</span></div>
+        <div class="lang-row"><span>English</span><span>C1</span></div>
+        <div class="lang-row"><span>German</span><span>B1</span></div>
+      </div>
+
+      <div class="side-block">
+        <h4>Honors &amp; Awards</h4>
+        <div class="award"><span class="yr">2023</span> <span class="ti">TEKNOFEST</span><span class="org">Design &amp; Presentation Award — Pioneer MKII</span></div>
+        <div class="award"><span class="yr">2023</span> <span class="ti">FURNITUR 2023</span><span class="org">Prize &amp; Mention — Türkiye Tasarım Vakfı</span></div>
+        <div class="award"><span class="yr">2023</span> <span class="ti">Graduation Awards</span><span class="org">2nd Prize — Istanbul Technical University</span></div>
+        <div class="award"><span class="yr">2022</span> <span class="ti">Design for Export</span><span class="org">Finalist — OAİB &amp; Ministry of Commerce</span></div>
+      </div>
+    </aside>
+
+    <section class="main">
+      <div class="summary">
+        <h4>Professional Summary</h4>
+        <p>Industrial Designer and Design Engineer with experience developing products from concept to production. Skilled in CAD modeling, technical drawings, prototyping, and design for manufacturing. Comfortable working across design, engineering, and production.</p>
+      </div>
+
+      <div class="experience">
+        <h4>Work Experience</h4>
+
+        <div class="job">
+          <div class="job-top">
+            <div><span class="job-title">Industrial Designer &amp; Design Engineer</span> <span class="job-company">— TUS Metallbau</span></div>
+            <div class="job-meta">Jan 2024 – Present<br>Paderborn, Germany</div>
+          </div>
+          <ul>
+            <li>Design and develop balcony systems, canopies, railings, steel structures and glass facades, ensuring compliance with local engineering and building standards.</li>
+            <li>Create 3D models, assemblies and production drawings; formulate BOMs and support material procurement and production scheduling.</li>
+            <li>Carry out on-site measurements and incorporate site constraints into CAD models; optimize designs for manufacturing methods, tolerances and assembly.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div><span class="job-title">Industrial Design Intern</span> <span class="job-company">— TUS Metallbau</span></div>
+            <div class="job-meta">Jun 2023 – Dec 2023<br>Paderborn, Germany</div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div><span class="job-title">Design Engineer</span> <span class="job-company">— ITU ROV Team</span></div>
+            <div class="job-meta">Aug 2022 – Jun 2023<br>Istanbul, Turkey</div>
+          </div>
+          <ul>
+            <li>Designed watertight enclosures, structural chassis and mechanical mounting systems for ROVs; integrated components with underwater sensors and propulsion systems.</li>
+            <li>Designed the external hull of Pioneer MKII — nose module and mid-body compartment; TEKNOFEST Design &amp; Presentation Award.</li>
+            <li>Represented ITU at the international MATE ROV Competition (Norway), securing 3rd place.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div><span class="job-title">Product Design Intern</span> <span class="job-company">— Robotistan</span></div>
+            <div class="job-meta">Feb 2022 – Aug 2022<br>Istanbul, Turkey</div>
+          </div>
+          <ul>
+            <li>Developed Arduino-based educational robotic kits from concept to physical prototypes; designed injection-molded enclosures, snap-fits and mechanical linkages.</li>
+            <li>Created product renderings and technical illustrations for assembly manuals.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="education">
+        <h4>Education</h4>
+        <div class="edu-top">
+          <div><span class="edu-title">B.Sc. Industrial Design</span> <span class="edu-school">— Istanbul Technical University</span></div>
+          <div class="edu-meta">2018 – 2023<br>GPA 3.46 / 4.00</div>
+        </div>
+        <div class="edu-desc">Specialized in user-centered product development, product sketching, physical prototyping and CAD modeling. Developed multiple design projects from initial research and ideation to manufacturing preparation.</div>
+      </div>
+    </section>
+
+  </div>
+</article>
+
+</body>
+</html>
