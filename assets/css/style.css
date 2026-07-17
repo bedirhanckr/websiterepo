@@ -575,6 +575,27 @@ html{ scroll-behavior: smooth; }
 .skill-block{ padding-top: var(--sp-3); border-top: 2px solid var(--ink-900); margin-bottom: var(--sp-3); }
 .skill-block h3{ font-size: var(--fs-400); margin-bottom: 6px; }
 
+.testimonial{ margin: 0; max-width: 62ch; }
+.testimonial blockquote{
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-500); line-height: 1.55;
+  color: var(--ink-900); font-style: normal;
+  padding-left: var(--sp-4);
+  border-left: 2px solid var(--signal);
+}
+.testimonial blockquote p{ margin: 0; }
+.testimonial figcaption{
+  padding-left: calc(var(--sp-4) + 2px);
+  font-family: var(--font-mono); font-size: var(--fs-100);
+  letter-spacing: 0.02em; color: var(--ink-500); line-height: 1.7;
+}
+.testimonial .ref-name{
+  display: block; color: var(--ink-900); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.testimonial .ref-role{ display: block; }
+.testimonial .ref-org{ display: block; color: var(--ink-700); }
+
 /* ---------- 9. Footer ---------- */
 .site-footer{ border-top: 1px solid var(--line-100); padding: var(--sp-7) 0 var(--sp-8); }
 .site-footer .cols{ display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-5); }
