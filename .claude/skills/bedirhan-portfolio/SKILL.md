@@ -51,10 +51,10 @@ Draw only design principles from the following studios. Never copy their layouts
 Bedirhan writes in first-person, industrial-designer-plain. Rules:
 
 - **No marketing adjectives.** Never *passionate, innovative, cutting-edge, world-class, groundbreaking*. Cut on sight.
-- **Em-dash only for quote attribution or category-code labels.** Never as a clause connector — a comma or a period does the job better.
+- **No em-dashes anywhere.** Not for clause connection, not for quote attribution, not for category labels. Bedirhan has decided em-dashes read as an AI tell and are banned across the site, CVs, portfolio deck, and every future artifact. Use a comma, a period, a colon, a line break, or nothing at all. This overrides any earlier guidance elsewhere in the skills.
 - **Prefer verbs over nouns.** "I bent sheet metal for the enclosure" beats "sheet-metal enclosure implementation."
-- **Prefer specifics over abstractions.** Numbers (tolerance, weight, jury rank, unit count), materials, tools, partner names — these earn trust. Abstractions (system-thinking, holistic, user-centered) drain it.
-- **State weakness plainly.** "Foam-only prototype", "no full-scale test", "AI-generated technical drawing — flagged as such" all belong on the page and increase credibility.
+- **Prefer specifics over abstractions.** Numbers (tolerance, weight, jury rank, unit count), materials, tools, partner names, these earn trust. Abstractions (system-thinking, holistic, user-centered) drain it.
+- **State weakness plainly.** "Foam-only prototype", "no full-scale test", "AI-generated technical drawing, flagged as such" all belong on the page and increase credibility.
 - **When in doubt, cut.** A short case study is stronger than a padded one.
 
 ## Session start protocol

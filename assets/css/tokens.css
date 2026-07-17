@@ -73,7 +73,7 @@
   --sp-5: 32px; --sp-6: 48px; --sp-7: 64px; --sp-8: 96px; --sp-9: 128px;
 
   /* ---------- Grid ---------- */
-  --col-max: 1200px;
+  --col-max: 1320px;
   --col-max-narrow: 760px;  /* case study okuma genişliği */
   --edge: 32px;             /* sayfa kenar boşluğu, mobilde daralır */
 
