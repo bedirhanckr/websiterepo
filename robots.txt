@@ -1,6 +1,4 @@
-# Site içerik doldurulana kadar arama motorlarına kapalı (WIP).
-# HAZIR OLUNCA: aşağıdaki "Disallow: /" satırını "Allow: /" ile değiştir ve yeniden deploy et.
 User-agent: *
-Disallow: /
+Allow: /
 
-Sitemap: https://cakiroglu.netlify.app/sitemap.xml
+Sitemap: https://bedirhancakiroglu.com/sitemap.xml

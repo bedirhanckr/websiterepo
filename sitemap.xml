@@ -1,17 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://bedirhancakiroglu.com/</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/pdf/</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/cv/</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/cv/de/</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/cv/tr/</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/pioneer-mk2.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/spiegelau.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/urn.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/rockhounder.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/herptile.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/delta.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/razor.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/retroscent.html</loc></url>
-  <url><loc>https://bedirhancakiroglu.com/work/rex-tank.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://bedirhancakiroglu.com/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bedirhancakiroglu.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bedirhancakiroglu.com/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://bedirhancakiroglu.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bedirhancakiroglu.com/"/>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/pioneer-mk2/hero-nose-render.png</image:loc>
+      <image:title>Pioneer MKII underwater ROV nose module</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/cv/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bedirhancakiroglu.com/cv/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bedirhancakiroglu.com/cv/de/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://bedirhancakiroglu.com/cv/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bedirhancakiroglu.com/cv/"/>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/cv/de/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bedirhancakiroglu.com/cv/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bedirhancakiroglu.com/cv/de/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://bedirhancakiroglu.com/cv/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bedirhancakiroglu.com/cv/"/>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/cv/tr/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bedirhancakiroglu.com/cv/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bedirhancakiroglu.com/cv/de/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://bedirhancakiroglu.com/cv/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bedirhancakiroglu.com/cv/"/>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/pdf/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/pioneer-mk2.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/pioneer-mk2/hero-nose-render.png</image:loc>
+      <image:title>Pioneer MKII underwater ROV nose and mid compartments</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/rockhounder.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/rockhounder/hero-render.png</image:loc>
+      <image:title>Rockhounder app-supported pack for fossil enthusiasts</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/rex-tank.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/rex-tank/hero-final.png</image:loc>
+      <image:title>REX Mini Tank robotics kit</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/delta.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/delta/1.png</image:loc>
+      <image:title>Delta convertible furniture, chair-to-desk hinge</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/razor.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/razor/hero-final-black.png</image:loc>
+      <image:title>Philips electric razor redesign for right-to-repair</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/herptile.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/herptile/hero-render.jpg</image:loc>
+      <image:title>Herptile water pilates station for expecting mothers</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/urn.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/urn/hero-lifestyle-render.jpg</image:loc>
+      <image:title>Urn hot drink station for public spaces</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/retroscent.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/retroscent/hero-scene.png</image:loc>
+      <image:title>Retroscent scent-integrated seating, aromatherapy and relaxation</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bedirhancakiroglu.com/work/spiegelau.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bedirhancakiroglu.com/assets/img/spiegelau/chiller.jpg</image:loc>
+      <image:title>Spiegelau white wine set: chiller, flute, coupe</image:title>
+    </image:image>
+  </url>
 </urlset>
