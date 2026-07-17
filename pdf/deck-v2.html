@@ -29,10 +29,6 @@
   --font-sans:   'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-mono:   'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
-body[data-font="alt"] {
-  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-}
-
 /* ---------- Fixed UI bar ---------- */
 .ui-bar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -52,12 +48,6 @@ body[data-font="alt"] {
 .nav-dots button:hover:not(.is-active) { background: #555; }
 
 .ui-right { display: flex; gap: 10px; align-items: center; }
-.font-toggle {
-  display: flex; font-family: var(--font-mono); font-size: 9px;
-  border: 1px solid #222; border-radius: 2px; overflow: hidden;
-}
-.font-toggle button { all: unset; cursor: pointer; padding: 4px 10px; color: #444; transition: .15s; }
-.font-toggle button.is-active { background: var(--signal); color: #fff; }
 .nav-arrows { display: flex; gap: 3px; }
 .nav-arrows button {
   all: unset; cursor: pointer; width: 28px; height: 28px;
@@ -365,10 +355,6 @@ body {
   <div class="slide-counter">Slide <em id="current-slide">1</em> / 42</div>
   <div class="nav-dots" id="nav-dots"></div>
   <div class="ui-right">
-    <div class="font-toggle">
-      <button data-set-font="default" class="is-active">Inter</button>
-      <button data-set-font="alt">Space Grotesk</button>
-    </div>
     <div class="nav-arrows">
       <button id="btn-prev">←</button>
       <button id="btn-next">→</button>
@@ -1876,17 +1862,6 @@ document.addEventListener('keydown', function(e) {
   else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goTo(currentIdx - 1); }
   else if (e.key === 'Home') { goTo(0); }
   else if (e.key === 'End') { goTo(TOTAL - 1); }
-});
-
-/* --- Font toggle --- */
-document.querySelectorAll('.font-toggle button').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var alt = btn.getAttribute('data-set-font') === 'alt';
-    document.body.setAttribute('data-font', alt ? 'alt' : 'default');
-    document.querySelectorAll('.font-toggle button').forEach(function(b) {
-      b.classList.toggle('is-active', b === btn);
-    });
-  });
 });
 
 updateUI();

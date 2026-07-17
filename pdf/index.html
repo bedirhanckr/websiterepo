@@ -39,19 +39,7 @@
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
-  body[data-font="alt"]{
-    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  }
-  .font-toggle{
-    position:fixed; top:16px; right:16px; z-index:10;
-    display:flex; gap:0; font-family:'JetBrains Mono', monospace; font-size:11px;
-    background:#000; border:1px solid #333; border-radius:3px; overflow:hidden;
-  }
-  .font-toggle button{
-    all:unset; cursor:pointer; padding:8px 14px; color:#888;
-  }
-  .font-toggle button.is-active{ background:var(--signal); color:#fff; }
-  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ background:var(--ink-900); }
   body{
     font-family:var(--font-sans);
@@ -79,7 +67,7 @@
   @media print{
     html,body{ background:#fff; }
     body{ display:block; padding:0; gap:0; }
-    .deck-label, .font-toggle{ display:none; }
+    .deck-label{ display:none; }
     .slide{
       box-shadow:none;
       break-after:page; page-break-after:always;
@@ -455,11 +443,6 @@
 <link rel="alternate icon" href="../favicon.svg">
 </head>
 <body>
-
-  <div class="font-toggle">
-    <button data-set-font="default" class="is-active">Inter / JetBrains Mono</button>
-    <button data-set-font="alt">Space Grotesk</button>
-  </div>
 
   <div class="deck-label">Cover</div>
   <section class="slide" id="cover">
@@ -1949,13 +1932,6 @@
     e.preventDefault();
   });
 
-  document.querySelectorAll('.font-toggle button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var alt = btn.getAttribute('data-set-font') === 'alt';
-      document.body.setAttribute('data-font', alt ? 'alt' : 'default');
-      document.querySelectorAll('.font-toggle button').forEach(function(b){ b.classList.toggle('is-active', b === btn); });
-    });
-  });
 </script>
 </body>
 </html>
