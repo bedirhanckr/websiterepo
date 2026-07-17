@@ -947,78 +947,16 @@ html{ scroll-behavior: smooth; }
 @keyframes bc-axis-v{ to{ transform: scaleY(1); } }
 @keyframes bc-render-in{ to{ opacity: 1; filter: blur(0); transform: scale(1); } }
 
-/* --- Project cards, hover blur + detail overlay --- */
-.project-card{ position: relative; overflow: hidden; }
-.project-card .thumb{ position: relative; overflow: hidden; }
-.project-card .thumb img{
-  transition: filter 380ms var(--ease), transform 520ms var(--ease);
-  will-change: filter, transform;
-}
-.project-card:hover .thumb img,
-.project-card:focus-visible .thumb img{
-  filter: blur(6px) saturate(0.6);
-  transform: scale(1.03);
-}
-.project-card .card-detail{
-  position: absolute; inset: 0;
-  padding: var(--sp-5) var(--sp-5);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  background: color-mix(in srgb, var(--paper) 82%, transparent);
-  opacity: 0; transform: translateY(8px);
-  transition: opacity 320ms var(--ease), transform 420ms var(--ease);
-  pointer-events: none;
-  z-index: 3;
-}
-.project-card:hover .card-detail,
-.project-card:focus-visible .card-detail{
-  opacity: 1; transform: translateY(0);
-}
-.project-card .card-detail .d-eyebrow{
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
-  color: var(--signal); text-transform: uppercase;
-}
-.project-card .card-detail .d-title{
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.01em;
-  color: var(--ink-900); line-height: 1.18;
-  margin-top: var(--sp-2); text-wrap: balance;
-}
-.project-card .card-detail .d-title em{
-  font-style: italic; color: var(--ink-700);
-}
-.project-card .card-detail .d-desc{
-  font-size: var(--fs-300, 14px); line-height: 1.5;
-  color: var(--ink-700);
-  margin-top: var(--sp-3); max-width: 48ch;
-}
-.project-card .card-detail .d-chips{
-  display: flex; flex-wrap: wrap; gap: 6px 8px;
-  margin-top: var(--sp-3);
-}
-.project-card .card-detail .d-chips span{
-  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em;
-  color: var(--ink-700); background: var(--paper);
-  border: 1px solid var(--line-300); padding: 3px 8px;
-  text-transform: uppercase;
-}
-.project-card .card-detail .d-cta{
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-top: var(--sp-4); padding-top: var(--sp-3);
-  border-top: 1px solid var(--line-100);
-}
-.project-card .card-detail .d-cta .go{
-  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em;
-  color: var(--signal); text-transform: uppercase;
-}
-.project-card .card-detail .d-cta .year{
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
-  color: var(--ink-500);
-}
+/* Project-card is a row layout (thumb 220px + text + arrow). It already has
+   a background swap on hover; a full-blur overlay does not fit this shape,
+   so no card-detail markup here, and the existing arrow-slide plus surface
+   background swap carry the hover state on their own. */
 
 /* --- Featured work preview cards, same hover treatment --- */
 .fw-card{ position: relative; }
+.fw-card:hover{ opacity: 1; }
 .fw-thumb{ position: relative; overflow: hidden; }
-.fw-img{
+.fw-thumb .fw-img{
   transition: filter 380ms var(--ease), transform 520ms var(--ease), opacity 380ms var(--ease);
   will-change: filter, transform;
 }
@@ -1038,6 +976,7 @@ html{ scroll-behavior: smooth; }
   opacity: 0; transform: translateY(6px);
   transition: opacity 320ms var(--ease), transform 420ms var(--ease);
   pointer-events: none;
+  overflow: hidden;
   z-index: 3;
 }
 .fw-card:hover .fw-detail,
@@ -1083,9 +1022,7 @@ html{ scroll-behavior: smooth; }
   }
   .hero--v21 .axis-h{ transform: scaleX(1); animation: none; }
   .hero--v21 .axis-v{ transform: scaleY(1); animation: none; }
-  .project-card .thumb img,
-  .project-card .card-detail,
-  .fw-img,
+  .fw-thumb .fw-img,
   .fw-card .fw-detail{ transition: none; }
 }
 
@@ -1113,6 +1050,7 @@ html{ scroll-behavior: smooth; }
   opacity: 0; transform: translateY(6px);
   transition: opacity 320ms var(--ease), transform 420ms var(--ease);
   pointer-events: none;
+  overflow: hidden;
   z-index: 3;
 }
 .sw-card:hover .sw-detail,
