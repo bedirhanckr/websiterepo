@@ -123,7 +123,7 @@ window.I18N = {
     // --- about ---
     "about.eyebrow": "About",
     "about.h1": "An industrial designer who speaks the same language as the engineering team.",
-    "about.lede": "Coming from a mechatronics and robotics background, I design without separating form from production. I have worked across scales, static or kinetic. In Germany, the most valuable part has been seeing engineering, design and execution meet under one roof.",
+    "about.lede": "Good design is my passion. The lasting bond a well-designed product forms with the person using it, the way it serves them, the way it makes their life easier for years: that is what drives me. This has taken me across a wide spectrum at home and abroad, from mechatronics and robotics to consumer electronics, furniture, and steel construction.",
     "about.exp.eyebrow": "Experience",
     "about.exp.h2": "Timeline",
     "about.tus.role": "Industrial Designer & Design Engineer, TUS Metallbau",
@@ -587,7 +587,7 @@ window.I18N = {
 
     "about.eyebrow": "Über mich",
     "about.h1": "Ein Industriedesigner, der die Sprache des Ingenieurteams spricht.",
-    "about.lede": "Mit einem Hintergrund in Mechatronik und Robotik trenne ich Form nicht von Fertigung. Ich habe an Produkten unterschiedlichster Größe gearbeitet, statisch wie kinetisch. In Deutschland war es besonders wertvoll, wie Engineering, Design und Umsetzung unter einem Dach zusammenkommen.",
+    "about.lede": "Gutes Design ist meine Leidenschaft. Die dauerhafte Verbindung, die ein gut gestaltetes Produkt mit dem Menschen aufbaut, wie es ihm dient und sein Leben über Jahre hinweg einfacher macht: genau das treibt mich an. Dieser Antrieb hat mich bisher über ein breites Spektrum geführt, im In- und Ausland, von Mechatronik und Robotik über Konsumelektronik bis hin zu Möbeln und Stahlkonstruktion.",
     "about.exp.eyebrow": "Erfahrung", "about.exp.h2": "Werdegang",
     "about.tus.role": "Industriedesigner & Konstrukteur, TUS Metallbau",
     "about.tus.date": "Jan 2024 – heute · Paderborn",
@@ -1046,7 +1046,7 @@ window.I18N = {
 
     "about.eyebrow": "Hakkımda",
     "about.h1": "Mühendislik ekibiyle aynı dili konuşan bir endüstriyel tasarımcı.",
-    "about.lede": "Mekatronik ve robotik geçmişimle, formu üretimden ayırmadan tasarlıyorum. Statik ya da kinetik, birçok ürün ölçeğinde çalıştım. Almanya'da geçen yılların en değerli tarafı, mühendislik, tasarım ve uygulamayı aynı çatı altında görmekti.",
+    "about.lede": "İyi tasarım benim tutkum. İyi tasarlanmış bir ürünün kullanıcıyla kurduğu uzun süreli bağ, insana hizmet etmesi ve yıllarca hayatını kolaylaştırması benim tutkum. Bu tutkuyla bugüne dek mekatronik ve robotik tasarımından tüketici elektroniğine, mobilya tasarımından çelik konstrüksiyona uzanan geniş bir yelpazede yurt içi ve yurt dışında pek çok deneyim edinme şansına sahip oldum.",
     "about.exp.eyebrow": "Deneyim", "about.exp.h2": "Zaman çizelgesi",
     "about.tus.role": "Endüstriyel Tasarımcı & Tasarım Mühendisi, TUS Metallbau",
     "about.tus.date": "Oca 2024, Halen · Paderborn",
