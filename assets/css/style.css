@@ -250,6 +250,15 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 }
 .media-slot.is-ready{ background: var(--surface); border-style: solid; border-color: var(--line-100); }
 .media-slot img{ width: 100%; height: 100%; object-fit: cover; }
+/* Aspect variants — pick the closest fit so images stop getting head-cropped. */
+.media-slot--wide{ aspect-ratio: 21 / 10; }        /* graduation book layouts, 2.1:1 */
+.media-slot--book{ aspect-ratio: 3 / 4; }          /* portrait A4/A5 pages */
+.media-slot--sq3-2{ aspect-ratio: 3 / 2; }         /* 1.5:1 renders, prototype photos */
+.media-slot--sq7-5{ aspect-ratio: 7 / 5; }         /* 1.4:1 exploded views, lifestyle */
+.media-slot--sq5-4{ aspect-ratio: 5 / 4; }         /* 1.25:1 product renders on light bg */
+.media-slot--169{ aspect-ratio: 16 / 9; }          /* 1.78 hero renders */
+.media-slot--contain{ background: var(--paper); }
+.media-slot--contain img{ object-fit: contain; }
 .media-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 640px){ .media-grid{ grid-template-columns: 1fr; } }
 
@@ -578,9 +587,10 @@ html{ scroll-behavior: smooth; }
 .case-section .media-grid{ margin-top: var(--sp-4); }
 
 /* Break media out of the 760px reading column so renders actually breathe.
-   #nihai has its own full-bleed treatment (100vw dark backdrop) — skip it. */
+   #nihai's single media-slot gets 100vw dark backdrop treatment; its grids
+   still break out to col-max so paired renders don't shrink to thumbnails. */
 .case-section:not(#nihai) .media-slot,
-.case-section:not(#nihai) .media-grid{
+.case-section .media-grid{
   width: min(var(--col-max), calc(100vw - 32px));
   max-width: none;
   margin-left: 50%;
