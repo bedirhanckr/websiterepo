@@ -42,9 +42,9 @@ window.I18N = {
     "contact.form.send": "Send →",
 
     // --- home hero ---
-    "home.welcome": "Welcome to my world.",
-    "home.h1": "I design products, and I want to know <em>how they&rsquo;re made.</em>",
-    "home.lede": "Industrial designer and design engineer, based in Paderborn. From underwater robotics to steel facades, these are the projects I've built close to production.",
+    "home.welcome": "Hi, welcome to my world.",
+    "home.h1": "My passion is designing products people can <em>bond with for years.</em>",
+    "home.lede": "Every purchase is a decision, and an identity statement to the world around you. I work to hold the best balance between form-function fit, ergonomics, longevity, up-cycling, brand identity and repairability, so the world's resources go to lasting human use.",
     "home.meta.focus.label": "Focus",
     "home.meta.focus.value": "Product Design · Mechanism · Manufacturing",
     "home.meta.highlight.label": "Award",
@@ -509,9 +509,9 @@ window.I18N = {
     "contact.form.name": "Name", "contact.form.email": "E-Mail", "contact.form.message": "Nachricht",
     "contact.form.send": "Senden →",
 
-    "home.welcome": "Willkommen in meiner Welt.",
-    "home.h1": "Ich gestalte Produkte, und will wissen, <em>wie sie entstehen.</em>",
-    "home.lede": "Industriedesigner und Konstrukteur aus Paderborn. Von der Unterwasserrobotik bis zu Stahlfassaden, hier finden Sie eine Auswahl der Projekte, die ich nah an der Fertigung entwickelt habe.",
+    "home.welcome": "Hallo, willkommen in meiner Welt.",
+    "home.h1": "Meine Leidenschaft ist, Produkte zu gestalten, <em>mit denen Menschen über Jahre eine Bindung aufbauen.</em>",
+    "home.lede": "Jeder Kauf ist eine Entscheidung und zugleich eine Identitätsaussage an das Umfeld. Ich suche das beste Gleichgewicht zwischen Form-Funktion-Passung, Ergonomie, Langlebigkeit, Upcycling, Markenidentität und Reparierbarkeit, damit die Ressourcen der Welt dem Menschen nachhaltig dienen.",
     "home.meta.focus.label": "Schwerpunkt",
     "home.meta.focus.value": "Produktdesign · Mechanismus · Fertigung",
     "home.meta.highlight.label": "Auszeichnung",
@@ -968,9 +968,9 @@ window.I18N = {
     "contact.form.name": "İsim", "contact.form.email": "E-posta", "contact.form.message": "Mesaj",
     "contact.form.send": "Gönder →",
 
-    "home.welcome": "Benim dünyama hoş geldiniz.",
-    "home.h1": "Ürün tasarlıyorum, <em>nasıl yapıldıklarını merak ederim.</em>",
-    "home.lede": "Paderborn'dan endüstriyel tasarımcı ve tasarım mühendisi. Su altı robotlarından çelik cephe sistemlerine, üretime yakın çalıştığım seçili işleri burada bulacaksınız.",
+    "home.welcome": "Merhaba, benim dünyama hoş geldin.",
+    "home.h1": "Benim tutkum, kullanıcının uzun yıllar bağ kurabileceği <em>ürünleri tasarlamak.</em>",
+    "home.lede": "Her satın alma bir karardır, aynı zamanda kişinin çevresine verdiği kimliksel bir mesajdır. Ben de form ve işlev uyumu, ergonomi, uzun ömürlülük, up-cycling, marka kimliği ve tamir edilebilirlik gibi kavramlar arasında en iyi dengeyi kurarak dünyanın kaynaklarını insanlığın faydasına sunmaya çalışıyorum.",
     "home.meta.focus.label": "Odak",
     "home.meta.focus.value": "Ürün Tasarımı · Mekanizma · Üretim",
     "home.meta.highlight.label": "Ödül",

@@ -376,9 +376,11 @@ html{ scroll-behavior: smooth; }
 }
 .hero--v21 .h-display{
   font-family: var(--serif); font-weight: 400; font-style: normal;
-  font-size: clamp(38px, 4.8vw, 68px);
-  line-height: 1.05; letter-spacing: -0.015em;
-  max-width: 15ch; color: var(--ink-900);
+  font-size: clamp(30px, 3.6vw, 50px);
+  line-height: 1.12; letter-spacing: -0.015em;
+  max-width: 24ch; color: var(--ink-900);
+  text-wrap: balance;
+  padding-right: 0.1em;
 }
 .hero--v21 .h-display em{ font-style: italic; color: var(--ink-700); }
 .hero--v21 .lede{
