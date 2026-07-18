@@ -122,15 +122,15 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
   font-family: var(--font-signature);
   font-weight: 700;
   font-style: normal;
-  font-size: 28px;
+  font-size: 40px;
   line-height: 1;
   color: var(--signal);
   display: inline-block;
   position: relative;
-  transform: rotate(-3deg);
+  transform: rotate(-4deg);
   transform-origin: 50% 60%;
-  padding: 0 6px 2px;
-  letter-spacing: -0.005em;
+  padding: 0 6px 4px;
+  letter-spacing: -0.03em;
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
@@ -138,11 +138,11 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 .brand-signature::after{
   content: "";
   position: absolute;
-  left: 4px; right: 4px; bottom: -2px;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent 0%, var(--signal) 20%, var(--signal) 80%, transparent 100%);
-  transform: skewX(-14deg);
-  opacity: 0.75;
+  left: 2px; right: 2px; bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--signal) 15%, var(--signal) 85%, transparent 100%);
+  transform: skewX(-16deg);
+  opacity: 0.8;
 }
 .brand-print{
   display: flex; flex-direction: column;
