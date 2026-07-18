@@ -2,6 +2,12 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.bedirhancakiroglu.com" }],
+      "destination": "https://bedirhancakiroglu.com/$1",
+      "permanent": true
+    },
     { "source": "/about.html", "destination": "/#about", "permanent": true },
     { "source": "/about",      "destination": "/#about", "permanent": true }
   ],
@@ -38,6 +44,20 @@
       "source": "/(.*)\\.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     }
   ]

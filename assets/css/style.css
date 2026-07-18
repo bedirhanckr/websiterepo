@@ -104,11 +104,54 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
   height: 64px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.brand{ font-size: var(--fs-300); font-weight: 600; letter-spacing: -0.01em; }
+.brand{
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: var(--fs-300); font-weight: 600; letter-spacing: -0.01em;
+  color: var(--ink-900);
+}
 .brand small{
   display: block; font-weight: 400; font-size: var(--fs-100);
   color: var(--ink-500); font-family: var(--font-mono);
   text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
+}
+/* Signature wordmark to the left of the printed name. Handwriting-weighted
+   Caveat, angled slightly, in the signal color, with a soft flourish
+   underline. Placed only on wide viewports so the mobile header stays
+   compact. */
+.brand-signature{
+  font-family: var(--font-signature);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--signal);
+  display: inline-block;
+  position: relative;
+  transform: rotate(-3deg);
+  transform-origin: 50% 60%;
+  padding: 0 6px 2px;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.brand-signature::after{
+  content: "";
+  position: absolute;
+  left: 4px; right: 4px; bottom: -2px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, var(--signal) 20%, var(--signal) 80%, transparent 100%);
+  transform: skewX(-14deg);
+  opacity: 0.75;
+}
+.brand-print{
+  display: flex; flex-direction: column;
+  border-left: 1px solid var(--line-300);
+  padding-left: 12px;
+}
+@media (max-width: 720px){
+  .brand-signature{ display: none; }
+  .brand-print{ border-left: none; padding-left: 0; }
 }
 .primary-nav{ display: flex; gap: var(--sp-5); align-items: center; }
 .primary-nav a{
