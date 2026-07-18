@@ -1,6 +1,7 @@
 # Local staging + build artifacts
 netlify-linux.zip
 portfolio-stage/
+site-standalone/
 
 # Raw / source images (only optimized versions belong in git)
 _raw-images/

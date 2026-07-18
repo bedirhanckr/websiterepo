@@ -9,9 +9,9 @@ Ortak header/footer/dil-seçici tek yerde tanımlı → kod tekrarı yok.
 """
 import pathlib, re, base64, mimetypes, shutil
 
-ROOT = pathlib.Path("/home/claude/site")
+ROOT = pathlib.Path(__file__).parent.resolve()
 OUT_HOSTED = ROOT
-OUT_STANDALONE = pathlib.Path("/home/claude/site-standalone")
+OUT_STANDALONE = ROOT / "site-standalone"
 
 CONTACT = {
     "email": "bedirhanckr.id@gmail.com",
@@ -90,12 +90,16 @@ def page(title, desc, prefix, body, back="footer.otherwork"):
 {footer(prefix, back)}
 <script src="{prefix}assets/js/i18n.js"></script>
 <script src="{prefix}assets/js/main.js"></script>
+<script>
+  window.va = window.va || function () {{ (window.vaq = window.vaq || []).push(arguments); }};
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>'''
 
 # ---- sayfa gövdeleri ayrı dosyalarda tutuluyor (bodies/ klasörü) ----
 def load_body(name):
-    return pathlib.Path(f"/home/claude/bodies/{name}.html").read_text()
+    return (ROOT / "bodies" / f"{name}.html").read_text()
 
 PAGES = [
     # (çıktı yolu, prefix, title, desc, body-adı, back-key)
