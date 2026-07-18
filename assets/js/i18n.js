@@ -42,9 +42,9 @@ window.I18N = {
     "contact.form.send": "Send →",
 
     // --- home hero ---
-    "home.location": "Paderborn, Germany",
+    "home.welcome": "Welcome to my world.",
     "home.h1": "I design products, and I want to know <em>how they&rsquo;re made.</em>",
-    "home.lede": "From underwater robotics to steel facades, I've worked close to production. What I enjoy most is where a design decision hits a real manufacturing limit.",
+    "home.lede": "Industrial designer and design engineer, based in Paderborn. From underwater robotics to steel facades, these are the projects I've built close to production.",
     "home.meta.focus.label": "Focus",
     "home.meta.focus.value": "Product Design · Mechanism · Manufacturing",
     "home.meta.highlight.label": "Award",
@@ -509,9 +509,9 @@ window.I18N = {
     "contact.form.name": "Name", "contact.form.email": "E-Mail", "contact.form.message": "Nachricht",
     "contact.form.send": "Senden →",
 
-    "home.location": "Paderborn, Deutschland",
+    "home.welcome": "Willkommen in meiner Welt.",
     "home.h1": "Ich gestalte Produkte, und will wissen, <em>wie sie entstehen.</em>",
-    "home.lede": "Von der Unterwasserrobotik bis zu Stahlfassaden habe ich stets nah an der Fertigung gearbeitet. Am liebsten mag ich den Moment, in dem eine Designentscheidung auf eine echte Fertigungsgrenze trifft.",
+    "home.lede": "Industriedesigner und Konstrukteur aus Paderborn. Von der Unterwasserrobotik bis zu Stahlfassaden, hier finden Sie eine Auswahl der Projekte, die ich nah an der Fertigung entwickelt habe.",
     "home.meta.focus.label": "Schwerpunkt",
     "home.meta.focus.value": "Produktdesign · Mechanismus · Fertigung",
     "home.meta.highlight.label": "Auszeichnung",
@@ -968,9 +968,9 @@ window.I18N = {
     "contact.form.name": "İsim", "contact.form.email": "E-posta", "contact.form.message": "Mesaj",
     "contact.form.send": "Gönder →",
 
-    "home.location": "Paderborn, Almanya",
+    "home.welcome": "Benim dünyama hoş geldiniz.",
     "home.h1": "Ürün tasarlıyorum, <em>nasıl yapıldıklarını merak ederim.</em>",
-    "home.lede": "Su altı robotlarından çelik cephe sistemlerine, hep üretime yakın çalıştım. En sevdiğim an, bir tasarım kararının gerçek üretim sınırıyla buluştuğu an.",
+    "home.lede": "Paderborn'dan endüstriyel tasarımcı ve tasarım mühendisi. Su altı robotlarından çelik cephe sistemlerine, üretime yakın çalıştığım seçili işleri burada bulacaksınız.",
     "home.meta.focus.label": "Odak",
     "home.meta.focus.value": "Ürün Tasarımı · Mekanizma · Üretim",
     "home.meta.highlight.label": "Ödül",

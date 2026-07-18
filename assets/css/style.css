@@ -367,6 +367,13 @@ html{ scroll-behavior: smooth; }
 
 .hero--v21{ background: var(--paper-hero); padding: var(--sp-9) 0 var(--sp-8); }
 .hero--v21 .hero-grid{ grid-template-columns: 1fr 1.4fr; align-items: center; gap: var(--sp-7); }
+.hero--v21 .hero-welcome{
+  display: block;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: var(--fs-400); line-height: 1.3;
+  color: var(--ink-500); letter-spacing: -0.005em;
+  margin-bottom: var(--sp-3);
+}
 .hero--v21 .h-display{
   font-family: var(--serif); font-weight: 400; font-style: normal;
   font-size: clamp(38px, 4.8vw, 68px);
