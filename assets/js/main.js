@@ -81,19 +81,9 @@
     document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-visible"); });
   }
 
-  // Featured-work cross-fade carousel — each card cycles its 2 images
-  // every ~5 s with a staggered start so they don't flip in sync.
-  // prefers-reduced-motion → skipped.
-  var fwCards = document.querySelectorAll(".fw-card");
-  if(fwCards.length && !reduceMotion){
-    fwCards.forEach(function(card, i){
-      setTimeout(function(){
-        setInterval(function(){
-          card.classList.toggle("fw-flipped");
-        }, 4800);
-      }, i * 350);
-    });
-  }
+  // Featured-work auto-flip carousel disabled. The alt images were shot in
+  // 16:9 diagram framing and cropped inconsistently into the 4:3 thumb
+  // slot. The hover blur + detail overlay covers what the flip was showing.
 
   // Hero parallax — portrait lags behind scroll for a subtle depth effect.
   // Only above 720px viewport (mobile portrait is too small to benefit).

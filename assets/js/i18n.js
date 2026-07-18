@@ -83,7 +83,7 @@ window.I18N = {
     "thumb.empty": "Image coming",
 
     "proj.pioneer.title": "Pioneer MKII: Underwater Explorer",
-    "proj.pioneer.desc": "Designed the inside and outside of the Pioneer MKII nose and mid compartments. Responsible for in-house 3D printing prototypes. ITU ROV Team · TEKNOFEST 2023 Design Award.",
+    "proj.pioneer.desc": "Designed the inside and outside of the nose and mid compartments. In-house 3D printing prototypes. TEKNOFEST 2023 Design Award.",
     "proj.urn.title": "Urn: Hot Drink Station",
     "proj.urn.desc": "A social product system that runs on a transit card and builds neighborhood belonging",
     "proj.rock.title": "Rockhounder",
@@ -548,7 +548,7 @@ window.I18N = {
     "thumb.empty": "Bild folgt",
 
     "proj.pioneer.title": "Pioneer MKII: Unterwasser-Erkundungsfahrzeug",
-    "proj.pioneer.desc": "Innen- und Außendesign des Pioneer MKII Bug- und Mittelmoduls. Verantwortlich für 3D-Druck-Prototypen im Haus. ITU ROV Team · TEKNOFEST 2023 Design Award.",
+    "proj.pioneer.desc": "Innen- und Außendesign des Bug- und Mittelmoduls. 3D-Druck-Prototypen im Haus. TEKNOFEST 2023 Design Award.",
     "proj.urn.title": "Urn: Heißgetränke-Station",
     "proj.urn.desc": "Ein soziales Produktsystem, das mit einer Nahverkehrskarte funktioniert und Nachbarschaft schafft",
     "proj.rock.title": "Rockhounder",
@@ -1007,7 +1007,7 @@ window.I18N = {
     "thumb.empty": "Görsel eklenecek",
 
     "proj.pioneer.title": "Pioneer MKII: Sualtı Keşif Aracı",
-    "proj.pioneer.desc": "Pioneer MKII baş ve orta kompartmanlarının iç ve dış tasarımı. Kendi printer'ımla prototipleme sürecinden sorumlu oldum. İTÜ ROV Team · TEKNOFEST 2023 Tasarım Ödülü.",
+    "proj.pioneer.desc": "Baş ve orta kompartmanların iç ve dış tasarımı. Kendi printer'ımla prototipleme. TEKNOFEST 2023 Tasarım Ödülü.",
     "proj.urn.title": "Urn: Sıcak İçecek İstasyonu",
     "proj.urn.desc": "Toplu taşıma kartıyla çalışan, mahalle aidiyeti kuran bir sosyal ürün sistemi",
     "proj.rock.title": "Rockhounder",

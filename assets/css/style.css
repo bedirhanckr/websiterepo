@@ -957,6 +957,8 @@ html{ scroll-behavior: smooth; }
 .fw-card:hover{ opacity: 1; }
 .fw-thumb{ position: relative; overflow: hidden; }
 .fw-thumb .fw-img{
+  object-fit: cover;
+  object-position: center center;
   transition: filter 380ms var(--ease), transform 520ms var(--ease), opacity 380ms var(--ease);
   will-change: filter, transform;
 }
@@ -1039,6 +1041,8 @@ html{ scroll-behavior: smooth; }
 .sw-card{ position: relative; }
 .sw-card .thumb{ position: relative; overflow: hidden; }
 .sw-card .thumb img{
+  object-fit: cover;
+  object-position: center center;
   transition: filter 380ms var(--ease), transform 520ms var(--ease);
   will-change: filter, transform;
 }
