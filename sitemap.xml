@@ -21,6 +21,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://bedirhancakiroglu.com/contact/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bedirhancakiroglu.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bedirhancakiroglu.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://bedirhancakiroglu.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bedirhancakiroglu.com/contact/"/>
+  </url>
+  <url>
     <loc>https://bedirhancakiroglu.com/cv/</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>

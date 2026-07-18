@@ -696,6 +696,80 @@ html{ scroll-behavior: smooth; }
 .contact-form button:hover{ background: var(--signal); }
 .contact-form .form-note{ font-size: var(--fs-100); color: var(--ink-300); font-family: var(--font-mono); margin: 0; }
 
+/* ---------- 8b. Standalone /contact/ page ---------- */
+.contact-page{ padding: var(--sp-8) 0 var(--sp-9); background: var(--paper-hero, var(--paper)); }
+.contact-page__head{ max-width: 720px; margin-bottom: var(--sp-7); }
+.contact-page__head .hero-welcome{
+  display: block; margin-bottom: var(--sp-3);
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: var(--fs-400); color: var(--ink-500); letter-spacing: -0.005em;
+}
+.contact-page__head .h-display{
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(32px, 4.2vw, 60px);
+  line-height: 1.1; letter-spacing: -0.015em;
+  color: var(--ink-900); margin: 0 0 var(--sp-4);
+  max-width: 22ch; text-wrap: balance;
+}
+.contact-page__head .h-display em{ font-style: italic; color: var(--ink-700); }
+.contact-page__head .lede{
+  font-family: var(--font-sans); font-size: var(--fs-400); font-weight: 400;
+  color: var(--ink-500); max-width: 52ch; line-height: 1.55; margin: 0;
+}
+.contact-page__grid{
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: var(--sp-7); align-items: start;
+  padding-top: var(--sp-6); border-top: 1px solid var(--line-100);
+}
+@media (max-width: 860px){
+  .contact-page__grid{ grid-template-columns: 1fr; gap: var(--sp-6); }
+}
+.contact-page__info{ display: flex; flex-direction: column; gap: var(--sp-5); }
+.contact-info-block .dim-mark{ display: block; margin-bottom: var(--sp-2); }
+.contact-info-block p{ margin: 4px 0; font-size: var(--fs-400); color: var(--ink-900); line-height: 1.55; }
+.contact-page__email{ font-size: var(--fs-500); color: var(--ink-900); border-bottom: 1px solid var(--signal); padding-bottom: 2px; }
+.contact-page__email:hover{ color: var(--signal); }
+.contact-page__note{ font-size: var(--fs-200) !important; color: var(--ink-500) !important; font-family: var(--font-mono); letter-spacing: 0.01em; }
+.contact-page__links{ list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 6px; }
+.contact-page__links a{ font-size: var(--fs-400); color: var(--ink-700); }
+.contact-page__links a:hover{ color: var(--signal); }
+.contact-page__form{
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  padding: var(--sp-5); background: var(--paper); border: 1px solid var(--line-100);
+}
+.contact-page__form > .dim-mark{ margin-bottom: var(--sp-2); }
+.contact-page__field{ display: flex; flex-direction: column; gap: 6px; }
+.contact-page__field > span{
+  font-family: var(--font-mono); font-size: var(--fs-100);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-500);
+}
+.contact-page__field input, .contact-page__field textarea{
+  padding: 10px 12px; border: 1px solid var(--line-300); background: var(--paper);
+  font-family: var(--font-sans); font-size: var(--fs-400); color: var(--ink-900);
+  border-radius: 0;
+}
+.contact-page__field input:focus, .contact-page__field textarea:focus{
+  outline: none; border-color: var(--signal);
+}
+.contact-page__field textarea{ resize: vertical; min-height: 140px; }
+.contact-page__form button{
+  align-self: flex-start; margin-top: var(--sp-2);
+  padding: 12px 22px; background: var(--ink-900); color: var(--paper);
+  border: none; font-family: var(--font-mono); font-size: var(--fs-300);
+  letter-spacing: 0.04em; cursor: pointer; transition: background var(--dur-base) var(--ease);
+}
+.contact-page__form button:hover{ background: var(--signal); }
+
+/* Minimal footer variant, used on the standalone /contact/ page so the
+   dedicated form above isn't shadowed by a duplicate one below. */
+.site-footer--minimal{ padding: var(--sp-5) 0 var(--sp-6); }
+.site-footer--minimal .footer-quote{
+  font-family: var(--serif); font-style: italic; font-size: var(--fs-400);
+  color: var(--ink-500); margin: 0 0 var(--sp-3);
+}
+.site-footer--minimal .footer-quote span{ font-style: normal; color: var(--ink-300); }
+.site-footer--minimal .legal{ margin: 0; font-size: var(--fs-200); color: var(--ink-300); }
+
 /* ---------- 9a. Industry Experience strip ---------- */
 .industry-exp{
   display: grid; grid-template-columns: 280px 1fr; gap: var(--sp-6);
