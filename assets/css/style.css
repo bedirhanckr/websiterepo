@@ -259,6 +259,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 .media-slot--169{ aspect-ratio: 16 / 9; }          /* 1.78 hero renders */
 .media-slot--contain{ background: var(--paper); }
 .media-slot--contain img{ object-fit: contain; }
+.media-slot--dark{ background: var(--nihai-bg); border-color: transparent; }
 .media-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 640px){ .media-grid{ grid-template-columns: 1fr; } }
 
