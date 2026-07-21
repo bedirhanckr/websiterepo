@@ -303,10 +303,14 @@
   .ss-head .proj-tag{ margin:0; }
   .ss-body{ flex:1; display:grid; grid-template-columns:700px 1fr; min-height:0; }
   .ss-left{ display:flex; flex-direction:column; overflow:hidden; }
-  .ss-img-main{ flex:1; overflow:hidden; }
-  .ss-img-main img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .ss-img-sub{ height:210px; overflow:hidden; border-top:4px solid var(--paper); }
-  .ss-img-sub img{ width:100%; height:100%; object-fit:cover; display:block; }
+  /* Contain, not cover: process scans and diagrams show in full inside a
+     horizontal frame, centered, with breathing room above and below rather
+     than being cropped to fit the tall column. */
+  .ss-img-main{ flex:1; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:24px 28px; }
+  .ss-img-main img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
+  .ss-img-main .sketch-box{ align-self:stretch; flex:1; }
+  .ss-img-sub{ height:210px; overflow:hidden; border-top:4px solid var(--paper); display:flex; align-items:center; justify-content:center; padding:14px 18px; }
+  .ss-img-sub img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
   .ss-right{
     padding:40px 48px; display:flex; flex-direction:column;
     border-left:1px solid var(--line-100);
