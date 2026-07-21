@@ -1,4 +1,4 @@
-# Non-production files — kept in git, not deployed to bedirhancakiroglu.com
+# Non-production files, kept in git, not deployed to bedirhancakiroglu.com
 .git
 .gitignore
 docs/
@@ -12,3 +12,8 @@ start-server.bat
 netlify-linux.zip
 CV-*.pdf
 __pycache__/
+
+# Raw material staged for future case studies. Not referenced by any page;
+# excluded so unreleased work isn't publicly reachable on the live domain.
+assets/img/Automotive Design/
+assets/img/Kickboard projesi/

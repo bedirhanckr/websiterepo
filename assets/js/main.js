@@ -166,14 +166,16 @@
   }
 
   // Contact: submitted via formsubmit.co (see index.html <form action>).
-  // After success formsubmit redirects to /?sent=1 — show a small confirmation.
+  // After success formsubmit redirects back with ?sent=1, show a confirmation.
   try{
     var qs = new URLSearchParams(window.location.search);
     if(qs.get("sent") === "1"){
+      var toastLang = document.documentElement.getAttribute("lang") || "en";
+      var toastDict = (window.I18N && window.I18N[toastLang]) || {};
       var t = document.createElement("div");
       t.className = "form-toast";
       t.setAttribute("role","status");
-      t.textContent = "Thanks — I'll get back to you shortly.";
+      t.textContent = toastDict["contact.form.sent"] || "Thanks, I'll get back to you shortly.";
       document.body.appendChild(t);
       setTimeout(function(){ t.classList.add("is-in"); }, 20);
       setTimeout(function(){
@@ -181,7 +183,7 @@
         setTimeout(function(){ t.remove(); }, 400);
         // Clean up URL so the toast doesn't come back on refresh
         if(history.replaceState){
-          history.replaceState({}, "", window.location.pathname + "#contact");
+          history.replaceState({}, "", window.location.pathname);
         }
       }, 4200);
     }

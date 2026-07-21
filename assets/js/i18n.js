@@ -24,6 +24,7 @@ window.I18N = {
     "nav.about": "About",
     "nav.contact": "Contact",
     "consent.msg": "This site uses analytics cookies to understand visitor patterns. You can decline.",
+    "contact.form.sent": "Thanks, I'll get back to you shortly.",
     "consent.accept": "Accept",
     "consent.decline": "Decline",
     "skip": "Skip to content",
@@ -494,6 +495,7 @@ window.I18N = {
   de: {
     "nav.work": "Projekte", "nav.about": "Über mich", "nav.contact": "Kontakt",
     "consent.msg": "Diese Seite verwendet Analyse-Cookies, um Besucherverhalten zu verstehen. Ablehnen ist möglich.",
+    "contact.form.sent": "Danke, ich melde mich in Kürze.",
     "consent.accept": "Akzeptieren",
     "consent.decline": "Ablehnen",
     "fw.pioneer.tag": "Unterwasser · TEKNOFEST",
@@ -963,6 +965,7 @@ window.I18N = {
   tr: {
     "nav.work": "İşler", "nav.about": "Hakkımda", "nav.contact": "İletişim",
     "consent.msg": "Bu site ziyaretçi eğilimlerini anlamak için analitik çerezler kullanır. Reddedebilirsin.",
+    "contact.form.sent": "Teşekkürler, en kısa sürede dönüş yapacağım.",
     "consent.accept": "Kabul",
     "consent.decline": "Reddet",
     "fw.pioneer.tag": "Sualtı · TEKNOFEST",
