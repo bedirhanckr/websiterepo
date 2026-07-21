@@ -167,7 +167,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 .lang-switch{ display: flex; gap: 2px; align-items: center; margin-left: var(--sp-4); }
 .lang-switch button{
   font-family: var(--font-mono); font-size: var(--fs-100); text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--ink-300); padding: 4px 6px; line-height: 1;
+  letter-spacing: 0.05em; color: var(--ink-500); padding: 4px 6px; line-height: 1;
   transition: color var(--dur-base) var(--ease);
 }
 .lang-switch button.is-active{ color: var(--ink-900); }
@@ -198,7 +198,9 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
   .primary-nav a:last-of-type{ border-bottom: none; }
   .primary-nav a:hover{ background: var(--line-100); border-color: var(--line-100); }
   .nav-toggle{
-    display: flex; flex-direction: column; gap: 5px; width: 22px;
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 11px;
+    margin-right: -11px;
     z-index: 151;  /* stay above the overlay so user can close it */
   }
   .nav-toggle span{ height: 1.5px; background: var(--ink-900); display: block; }
@@ -305,7 +307,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 }
 .meta-strip .item span{
   display: block; font-family: var(--font-mono); font-size: var(--fs-100);
-  text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-300); margin-bottom: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-500); margin-bottom: 4px;
 }
 .meta-strip .item{ font-size: var(--fs-300); color: var(--ink-700); }
 
@@ -409,7 +411,7 @@ html{ scroll-behavior: smooth; }
 }
 .hero--v21 .meta-strip.orbital .item span{ display: inline; margin: 0; }
 .hero--v21 .meta-strip.orbital .item span:first-child{
-  color: var(--ink-300);
+  color: var(--ink-500);
   text-transform: uppercase; font-size: 10px; letter-spacing: 0.14em;
 }
 
@@ -665,7 +667,7 @@ html{ scroll-behavior: smooth; }
 .site-footer .cols{ display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-5); }
 .site-footer a{ color: var(--ink-700); }
 .site-footer a:hover{ color: var(--signal); }
-.site-footer .legal{ margin-top: var(--sp-6); font-size: var(--fs-200); color: var(--ink-300); }
+.site-footer .legal{ margin-top: var(--sp-6); font-size: var(--fs-200); color: var(--ink-500); }
 .contact-links p{ margin: 0 0 8px; font-size: var(--fs-300); }
 .contact-links a{ color: var(--ink-700); }
 .contact-links a:hover{ color: var(--signal); }
@@ -677,7 +679,7 @@ html{ scroll-behavior: smooth; }
 }
 .footer-quote span{
   display: block; margin-top: 6px; font-style: normal; font-family: var(--font-mono);
-  font-size: var(--fs-100); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-300);
+  font-size: var(--fs-100); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-500);
 }
 
 .contact-form{ display: flex; flex-direction: column; gap: var(--sp-3); max-width: 380px; }
@@ -769,8 +771,8 @@ html{ scroll-behavior: smooth; }
   font-family: var(--serif); font-style: italic; font-size: var(--fs-400);
   color: var(--ink-500); margin: 0 0 var(--sp-3);
 }
-.site-footer--minimal .footer-quote span{ font-style: normal; color: var(--ink-300); }
-.site-footer--minimal .legal{ margin: 0; font-size: var(--fs-200); color: var(--ink-300); }
+.site-footer--minimal .footer-quote span{ font-style: normal; color: var(--ink-500); }
+.site-footer--minimal .legal{ margin: 0; font-size: var(--fs-200); color: var(--ink-500); }
 
 /* ---------- 9a. Industry Experience strip ---------- */
 .industry-exp{
@@ -816,7 +818,7 @@ html{ scroll-behavior: smooth; }
   overflow: hidden; margin-bottom: var(--sp-3);
 }
 .sw-card .thumb img{ width: 100%; height: 100%; object-fit: cover; }
-.sw-card h4{ font-size: var(--fs-300); font-weight: 600; margin-bottom: 4px; }
+.sw-card h3{ font-size: var(--fs-300); font-weight: 600; margin-bottom: 4px; }
 .sw-card p{ font-size: var(--fs-200); color: var(--ink-500); margin: 0; line-height: var(--lh-base); }
 @media (max-width: 720px){
   .selected-works-grid{ grid-template-columns: repeat(2,1fr); }
@@ -1202,13 +1204,13 @@ html{ scroll-behavior: smooth; }
 .sw-card:focus-visible .sw-detail{
   opacity: 1; transform: translateY(0);
 }
-.sw-card h4,
+.sw-card h3,
 .sw-card p{
   transition: opacity 240ms var(--ease);
 }
-.sw-card:hover h4,
+.sw-card:hover h3,
 .sw-card:hover p,
-.sw-card:focus-visible h4,
+.sw-card:focus-visible h3,
 .sw-card:focus-visible p{
   opacity: 0;
 }
