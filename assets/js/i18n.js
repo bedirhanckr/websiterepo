@@ -327,8 +327,9 @@ window.I18N = {
     "cs.razor.k3.k": "Water resistance", "cs.razor.k3.v": "Sealing must hold up under bathroom use conditions",
     "cs.razor.k4.k": "Charging experience", "cs.razor.k4.v": "Charge state and dock alignment must be visually clear",
     "cs.razor.k5.k": "Manufacturability", "cs.razor.k5.v": "Must stay compatible with existing injection molding methods",
+    "cs.razor.k6.k": "Encouragement", "cs.razor.k6.v": "The user should be encouraged that they can change the battery themselves; the battery should be positioned to feel more accessible",
     "cs.razor.konsept.h": "Focusing on the battery and charging experience",
-    "cs.razor.konsept.p1": "Rather than redrawing the whole product, the concept locked onto a single focus: the battery and charging experience. The body's rear face was redefined as a separate, hand-openable cover. The charging stand was revised to visually show that the device is correctly aligned on the dock.",
+    "cs.razor.konsept.p1": "The concept focused on three axes: repairability, up-cycling and a new storage-and-charging proposal. The back of the body was redefined as a separate, hand-openable cover, so the battery can be swapped easily and the device lasts longer. To stop devices from scattering around while charging, a safe and tidy storage-and-charging station (a dock) was designed; the dock also shows visually that the device is correctly aligned.",
     "cs.razor.konsept.p2": "Two color variants (black and blue) were developed in parallel. This wasn't a functional difference, it was a deliberate exercise to compare material and surface decisions.",
     "cs.razor.sketch.h": "First ideas straight out of the teardown",
     "cs.razor.sketch.p": "The first cover and screw-placement ideas were developed right after the teardown analysis, through the cross-section sketches included in the working board in the Problem section. A separate, standalone sketch set for this project wasn't archived in a way that could be added to this case study.",
@@ -491,7 +492,7 @@ window.I18N = {
     "cs.retro.dfm.p": "In the final stage, a visual notation plate summarizing the form's production logic was also prepared.",
     "cs.retro.prototip.callout": "<strong>For clarity:</strong> a physical prototype photo wasn't archived in a way that could be added to this case study. The competition submission was made at the CAD/render level.",
     "cs.retro.kazanim.h": "FURNITUR 2023, Prize and Mention",
-    "cs.retro.kazanim.p": "Retroscent won a prize and a mention at the FURNITUR 2023 competition, organized by the Turkish Design Foundation. This project is an example where not every step of the process was documented, but the outcome is verifiable: the award is real, the jury evaluation is real.",
+    "cs.retro.kazanim.p": "Retroscent won a cash prize and a mention at the FURNITUR 2023 competition, organized by the Turkish Design Foundation. This project is an example where not every step of the process was documented, but the outcome is verifiable: the award is real, the jury evaluation is real.",
   },
 
   de: {
@@ -799,8 +800,9 @@ window.I18N = {
     "cs.razor.k3.k": "Wasserbeständigkeit", "cs.razor.k3.v": "Abdichtung muss unter Badezimmerbedingungen bestehen",
     "cs.razor.k4.k": "Ladeerlebnis", "cs.razor.k4.v": "Ladezustand und Dock-Ausrichtung müssen visuell klar erkennbar sein",
     "cs.razor.k5.k": "Fertigbarkeit", "cs.razor.k5.v": "Muss mit bestehenden Spritzgussverfahren kompatibel bleiben",
+    "cs.razor.k6.k": "Ermutigung", "cs.razor.k6.v": "Der Nutzer soll ermutigt werden, den Akku selbst zu wechseln; der Akku soll so platziert sein, dass er zugänglicher wirkt",
     "cs.razor.konsept.h": "Fokus auf Akku und Ladeerlebnis",
-    "cs.razor.konsept.p1": "Statt das gesamte Produkt neu zu zeichnen, konzentrierte sich das Konzept auf einen einzigen Fokus: den Akku und das Ladeerlebnis. Die Rückseite des Gehäuses wurde als separate, von Hand zu öffnende Abdeckung neu definiert. Der Ladeständer wurde überarbeitet, um visuell zu zeigen, dass das Gerät korrekt auf dem Dock ausgerichtet ist.",
+    "cs.razor.konsept.p1": "Das Konzept konzentrierte sich auf drei Achsen: Reparierbarkeit, Up-Cycling und einen neuen Vorschlag für Aufbewahrung und Laden. Die Rückseite des Gehäuses wurde als separate, von Hand zu öffnende Abdeckung neu definiert, sodass der Akku leicht getauscht werden kann und das Gerät länger hält. Damit Geräte beim Laden nicht überall herumliegen, wurde eine sichere und ordentliche Aufbewahrungs- und Ladestation (ein Dock) gestaltet; das Dock zeigt zudem visuell, dass das Gerät korrekt ausgerichtet ist.",
     "cs.razor.konsept.p2": "Zwei Farbvarianten (Schwarz und Blau) wurden parallel entwickelt. Dies war kein funktionaler Unterschied, sondern eine bewusste Übung, um Material- und Oberflächenentscheidungen zu vergleichen.",
     "cs.razor.sketch.h": "Erste Ideen direkt aus der Demontage",
     "cs.razor.sketch.p": "Die ersten Ideen zu Abdeckung und Schraubenplatzierung entstanden direkt im Anschluss an die Demontageanalyse, durch die Querschnittsskizzen auf dem Arbeitsboard im Problem-Abschnitt. Ein eigenständiger Skizzensatz für dieses Projekt wurde nicht so archiviert, dass er dieser Fallstudie hinzugefügt werden könnte.",
@@ -963,7 +965,7 @@ window.I18N = {
     "cs.retro.dfm.p": "In der Abschlussphase wurde außerdem eine visuelle Notationstafel erstellt, die die Fertigungslogik der Form zusammenfasst.",
     "cs.retro.prototip.callout": "<strong>Zur Klarheit:</strong> Ein Foto eines physischen Prototyps wurde nicht so archiviert, dass es dieser Fallstudie hinzugefügt werden könnte. Der Wettbewerbsbeitrag erfolgte auf CAD-/Rendering-Ebene.",
     "cs.retro.kazanim.h": "FURNITUR 2023, Preis und Anerkennung",
-    "cs.retro.kazanim.p": "Retroscent gewann einen Preis und eine Anerkennung beim FURNITUR-2023-Wettbewerb, veranstaltet von der türkischen Designstiftung. Dieses Projekt ist ein Beispiel, bei dem nicht jeder Schritt des Prozesses dokumentiert wurde, das Ergebnis aber überprüfbar ist: die Auszeichnung ist real, die Jurybewertung ist real.",
+    "cs.retro.kazanim.p": "Retroscent gewann einen Geldpreis und eine Anerkennung beim FURNITUR-2023-Wettbewerb, veranstaltet von der türkischen Designstiftung. Dieses Projekt ist ein Beispiel, bei dem nicht jeder Schritt des Prozesses dokumentiert wurde, das Ergebnis aber überprüfbar ist: die Auszeichnung ist real, die Jurybewertung ist real.",
   },
 
   tr: {
@@ -1271,8 +1273,9 @@ window.I18N = {
     "cs.razor.k3.k": "Su geçirmezlik", "cs.razor.k3.v": "Banyoda kullanım koşulunda contalama korunmalı",
     "cs.razor.k4.k": "Şarj deneyimi", "cs.razor.k4.v": "Şarj durumu ve dock hizalaması görsel olarak anlaşılır olmalı",
     "cs.razor.k5.k": "Üretilebilirlik", "cs.razor.k5.v": "Mevcut enjeksiyon kalıplama yöntemleriyle uyumlu kalmalı",
+    "cs.razor.k6.k": "Cesaretlendirme", "cs.razor.k6.v": "Kullanıcı, pil değişimini kendisinin yapabileceği konusunda cesaretlendirilmeli; pil daha ulaşılabilir bir yerde olduğu hissini verecek şekilde konumlandırılmalı",
     "cs.razor.konsept.h": "Pil ve şarj deneyimi üzerine odaklanmak",
-    "cs.razor.konsept.p1": "Konsept, tüm ürünü yeniden çizmek yerine tek bir odak noktasına kilitlendi: pil ve şarj deneyimi. Gövdenin arka yüzü, elle açılabilen ayrı bir kapak olarak yeniden tanımlandı. Şarj standı, cihazın dock üzerinde doğru hizalandığını görsel olarak gösterecek şekilde revize edildi.",
+    "cs.razor.konsept.p1": "Konsept üç eksende odaklandı: tamir edilebilirlik, up-cycling ve yeni bir depolama-şarj önerisi. Gövdenin arka yüzü, elle açılabilen ayrı bir kapak olarak yeniden tanımlandı; pil kolayca değiştirilebildiği için cihazın ömrü uzuyor. Şarj sırasında cihazların orada burada dağılmaması için güvenli ve düzenli bir depolama-şarj istasyonu (dock) tasarlandı; dock, cihazın doğru hizalandığını da görsel olarak gösteriyor.",
     "cs.razor.konsept.p2": "İki farklı renk varyantı (siyah ve mavi) paralel olarak geliştirildi. Bu bir fonksiyon farkı değil, malzeme ve yüzey kararlarını karşılaştırmak için yapılan bilinçli bir çalışmaydı.",
     "cs.razor.sketch.h": "Söküm analizinden çıkan ilk fikirler",
     "cs.razor.sketch.p": "İlk kapak ve vida yerleşimi fikirleri, söküm analizinin hemen ardından, Problem bölümündeki çalışma panosunun içinde yer alan kesit eskizleriyle geliştirildi. Bu proje için ayrı, bağımsız bir eskiz seti bu vaka analizine eklenecek şekilde arşivlenmedi.",
@@ -1435,6 +1438,6 @@ window.I18N = {
     "cs.retro.dfm.p": "Final aşamada, formun üretim mantığını özetleyen görsel bir notasyon paftası da hazırlandı.",
     "cs.retro.prototip.callout": "<strong>Netlik için:</strong> Fiziksel bir prototip fotoğrafı bu vaka analizine eklenecek şekilde arşivlenmedi. Yarışmaya sunum CAD/render seviyesinde yapıldı.",
     "cs.retro.kazanim.h": "FURNITUR 2023, Ödül ve Mansiyon",
-    "cs.retro.kazanim.p": "Retroscent, Türkiye Tasarım Vakfı'nın düzenlediği FURNITUR 2023 yarışmasında ödül ve mansiyon kazandı. Bu proje, sürecin her adımının belgelenmediği ama sonucun doğrulanabilir olduğu bir örnek: ödül gerçek, jüri değerlendirmesi gerçek.",
+    "cs.retro.kazanim.p": "Retroscent, Türkiye Tasarım Vakfı'nın düzenlediği FURNITUR 2023 yarışmasında para ödülü ve mansiyon kazandı. Bu proje, sürecin her adımının belgelenmediği ama sonucun doğrulanabilir olduğu bir örnek: ödül gerçek, jüri değerlendirmesi gerçek.",
   }
 };

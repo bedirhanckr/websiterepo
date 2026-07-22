@@ -133,10 +133,8 @@
       <a href="#muhendislik" data-i18n="cs.subnav.muhendislik">Mühendislik</a>
       <a href="#dfm">DFM/DFA</a>
       <a href="#prototip" data-i18n="cs.subnav.prototip">Prototip</a>
-      <a href="#testler" data-i18n="cs.subnav.testler">Testler</a>
       <a href="#iterasyon" data-i18n="cs.subnav.iterasyon">İterasyon</a>
       <a href="#nihai" data-i18n="cs.subnav.nihai">Nihai</a>
-      <a href="#kazanim" data-i18n="cs.subnav.kazanim">Kazanım</a>
     </div>
   </nav>
 
@@ -155,7 +153,6 @@
       <span class="eyebrow">02, <span data-i18n="cs.eyebrow.arastirma">Araştırma</span></span>
       <h2 data-i18n="cs.razor.arastirma.h">Gerçek cihazı sökerek başlamak</h2>
       <p data-i18n="cs.razor.arastirma.p">Problemi somutlaştırmak için gerçek bir Philips MG7720 ve şarj adaptörü elle söküldü. Pilin gövde içinde nereye yerleştirildiği, hangi tip vida ile sabitlendiği (Torx) ve kapağın hangi noktalardan klipslendiği tek tek incelendi. Bu inceleme, "kullanıcı bu cihazı aracı olmadan güvenle açabilir mi" sorusunun cevabını verdi: hayır.</p>
-      <div class="media-slot is-ready"><picture><source srcset="../assets/img/razor/teardown-adapter.webp" type="image/webp"><img src="../assets/img/razor/teardown-adapter.jpg" alt="Şarj adaptörünün elle sökülmesi, iç bağlantı noktalarının incelenmesi" loading="lazy" decoding="async"></picture></div>
     </div>
   </section>
 
@@ -170,6 +167,7 @@
         <tr><td data-i18n="cs.razor.k3.k">Su geçirmezlik</td><td data-i18n="cs.razor.k3.v">Banyoda kullanım koşulunda contalama korunmalı</td></tr>
         <tr><td data-i18n="cs.razor.k4.k">Şarj deneyimi</td><td data-i18n="cs.razor.k4.v">Şarj durumu ve dock hizalaması görsel olarak anlaşılır olmalı</td></tr>
         <tr><td data-i18n="cs.razor.k5.k">Üretilebilirlik</td><td data-i18n="cs.razor.k5.v">Mevcut enjeksiyon kalıplama yöntemleriyle uyumlu kalmalı</td></tr>
+        <tr><td data-i18n="cs.razor.k6.k">Cesaretlendirme</td><td data-i18n="cs.razor.k6.v">Kullanıcı, pil değişimini kendisinin yapabileceği konusunda cesaretlendirilmeli; pil daha ulaşılabilir bir yerde olduğu hissini verecek şekilde konumlandırılmalı</td></tr>
       </table>
     </div>
   </section>
@@ -178,7 +176,7 @@
     <div class="wrap" data-reveal>
       <span class="eyebrow">04, <span data-i18n="cs.eyebrow.konsept">Konsept Geliştirme</span></span>
       <h2 data-i18n="cs.razor.konsept.h">Pil ve şarj deneyimi üzerine odaklanmak</h2>
-      <p data-i18n="cs.razor.konsept.p1">Konsept, tüm ürünü yeniden çizmek yerine tek bir odak noktasına kilitlendi: pil ve şarj deneyimi. Gövdenin arka yüzü, elle açılabilen ayrı bir kapak olarak yeniden tanımlandı. Şarj standı, cihazın dock üzerinde doğru hizalandığını görsel olarak gösterecek şekilde revize edildi.</p>
+      <p data-i18n="cs.razor.konsept.p1">Konsept üç eksende odaklandı: tamir edilebilirlik, up-cycling ve yeni bir depolama-şarj önerisi. Gövdenin arka yüzü, elle açılabilen ayrı bir kapak olarak yeniden tanımlandı; pil kolayca değiştirilebildiği için cihazın ömrü uzuyor. Şarj sırasında cihazların orada burada dağılmaması için güvenli ve düzenli bir depolama-şarj istasyonu (dock) tasarlandı; dock, cihazın doğru hizalandığını da görsel olarak gösteriyor.</p>
       <p data-i18n="cs.razor.konsept.p2">İki farklı renk varyantı (siyah ve mavi) paralel olarak geliştirildi. Bu bir fonksiyon farkı değil, malzeme ve yüzey kararlarını karşılaştırmak için yapılan bilinçli bir çalışmaydı.</p>
     </div>
   </section>
@@ -228,17 +226,9 @@
     </div>
   </section>
 
-  <section class="case-section" id="testler">
-    <div class="wrap" data-reveal>
-      <span class="eyebrow">10, <span data-i18n="cs.eyebrow.testler">Testler</span></span>
-      <h2 data-i18n="cs.razor.testler.h">Bu aşama dürüstçe belirtilmeli</h2>
-      <div class="callout" data-i18n-html="cs.razor.testler.callout"><strong>Netlik için:</strong> Bu proje bir foam form çalışmasıyla sonuçlandı, elektronik bileşenleri barındıran işlevsel bir prototip üretilmedi. Dolayısıyla su geçirmezlik veya gerçek kullanım testi bu aşamada yapılmadı. Doğrulama, elde tutuş ve montaj mantığı seviyesinde kaldı.</div>
-    </div>
-  </section>
-
   <section class="case-section" id="iterasyon">
     <div class="wrap" data-reveal>
-      <span class="eyebrow">11, <span data-i18n="cs.eyebrow.iterasyon">İterasyon</span></span>
+      <span class="eyebrow">10, <span data-i18n="cs.eyebrow.iterasyon">İterasyon</span></span>
       <h2 data-i18n="cs.razor.iter.h">Kaba hacimden final orana</h2>
       <p data-i18n="cs.razor.iter.p">İlk foam çalışması, tarama derinliği ve tutuş açısını test etmek için kasıtlı olarak kaba bırakıldı. İkinci foam maket, bu ilk çalışmadan çıkan ölçü düzeltmeleriyle final orana yaklaştırıldı. Renk varyantı kararı (siyah / mavi) ise CAD aşamasında, malzeme ve yüzey karşılaştırması olarak ele alındı.</p>
     </div>
@@ -246,20 +236,12 @@
 
   <section class="case-section" id="nihai">
     <div class="wrap" data-reveal>
-      <span class="eyebrow">12, <span data-i18n="cs.eyebrow.nihai">Nihai Tasarım</span></span>
+      <span class="eyebrow">11, <span data-i18n="cs.eyebrow.nihai">Nihai Tasarım</span></span>
       <h2 data-i18n="cs.shared.result">Sonuç</h2>
       <div class="media-grid">
         <div class="media-slot media-slot--sq5-4 is-ready"><picture><source srcset="../assets/img/razor/hero-final-black.webp" type="image/webp"><img src="../assets/img/razor/hero-final-black.png" alt="Final tasarım, siyah varyant, yandan görünüm" loading="lazy" decoding="async"></picture></div>
         <div class="media-slot media-slot--sq5-4 is-ready"><picture><source srcset="../assets/img/razor/render-charging-dock.webp" type="image/webp"><img src="../assets/img/razor/render-charging-dock.png" alt="Final tasarım, mavi varyant, şarj standında" loading="lazy" decoding="async"></picture></div>
       </div>
-    </div>
-  </section>
-
-  <section class="case-section case-outcome" id="kazanim">
-    <div class="wrap">
-      <span class="eyebrow">13, <span data-i18n="cs.eyebrow.kazanim">Kazanım</span></span>
-      <h2 data-i18n="cs.razor.kazanim.h">Onarılabilirlik, sonradan eklenen bir özellik değil</h2>
-      <p data-i18n="cs.razor.kazanim.p">Bu proje bireysel bir tasarım çalışması olarak yürütüldü, bir şirket veya üretici için değil. Yine de gerçek bir üründen yola çıkan bir söküm analiziyle başlaması, kararların soyut değil, gözlemlenmiş bir soruna dayanmasını sağladı. Buradan çıkan temel ders: onarılabilirlik, ürün tamamlandıktan sonra eklenen bir özellik değil, pil kapağının nereye ve nasıl yerleşeceğine erken karar vermekle başlıyor.</p>
     </div>
   </section>
 
