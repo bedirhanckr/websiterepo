@@ -259,6 +259,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
 .media-slot--sq3-2{ aspect-ratio: 3 / 2; }         /* 1.5:1 renders, prototype photos */
 .media-slot--sq7-5{ aspect-ratio: 7 / 5; }         /* 1.4:1 exploded views, lifestyle */
 .media-slot--sq5-4{ aspect-ratio: 5 / 4; }         /* 1.25:1 product renders on light bg */
+.media-slot--sq1-1{ aspect-ratio: 1 / 1; }         /* 1:1 square photos */
 .media-slot--169{ aspect-ratio: 16 / 9; }          /* 1.78 hero renders */
 .media-slot--contain{ background: var(--paper); }
 .media-slot--contain img{ object-fit: contain; }
