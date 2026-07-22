@@ -53,7 +53,7 @@
 
 :root{
   /* ---------- Renk: gri tonlama iskeleti ---------- */
-  --paper:      #FCFCFB;   /* zemin */
+  --paper:      #FFFFFF;   /* zemin — tam beyaz, beyaz arkaplanlı görsellerle dikişsiz birleşsin */
   --surface:    #FFFFFF;   /* kart / panel */
   --ink-900:    #111214;   /* birincil metin, başlıklar */
   --ink-700:    #3A3D42;   /* gövde metni */
