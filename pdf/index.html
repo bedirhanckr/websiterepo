@@ -124,6 +124,60 @@
     transition: color var(--dur-base) var(--ease);
   }
   .wip-meta a:hover { color: var(--signal); }
+  .wip-countdown {
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--line-100);
+  }
+  .wip-countdown .cd-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: var(--sp-4);
+  }
+  .cd-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-3);
+  }
+  .cd-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    padding: var(--sp-4) var(--sp-2);
+    border: 1px solid var(--line-100);
+    border-radius: 2px;
+    background: var(--paper);
+  }
+  .cd-num {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(26px, 7vw, 40px);
+    line-height: 1;
+    color: var(--ink-900);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  .cd-unit {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+  }
+  .cd-done {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal);
+    padding: var(--sp-4) 0;
+  }
   .wip-footnote {
     padding: var(--sp-4);
     text-align: center;
@@ -141,6 +195,8 @@
     .wip-mark { font-size: 48px; }
     .wip-langs .row { grid-template-columns: 42px 1fr; gap: var(--sp-3); }
     .wip-meta { flex-direction: column; gap: var(--sp-2); align-items: flex-start; }
+    .cd-grid { gap: 8px; }
+    .cd-cell { padding: var(--sp-3) 4px; }
   }
 </style>
 </head>
@@ -166,8 +222,17 @@
         </div>
       </div>
 
+      <div class="wip-countdown" aria-label="Portfolyo yayına 1 Ekim 2026 tarihinde geçiyor — geri sayım">
+        <div class="cd-label">Yayına · 1 Ekim 2026</div>
+        <div class="cd-grid" id="countdown">
+          <div class="cd-cell"><span class="cd-num" data-cd="d">--</span><span class="cd-unit">Gün</span></div>
+          <div class="cd-cell"><span class="cd-num" data-cd="h">--</span><span class="cd-unit">Saat</span></div>
+          <div class="cd-cell"><span class="cd-num" data-cd="m">--</span><span class="cd-unit">Dk</span></div>
+          <div class="cd-cell"><span class="cd-num" data-cd="s">--</span><span class="cd-unit">Sn</span></div>
+        </div>
+      </div>
+
       <div class="wip-meta">
-        <span>Expected: <b style="color:var(--ink-900);font-weight:500">August 2026</b></span>
         <a href="/#work">Selected Work →</a>
       </div>
     </div>
@@ -175,5 +240,35 @@
   <div class="wip-footnote">
     Bedirhan Çakıroğlu · <a href="/">bedirhancakiroglu.com</a>
   </div>
+  <script>
+  (function(){
+    // Hedef: 1 Ekim 2026, 00:00 Almanya saati (CEST, UTC+2 — yaz saati 25 Ekim'e kadar).
+    var target = new Date("2026-10-01T00:00:00+02:00").getTime();
+    var el = {
+      d: document.querySelector('[data-cd="d"]'),
+      h: document.querySelector('[data-cd="h"]'),
+      m: document.querySelector('[data-cd="m"]'),
+      s: document.querySelector('[data-cd="s"]')
+    };
+    var grid = document.getElementById("countdown");
+    var timer = null;
+    function pad(n){ return (n < 10 ? "0" : "") + n; }
+    function tick(){
+      var diff = target - Date.now();
+      if(diff <= 0){
+        if(grid){ grid.innerHTML = '<div class="cd-done">Portfolyo yayında · Portfolio is live</div>'; }
+        if(timer){ clearInterval(timer); }
+        return;
+      }
+      var t = Math.floor(diff / 1000);
+      if(el.d){ el.d.textContent = pad(Math.floor(t / 86400)); }
+      if(el.h){ el.h.textContent = pad(Math.floor((t % 86400) / 3600)); }
+      if(el.m){ el.m.textContent = pad(Math.floor((t % 3600) / 60)); }
+      if(el.s){ el.s.textContent = pad(t % 60); }
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+  })();
+  </script>
 </body>
 </html>
