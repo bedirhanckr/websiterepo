@@ -1,0 +1,117 @@
+# =============================================================================
+# Analysis rules & thresholds for the eBay Sales Optimizer
+# =============================================================================
+# Everything the deterministic classifier and opportunity score depend on lives
+# here so the logic in code stays fixed while the *numbers* can be tuned without
+# a code change. No threshold is a silent magic number in the source.
+#
+# IMPORTANT PHILOSOPHY (from the brief):
+#   1. Prefer ACCOUNT-RELATIVE performance. With only a handful of listings, a
+#      universal "good CTR" number is meaningless. We rank each listing against
+#      the seller's own distribution first.
+#   2. Fall back to the fixed thresholds below ONLY when there is not enough
+#      data to compute a stable account baseline (see min_listings_for_relative).
+#   3. NULL metric = unknown, never zero. A listing with unknown data is
+#      classified INSUFFICIENT_DATA, not as a problem.
+# =============================================================================
+
+# How many listings with usable data we need before account-relative percentile
+# logic is trustworthy. Below this, the classifier uses absolute fallbacks and
+# is more conservative about declaring problems.
+min_listings_for_relative: 5
+
+# A listing must clear these minimums before we classify it at all. Below them
+# there simply is not enough signal, so it becomes INSUFFICIENT_DATA.
+insufficient_data:
+  min_impressions_30d: 30      # fewer than this over 30 days => not enough signal
+  min_active_days: 7           # listing must have existed at least this long
+
+# Account-relative percentiles (used when min_listings_for_relative is met).
+# "low" = at/below this percentile of the account distribution for that metric.
+relative:
+  low_impressions_percentile: 25
+  high_impressions_percentile: 60
+  low_ctr_percentile: 30
+  low_conversion_percentile: 30
+  good_conversion_percentile: 60
+  good_ctr_percentile: 60
+
+# Absolute fallback thresholds. Deliberately conservative and clearly labelled
+# as fallbacks. These are NOT authoritative eBay benchmarks — they are sane
+# defaults for when we cannot compute account-relative values. Tune per account.
+fallback:
+  # Impressions over the trailing 30 days.
+  low_impressions_30d: 100
+  healthy_impressions_30d: 500
+  # Click-through rate, expressed in percent (eBay returns CTR as a percentage).
+  low_ctr_pct: 1.0
+  healthy_ctr_pct: 2.5
+  # Sales conversion rate, percent.
+  low_conversion_pct: 1.0
+  healthy_conversion_pct: 3.0
+  # Minimum views before a conversion problem can even be assessed.
+  min_views_for_conversion_check: 20
+
+# Performance-drop detection. Compares last 7 days to the previous 7 days and to
+# the trailing 30-day baseline. A drop must be material (not noise) AND the
+# listing must have had a meaningful baseline to fall from.
+performance_drop:
+  min_baseline_impressions_30d: 150   # ignore drops on already-tiny listings
+  impressions_drop_ratio: 0.5         # last7 < 50% of prior7 avg => flag
+  conversion_drop_ratio: 0.5
+  min_prior_transactions_30d: 1       # must have actually sold before
+
+# Winner definition. A listing is protected when it is strong on both traffic
+# and conversion and has recent sales.
+winner:
+  min_conversion_percentile: 60       # (relative mode)
+  min_impressions_percentile: 50
+  min_transactions_30d: 1
+  # Absolute fallback equivalents:
+  fallback_min_conversion_pct: 3.0
+  fallback_min_impressions_30d: 300
+
+# -----------------------------------------------------------------------------
+# Opportunity Score weights (0..100). Documented in opportunity_score.py.
+# The score prioritises listings where a fix likely yields the most economic
+# upside — NOT simply the worst listing. High demand + poor outcome scores high;
+# tiny-demand listings are capped so they never dominate.
+# -----------------------------------------------------------------------------
+opportunity_score:
+  # Demand gate: below this the score is capped (little demand => low priority
+  # regardless of how "bad" the ratios look on tiny numbers).
+  demand_floor_impressions_30d: 50
+  low_demand_cap: 25                  # max score when demand is below the floor
+
+  weights:
+    unrealised_traffic: 35            # lots of impressions/views but no sales
+    conversion_gap: 25                # good traffic, weak conversion
+    ctr_gap: 15                       # good impressions, weak CTR
+    performance_drop: 15              # recent deterioration from a real baseline
+    revenue_at_stake: 10             # scaled by price * available inventory
+
+  # Revenue-at-stake normalisation. Caps the influence of a single high price.
+  revenue_reference_eur: 200.0
+
+# -----------------------------------------------------------------------------
+# Advertising guardrails (Objective #4). Encodes the "do NOT auto-recommend more
+# Promoted Listings" rule.
+# -----------------------------------------------------------------------------
+advertising:
+  # If impressions are already high but CTR/conversion is weak, the advice is to
+  # fix the listing first, not spend more.
+  high_impressions_30d: 400
+  # Minimum ROAS below which scaling ad spend is discouraged.
+  min_acceptable_roas: 2.0
+
+# -----------------------------------------------------------------------------
+# Listing data-quality audit thresholds (warnings only, never auto-changes).
+# -----------------------------------------------------------------------------
+audit:
+  min_title_length: 20                # eBay allows up to 80 chars; very short = weak
+  max_title_length: 80
+  max_keyword_repeat: 2               # same token repeated more than this => flag
+  suspicious_price_change_ratio: 0.4  # >40% jump between syncs => flag for review
+  # Regex-ish hints for OEM/reference sanity (applied in listing_audit.py). Kept
+  # here so the seller can tune them for BMW / automotive part-number formats.
+  oem_min_digits: 5                   # a plausible OEM number has at least this many digits

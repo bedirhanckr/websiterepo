@@ -2,6 +2,7 @@
 .git
 .gitignore
 docs/
+ebay-sales-optimizer/
 scripts/
 bodies/
 *.md
