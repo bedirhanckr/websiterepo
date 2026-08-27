@@ -33,6 +33,26 @@ EBAY_OAUTH_ENDPOINTS = {
     },
 }
 
+# Legacy Trading API (XML) endpoints — used for complete active-listing coverage.
+EBAY_TRADING_ENDPOINTS = {
+    "production": "https://api.ebay.com/ws/api.dll",
+    "sandbox": "https://api.sandbox.ebay.com/ws/api.dll",
+}
+
+# Trading API site IDs. This account sells on eBay Germany (77).
+EBAY_SITE_IDS = {
+    "EBAY_DE": "77",
+    "EBAY_US": "0",
+    "EBAY_GB": "3",
+    "EBAY_AT": "16",
+    "EBAY_FR": "71",
+    "EBAY_IT": "101",
+    "EBAY_ES": "186",
+}
+
+# A recent, valid Trading API schema version.
+EBAY_TRADING_COMPAT_LEVEL = "1249"
+
 # OAuth scopes this tool needs. All read-only — Phase 1 performs no writes.
 # Verified against eBay's current API docs during Phase 1 research.
 REQUIRED_SCOPES = [
@@ -58,6 +78,7 @@ class Settings(BaseSettings):
     ebay_env: str = Field(default="production")
     ebay_client_id: str = Field(default="")  # a.k.a. App ID
     ebay_client_secret: str = Field(default="")  # a.k.a. Cert ID
+    ebay_dev_id: str = Field(default="")  # Dev ID — required by the Trading API
     ebay_ru_name: str = Field(default="")  # OAuth redirect (RuName)
 
     # User (authorization-code) tokens obtained via check_auth flow.
@@ -75,6 +96,15 @@ class Settings(BaseSettings):
         env = self.ebay_env if self.ebay_env in EBAY_OAUTH_ENDPOINTS else "production"
         return EBAY_OAUTH_ENDPOINTS[env]
 
+    @property
+    def trading_endpoint(self) -> str:
+        env = self.ebay_env if self.ebay_env in EBAY_TRADING_ENDPOINTS else "production"
+        return EBAY_TRADING_ENDPOINTS[env]
+
+    @property
+    def site_id(self) -> str:
+        return EBAY_SITE_IDS.get(self.ebay_marketplace_id, "77")
+
     def masked(self) -> dict[str, str]:
         """Return a log-safe view of settings. Never exposes secret values."""
 
@@ -86,6 +116,7 @@ class Settings(BaseSettings):
             "ebay_marketplace_id": self.ebay_marketplace_id,
             "ebay_client_id": mask(self.ebay_client_id),
             "ebay_client_secret": mask(self.ebay_client_secret),
+            "ebay_dev_id": mask(self.ebay_dev_id),
             "ebay_ru_name": mask(self.ebay_ru_name),
             "ebay_refresh_token": mask(self.ebay_refresh_token),
             "database_url": self.database_url,

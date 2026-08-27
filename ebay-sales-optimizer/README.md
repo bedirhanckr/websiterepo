@@ -17,7 +17,11 @@ conversion — and know **which listings to leave alone**.
 - A runnable config/auth smoke test and green unit tests.
 - The analysis rules & thresholds file (`config/analysis_rules.yaml`).
 
-Data sync (Phase 2–3), the deterministic classifier + Opportunity Score
+**Phase 2 (implemented):** read-only OAuth (authorization-code + refresh),
+a live authentication test, and active-listing retrieval via the Trading API
+`GetMyeBaySelling`, saved idempotently to SQLite.
+
+Traffic/Analytics (Phase 3), the deterministic classifier + Opportunity Score
 (Phase 4), and the Streamlit dashboard (Phase 4) follow in later phases.
 
 ## Tech stack
@@ -58,7 +62,7 @@ pytest -q
    You will get:
    - **App ID (Client ID)** → `EBAY_CLIENT_ID`
    - **Cert ID (Client Secret)** → `EBAY_CLIENT_SECRET`
-   - **Dev ID** (needed later for Trading API calls)
+   - **Dev ID** → `EBAY_DEV_ID` (required by the Trading API used to list items)
 
 ### 2. Create an OAuth redirect (RuName)
 In the keyset, add a **User Token / OAuth** redirect and note its **RuName**
@@ -79,20 +83,25 @@ This tool requests only read scopes:
 > uses the **Trading API** with the same user token plus your Dev/App/Cert IDs.
 
 ### 4. Authorize (grant consent) — one time
-1. Put `EBAY_CLIENT_ID`, `EBAY_CLIENT_SECRET`, `EBAY_RU_NAME`,
+1. Put `EBAY_CLIENT_ID`, `EBAY_CLIENT_SECRET`, `EBAY_DEV_ID`, `EBAY_RU_NAME`,
    `EBAY_MARKETPLACE_ID=EBAY_DE` in `.env`.
-2. Run `python scripts/check_auth.py` and open the printed **consent URL** in a
-   browser while logged into the seller account; approve the read-only scopes.
-3. eBay redirects to your RuName with an authorization `code`.
-4. **Phase 2** exchanges that code for an **access token** (~2 h) and a
-   **refresh token** (~18 months). Only the refresh token is saved, to `.env` as
-   `EBAY_REFRESH_TOKEN`. Access tokens stay in memory and are refreshed on demand.
+2. `python scripts/check_auth.py --login` prints the **consent URL**. Open it
+   while logged into the seller account and approve the read-only scopes.
+3. eBay redirects to your RuName with a `?code=...` parameter. Copy that code.
+4. `python scripts/check_auth.py --code "<CODE>"` exchanges it for an access
+   token (~2 h) and a **refresh token** (~18 months). Only the refresh token is
+   saved, to `.env` as `EBAY_REFRESH_TOKEN`. Access tokens stay in memory and
+   are refreshed on demand — no token value is ever printed.
 
 ### 5. Test authentication
-- **Phase 1:** `python scripts/check_auth.py` confirms your config is complete
-  and the database builds.
-- **Phase 2:** the same command will additionally mint a live access token and
-  call a trivial endpoint to confirm connectivity.
+- `python scripts/check_auth.py` validates config, builds the DB, and — once a
+  refresh token exists — mints a live user access token to confirm connectivity
+  (it reports the token's remaining lifetime, never the token itself).
+
+### 6. Retrieve active listings
+- `python scripts/sync_listings.py` fetches all active listings via
+  `GetMyeBaySelling`, saves them to SQLite (idempotently), and prints each
+  listing's id, title, price and quantity. Re-running never creates duplicates.
 
 ---
 
