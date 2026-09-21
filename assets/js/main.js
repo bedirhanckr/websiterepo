@@ -9,13 +9,20 @@
   var DEFAULT_LANG = "en";
 
   function detectLang(){
-    var params = new URLSearchParams(window.location.search);
-    var q = params.get("lang");
-    if(q && SUPPORTED.indexOf(q) !== -1) return q;
-    try{ var s = localStorage.getItem("lang"); if(s && SUPPORTED.indexOf(s)!==-1) return s; }catch(e){}
-    var nav = (navigator.language || "en").slice(0,2).toLowerCase();
-    if(SUPPORTED.indexOf(nav) !== -1) return nav;
-    return DEFAULT_LANG;
+    var route = window.location.pathname.match(/^\/(de|tr)(?:\/|$)/);
+    if(route) return route[1];
+    return document.documentElement.getAttribute("data-static-locale") || DEFAULT_LANG;
+  }
+
+  // Preserve old ?lang= links while giving every locale a crawlable URL.
+  var params = new URLSearchParams(window.location.search);
+  var legacyLang = params.get("lang");
+  if(legacyLang && SUPPORTED.indexOf(legacyLang) !== -1 && !/^\/(de|tr)(?:\/|$)/.test(window.location.pathname)){
+    var legacyPath = window.location.pathname.replace(/index\.html$/, "").replace(/\/$/, "");
+    params.delete("lang");
+    var query = params.toString();
+    window.location.replace((legacyLang === "en" ? "" : "/" + legacyLang) + (legacyPath || (legacyLang === "en" ? "/" : "")) + (query ? "?" + query : "") + window.location.hash);
+    return;
   }
 
   function applyLang(lang){
@@ -39,9 +46,18 @@
   }
 
   var currentLang = detectLang();
-  applyLang(currentLang);
-  document.querySelectorAll(".lang-switch button").forEach(function(btn){
-    btn.addEventListener("click", function(){ applyLang(btn.getAttribute("data-lang")); });
+  if(!document.documentElement.hasAttribute("data-static-locale")) applyLang(currentLang);
+  function syncLanguageAnchors(){
+    document.querySelectorAll(".lang-switch a").forEach(function(link){
+      link.hash = window.location.hash;
+    });
+  }
+  syncLanguageAnchors();
+  window.addEventListener("hashchange", syncLanguageAnchors);
+  document.querySelectorAll(".lang-switch a").forEach(function(link){
+    link.addEventListener("click", function(){
+      try{ localStorage.setItem("lang", link.getAttribute("data-lang")); }catch(e){}
+    });
   });
 
   // Theme toggle — inline <head> script already stamped data-theme from
@@ -141,7 +157,7 @@
     banner.className = "consent-banner";
     banner.setAttribute("role","dialog");
     banner.setAttribute("aria-live","polite");
-    banner.setAttribute("aria-label","Cookie consent");
+    banner.setAttribute("aria-label", d["consent.label"] || "Analytics cookies");
     var p = document.createElement("p"); p.textContent = msg;
     var group = document.createElement("div"); group.className = "consent-buttons";
     var btnD = document.createElement("button");
