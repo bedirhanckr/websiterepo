@@ -974,7 +974,7 @@ window.I18N = {
     "cs.crumb.home": "Ana sayfa",
 
     "home.welcome": "Merhaba, benim dünyama hoş geldin.",
-    "home.h1": "Ürünleri tasarlarım, <em>fikirden üretime.</em>",
+    "home.h1": "Benim tutkum, kullanıcının uzun yıllar bağ kurabileceği <em>ürünleri tasarlamak.</em>",
     "home.lede": "Paderborn’da endüstriyel tasarımcı ve tasarım mühendisiyim. Ürün tasarımı, CAD ve prototiplemeyi pratik üretim deneyimiyle birleştiriyorum.",
     "home.meta.focus.label": "Odak",
     "home.meta.focus.value": "Ürün Tasarımı · Mekanizma · Üretim",
