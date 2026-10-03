@@ -25,7 +25,7 @@ At the start of a fresh session, read these files in order:
 4. `.claude/skills/frontend-design/SKILL.md` — design method.
 5. Any newer `docs/redesign-v2/<NN>-*.md` files Bedirhan added later (skills.md, brand notes, etc — in numeric order).
 
-Older archive files still valid for project history: `MEMORY.md`, `PROJECT_STATUS.md`, `PRIORITY.md`, `KARAR-GUNLUGU.md`, `HANDOFF-GERMANY.md`. Read only if a decision references them.
+Older archive files still valid for project history live under `docs/archive/`: `MEMORY.md`, `PROJECT_STATUS.md`, `PRIORITY.md`, `KARAR-GUNLUGU.md`, `HANDOFF-GERMANY.md`. Read only if a decision references them. Render-pipeline reference lives at `docs/RENDER_STYLE.md` and `docs/RENDER_QUEUE.md`.
 
 ## Working rules — non-negotiables
 

@@ -1,8 +1,8 @@
 # docs/
 
-Claude oturumlarında üretilen bütüncül analizler, audit'ler, raporlar burada arşivleniyor. Her dosyanın tepesinde bir Claude Code artifact linki varsa mobilden render'lı halini görürsün; git'ten indirip herhangi bir tarayıcıda da açılır.
+Claude oturumlarında üretilen bütüncül analizler, audit'ler, raporlar; proje geçmişi arşivi ve çalışma referansları burada toplanıyor. Her dosyanın tepesinde bir Claude Code artifact linki varsa mobilden render'lı halini görürsün; git'ten indirip herhangi bir tarayıcıda da açılır.
 
-Bu klasör **Netlify deploy'a dahil değil** — sadece git'te durur, `cakiroglu.netlify.app/docs/...` gitmez (404 dönar). Sen istediğin cihazdan GitHub üzerinden erişirsin.
+Bu klasör **Vercel deploy'a dahil değil** (`.vercelignore`'da `docs/`) — sadece git'te durur, `bedirhancakiroglu.com/docs/...` gitmez (404 döner). Sen istediğin cihazdan GitHub üzerinden erişirsin.
 
 ## exports/
 
@@ -18,6 +18,21 @@ Her rapor `YYYY-MM-DD-<konu>.<ext>` formatında.
 V2 çalışması için brief ve gelen skills.md + diğer meta dosyalarının kalıcı arşivi. Sonraki oturumlar (başka bilgisayardan) buradan sırayla okuyup bağlam kurabilir.
 
 - `00-brief.md` — Bedirhan'ın 2026-07-16 tarihli V2 çalışma çerçevesi (rol, workflow, kurallar, çıktı formatı).
+
+## archive/
+
+Proje geçmişi / süreç notları. Hâlâ geçerli ama gündelik iş için gerekli değil — bir karar bunlara atıf yaparsa bak.
+
+- `MEMORY.md` — oturumlar arası kalıcı bağlam / hafıza.
+- `PROJECT_STATUS.md` — proje durum dökümü.
+- `PRIORITY.md` — öncelik listesi.
+- `KARAR-GUNLUGU.md` — karar günlüğü.
+- `HANDOFF-GERMANY.md` — Almanya'ya geçiş devir notu.
+
+## Render referansı (docs/ kökünde)
+
+- `RENDER_STYLE.md` — proje görselleri / render'lar için stil rehberi.
+- `RENDER_QUEUE.md` — render kuyruğu / yapılacaklar.
 
 ## Nasıl aç
 
