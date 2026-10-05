@@ -67,7 +67,8 @@ def replace_inner(el, value, rich=False):
             el.append(part)
 
 def plain(value):
-    return ' '.join(html.fragment_fromstring(value.replace('<br>', ' '), create_parent=True).text_content().split())
+    text = html.fragment_fromstring(value.replace('<br>', ' '), create_parent=True).text_content()
+    return ' '.join(text.replace('\u00ad', '').split())
 
 def meta(head, name, value, property=False):
     attr = 'property' if property else 'name'

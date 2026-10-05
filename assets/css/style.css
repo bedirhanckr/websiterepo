@@ -150,7 +150,21 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
   border-left: 1px solid var(--line-300);
   padding-left: 12px;
 }
+/* Mobile: keep the BC signature, smaller; the role stacks on two lines
+   ("Industrial Designer /" over "Design Engineer") so the brand block
+   stays narrow enough for the logo, language switch and menu. */
 @media (max-width: 720px){
+  .brand{ gap: 8px; }
+  .brand-signature{ font-size: 27px; padding: 0 3px 3px; }
+  .brand-print{ padding-left: 8px; white-space: nowrap; font-size: 14px; }
+  .brand small{ font-size: 9.5px; letter-spacing: 0.05em; line-height: 1.4; }
+  .brand small .rl{ display: block; }
+  .brand small .sl{ display: none; }
+  .lang-switch{ margin-left: 6px; }
+  .lang-switch :is(button, a){ padding: 4px 3px; }
+  .nav-toggle{ margin-left: 2px; }
+}
+@media (max-width: 359px){
   .brand-signature{ display: none; }
   .brand-print{ border-left: none; padding-left: 0; }
 }
@@ -1154,3 +1168,13 @@ html{ scroll-behavior: smooth; }
 .slide-figure--narrow{ max-width: 760px; margin-left: auto; margin-right: auto; }
 .sw-card .thumb.thumb--cutout{ background: color-mix(in srgb, var(--ink-900) 5%, var(--paper)); }
 .sw-card .thumb.thumb--cutout img{ object-fit: contain; padding: 7% 10%; }
+@media (max-width: 380px){
+  .brand-print{ font-size: 13.5px; }
+  .brand small{ font-size: 9px; letter-spacing: 0.04em; }
+}
+/* Long German compounds (e.g. Montagefreundlichkeit) must not push the
+   criteria table past the screen edge on phones. */
+.spec-table th, .spec-table td{ overflow-wrap: anywhere; hyphens: auto; }
+/* Long words (German compounds especially) wrap instead of widening the page. */
+body{ overflow-wrap: break-word; }
+h1, h2, h3, .h1, .h2, .h-display, .case-pager__name{ hyphens: auto; -webkit-hyphens: auto; }
