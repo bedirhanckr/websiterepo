@@ -351,16 +351,6 @@ html{ scroll-behavior: smooth; }
    "portrait on paper" motif. Subject grayscale olduğu için tema-adaptif
    koyu kart subject'i muddy gösteriyordu; sabit krem zemin bunu çözer.
    Filter yok — subject kaynak dosyadaki gibi görünür. */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .about-portrait{
-    background: #F1EDE2;
-    border-color: rgba(0, 0, 0, 0.08);
-  }
-}
-:root[data-theme="dark"] .about-portrait{
-  background: #F1EDE2;
-  border-color: rgba(0, 0, 0, 0.08);
-}
 @media (max-width: 720px){
   .hero-grid{ grid-template-columns: 1fr; gap: var(--sp-5); }
   .hero-portrait{ width: 200px; order: -1; }
@@ -373,17 +363,6 @@ html{ scroll-behavior: smooth; }
   --card: #F1EDE2;
   --paper-hero: #F6F3EC;
 }
-:root[data-theme="dark"]{
-  --card: #1A1B1E;
-  --paper-hero: #121316;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --card: #1A1B1E;
-    --paper-hero: #121316;
-  }
-}
-
 .hero--v21{ background: var(--paper-hero); padding: var(--sp-9) 0 var(--sp-8); }
 .hero--v21 .hero-grid{ grid-template-columns: 1fr 1.4fr; align-items: center; gap: var(--sp-7); }
 .hero--v21 .hero-welcome{
@@ -479,38 +458,6 @@ html{ scroll-behavior: smooth; }
   .hero--v21 .hero-media{ order: -1; }
   .hero--v21 .h-display{ font-size: clamp(32px, 8vw, 48px); }
 }
-
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .hero--v21 .portrait-chip .pic img{
-    filter: grayscale(100%) brightness(1.10) contrast(0.95);
-  }
-  :root:not([data-theme="light"]) .hero--v21 .hero-media{
-    border-color: rgba(255,255,255,0.06);
-  }
-  :root:not([data-theme="light"]) .hero--v21 .axis-tag,
-  :root:not([data-theme="light"]) .hero--v21 .axis-corner{
-    background: var(--paper-hero); border-color: rgba(255,255,255,0.08);
-  }
-  :root:not([data-theme="light"]) .hero--v21 .axis-h,
-  :root:not([data-theme="light"]) .hero--v21 .axis-v{
-    background: rgba(255,255,255,0.14);
-  }
-}
-:root[data-theme="dark"] .hero--v21 .portrait-chip .pic img{
-  filter: grayscale(100%) brightness(1.10) contrast(0.95);
-}
-:root[data-theme="dark"] .hero--v21 .hero-media{
-  border-color: rgba(255,255,255,0.06);
-}
-:root[data-theme="dark"] .hero--v21 .axis-tag,
-:root[data-theme="dark"] .hero--v21 .axis-corner{
-  background: var(--paper-hero); border-color: rgba(255,255,255,0.08);
-}
-:root[data-theme="dark"] .hero--v21 .axis-h,
-:root[data-theme="dark"] .hero--v21 .axis-v{
-  background: rgba(255,255,255,0.14);
-}
-
 .case-pager{
   display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--sp-4);
   align-items: center; padding: var(--sp-6) 0; border-top: 1px solid var(--line-100);
@@ -775,27 +722,8 @@ html{ scroll-behavior: smooth; }
 }
 
 /* ---------- Theme toggle (dark mode) ---------- */
-.theme-toggle{
-  width: 28px; height: 28px; padding: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--ink-500); margin-left: var(--sp-3);
-  border-radius: 3px;
-  transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
-}
-.theme-toggle:hover{ color: var(--ink-900); background: var(--line-100); }
-.theme-toggle .theme-icon{ display: none; }
 /* Light default → show moon (indicates "switch to dark") */
-.theme-toggle .icon-moon{ display: block; }
 /* System-dark → show sun; explicit-light override wins back */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon{ display: none; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun{ display: block; }
-}
-:root[data-theme="dark"] .theme-toggle .icon-moon{ display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-sun{ display: block; }
-:root[data-theme="light"] .theme-toggle .icon-moon{ display: block; }
-:root[data-theme="light"] .theme-toggle .icon-sun{ display: none; }
-
 /* ---------- Featured-work strip (hero'nun altında, iş görsel sinyali) ---------- */
 .featured-work{
   padding: var(--sp-5) 0 var(--sp-6);
@@ -1184,8 +1112,6 @@ html{ scroll-behavior: smooth; }
 .slide-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); align-items: start; }
 .slide-grid .slide-figure + .slide-figure{ margin-top: 0; }
 @media (max-width: 640px){ .slide-grid{ grid-template-columns: 1fr; } }
-[data-theme="dark"] .slide-figure img{ border-radius: 2px; }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .slide-figure img{ border-radius: 2px; } }
 .case-section ol.steps{ margin: 0 0 var(--sp-3); padding-left: 22px; list-style: decimal; }
 .case-section ol.steps li::marker{ font-family: var(--font-mono); font-size: var(--fs-200); color: var(--signal); }
 .case-section ol.steps li{ font-size: var(--fs-400); margin-bottom: 8px; line-height: 1.7; }
@@ -1226,3 +1152,5 @@ html{ scroll-behavior: smooth; }
 }
 .case-hero .wrap--cover{ max-width: 1180px; }
 .slide-figure--narrow{ max-width: 760px; margin-left: auto; margin-right: auto; }
+.sw-card .thumb.thumb--cutout{ background: color-mix(in srgb, var(--ink-900) 5%, var(--paper)); }
+.sw-card .thumb.thumb--cutout img{ object-fit: contain; padding: 7% 10%; }
