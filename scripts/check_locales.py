@@ -70,7 +70,9 @@ check(len(urls)==len(set(urls)),'duplicate sitemap URLs')
 for path in PAGES: check(ORIGIN+route(path) in urls,'missing sitemap page '+str(path))
 for prefix in ('','de','tr'):
     d=docs[Path(prefix)/'index.html']
-    check(len(d.xpath('//a[contains(@class,"project-card") or contains(@class,"sw-card")]'))==9,'home must retain all nine projects')
+    check(len(d.xpath('//a[contains(@class,"project-card")]'))==4,'home must list the four main portfolio projects')
+    check(len(d.xpath('//a[contains(@class,"sw-card")]'))==4,'home must list the four selected works (05.1-05.4)')
+    check(len(d.xpath('//a[contains(@class,"more-card")]'))==3,'home must list the three more-projects links')
     check(not d.xpath('//section[@class="featured-work"]'),'duplicate featured-work collection')
     check(bool(d.xpath('//*[@class="hero-actions"]/a[contains(@href,"contact")]')),'missing hero contact action')
 
@@ -82,4 +84,4 @@ subprocess.run(['python','scripts/build_locales.py'],cwd=ROOT,check=True)
 for p in tracked:check(before[p]==hashlib.sha256(p.read_bytes()).hexdigest(),'generation drift: '+str(p.relative_to(ROOT)))
 if errors:
     raise SystemExit('\n'.join(errors))
-print(f'PASS: {len(PAGES)} pages; metadata, reciprocal alternates, links/assets, anchors, language-preserving navigation, nine projects and reproducible generation.')
+print(f'PASS: {len(PAGES)} pages; metadata, reciprocal alternates, links/assets, anchors, language-preserving navigation, eleven home project links and reproducible generation.')

@@ -136,8 +136,8 @@ for source in PAGES:
             title=plain(etree.tostring(heading,encoding='unicode',method='html',with_tail=False))+' | Bedirhan Çakıroğlu'
             lede=doc.xpath('//*[@data-i18n and contains(@data-i18n,".lede")]')[0].text_content()
             description=' '.join(lede.split())
-            if len(description)>190:
-                description=description[:187].rsplit(' ',1)[0]+'…'
+            if len(description)>155:
+                description=description[:153].rsplit(' ',1)[0].rstrip(',;:')+'…'
         head.find('title').text=title
         meta(head,'description',description)
         for name,value in [('og:title',title),('og:description',description),('og:url',url),('og:locale',LOCALES[lang])]:meta(head,name,value,True)

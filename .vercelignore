@@ -13,7 +13,8 @@ netlify-linux.zip
 CV-*.pdf
 __pycache__/
 
-# NOTE: assets/img/Automotive Design/ and assets/img/Kickboard projesi/ are
-# NOT excluded. Although they aren't linked from the public pages, the full
-# portfolio deck (pdf/deck-legacy.html, the "Other Selected Work" slides)
-# references them, so they must deploy or those slides show broken images.
+# Image folders no public page references any more (the legacy HTML deck and
+# the Retroscent case study were removed in Oct 2026). Kept in git.
+assets/img/Automotive Design/
+assets/img/Kickboard projesi/
+assets/img/retroscent/

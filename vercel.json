@@ -10,7 +10,14 @@
     },
     { "source": "/about.html", "destination": "/#about", "permanent": true },
     { "source": "/about",      "destination": "/#about", "permanent": true },
-    { "source": "/pdf",        "destination": "/pdf/Bedirhan-Cakiroglu-Portfolio-2027.pdf", "permanent": false }
+    { "source": "/pdf",        "destination": "/pdf/Bedirhan-Cakiroglu-Portfolio-2027.pdf", "permanent": false },
+    { "source": "/pdf/deck-legacy.html", "destination": "/pdf", "permanent": true },
+    { "source": "/work/rex-tank.html",     "destination": "/work/peanut.html",    "permanent": true },
+    { "source": "/de/work/rex-tank.html",  "destination": "/de/work/peanut.html", "permanent": true },
+    { "source": "/tr/work/rex-tank.html",  "destination": "/tr/work/peanut.html", "permanent": true },
+    { "source": "/work/retroscent.html",    "destination": "/#work",    "permanent": true },
+    { "source": "/de/work/retroscent.html", "destination": "/de#work", "permanent": true },
+    { "source": "/tr/work/retroscent.html", "destination": "/tr#work", "permanent": true }
   ],
   "headers": [
     {
@@ -19,7 +26,8 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" },
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
       ]
     },
     {
