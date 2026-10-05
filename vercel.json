@@ -9,14 +9,21 @@
       "permanent": true
     },
     { "source": "/about.html", "destination": "/#about", "permanent": true },
-    { "source": "/about",      "destination": "/#about", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/pdf", "destination": "/pdf/index.html" }
+    { "source": "/about",      "destination": "/#about", "permanent": true },
+    { "source": "/pdf",        "destination": "/pdf/Bedirhan-Cakiroglu-Portfolio-2027.pdf", "permanent": false }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/(.*)\\.pdf",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/((?!.*\\.pdf).*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
