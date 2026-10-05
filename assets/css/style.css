@@ -1168,3 +1168,61 @@ html{ scroll-behavior: smooth; }
   .sw-card .thumb img,
   .sw-card .sw-detail{ transition: none; }
 }
+
+/* ---------- 12. Portfolio sync (Oct 2026) ---------- */
+/* Slide figures taken from the PDF portfolio. Text column stays narrow, the
+   figure gets the wider page column so slide labels stay legible. */
+.case-section .wrap.wrap--media{ max-width: 1180px; margin-top: var(--sp-4); }
+.slide-figure{ margin: 0; }
+.slide-figure + .slide-figure{ margin-top: var(--sp-4); }
+.slide-figure a{ display: block; cursor: zoom-in; }
+.slide-figure img{ display: block; width: 100%; height: auto; background: #FFFFFF; }
+.slide-figure figcaption{
+  margin-top: var(--sp-2); font-family: var(--font-mono); font-size: var(--fs-100);
+  letter-spacing: 0.04em; color: var(--ink-500);
+}
+.slide-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); align-items: start; }
+.slide-grid .slide-figure + .slide-figure{ margin-top: 0; }
+@media (max-width: 640px){ .slide-grid{ grid-template-columns: 1fr; } }
+[data-theme="dark"] .slide-figure img{ border-radius: 2px; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .slide-figure img{ border-radius: 2px; } }
+.case-section ol.steps{ margin: 0 0 var(--sp-3); padding-left: 22px; list-style: decimal; }
+.case-section ol.steps li::marker{ font-family: var(--font-mono); font-size: var(--fs-200); color: var(--signal); }
+.case-section ol.steps li{ font-size: var(--fs-400); margin-bottom: 8px; line-height: 1.7; }
+.case-hero .case-cover{ margin-top: var(--sp-5); }
+.case-hero .case-cover img{ display: block; width: 100%; height: auto; }
+.case-note{ font-family: var(--font-mono); font-size: var(--fs-100); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-500); margin-top: var(--sp-3); }
+.ext-link{ text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home: numbered project cards with product cut-outs, as in the PDF index */
+.project-card{ grid-template-columns: 300px 1fr auto; }
+.project-card .thumb.thumb--cutout{ background: color-mix(in srgb, var(--ink-900) 5%, var(--paper)); }
+.project-card .thumb.thumb--cutout img{ object-fit: contain; padding: 6% 8%; }
+.project-card .pc-num, .sw-card .pc-num{
+  font-family: var(--font-mono); font-size: var(--fs-200); color: var(--signal);
+  font-variant-numeric: tabular-nums; margin-right: 10px;
+}
+.sw-card h3 .pc-num{ font-size: var(--fs-100); }
+@media (max-width: 720px){ .project-card{ grid-template-columns: 1fr; } }
+
+.more-projects{ margin-top: var(--sp-7); }
+.more-projects .more-head{ display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+.more-grid{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); }
+.more-card{ display: grid; grid-template-columns: 96px 1fr; gap: var(--sp-3); align-items: center; color: inherit; text-decoration: none; padding: var(--sp-2) 0; border-top: 1px solid var(--line-100); }
+.more-card .thumb{ aspect-ratio: 4/3; overflow: hidden; background: var(--surface); border: 1px solid var(--line-100); }
+.more-card .thumb img{ width: 100%; height: 100%; object-fit: cover; }
+.more-card h3{ font-size: var(--fs-300); font-weight: 600; margin: 0 0 2px; }
+.more-card p{ font-size: var(--fs-200); color: var(--ink-500); margin: 0; line-height: 1.45; }
+.more-card:hover h3{ color: var(--signal); }
+@media (max-width: 720px){ .more-grid{ grid-template-columns: 1fr; } }
+
+/* Printing a case study must show every section, not only the ones that
+   were scrolled into view. */
+@media print{
+  [data-reveal]{ opacity: 1 !important; transform: none !important; }
+  .case-subnav, .site-header .lang-switch, .theme-toggle, .nav-toggle, .consent-banner{ display: none !important; }
+  .case-outcome{ background: none !important; color: #111214 !important; }
+  .case-outcome h2, .case-outcome p{ color: #111214 !important; }
+}
+.case-hero .wrap--cover{ max-width: 1180px; }
+.slide-figure--narrow{ max-width: 760px; margin-left: auto; margin-right: auto; }
