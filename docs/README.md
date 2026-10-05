@@ -12,6 +12,7 @@ Her rapor `YYYY-MM-DD-<konu>.<ext>` formatında.
 |-------------|----------------------------|------|--------|
 | 2026-07-14  | Site audit (v1)            | HTML | 6 güçlü yön, 13 bulgu, 22-madde checklist, 3 blok aksiyon planı, motion planı. Claude Code artifact: https://claude.ai/code/artifact/d2a80f93-07c1-4b7c-9741-e1835209c2af |
 | 2026-07-16  | Redesign V2 — audit & roadmap | HTML | Kod dokunulmadan yapılan 20-madde audit + design review (10 bölüm, rating), 6-ilkelik design direction, V2.1→V2.7 iterasyon planı (her sürüm tek bölüm), problems + opportunities + risks. Claude Code artifact: https://claude.ai/code/artifact/2cdbd17b-7e18-497e-9dd7-5fda53d472f5 |
+| 2026-10-05  | Site taraması + PDF portfolyo senkronu | HTML | 38 sayfa tarama, 11 PDF↔site tutarsızlığı, portfolyo sırasına göre ana sayfa yapısı (01–04 + 05.1–05.4 + More projects), proje bazında slayt → case study planı, görsel denetim tablosu, teknik/SEO bulguları, ASELSAN mülakatı öncesi yol haritası. Claude Code artifact: https://claude.ai/artifact/DWiQMh4V1kZK7foo6LqofZ |
 
 ## redesign-v2/
 

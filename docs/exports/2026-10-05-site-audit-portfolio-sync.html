@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Claude Code artifact: https://claude.ai/artifact/DWiQMh4V1kZK7foo6LqofZ -->
+<title>Site ve Portfolyo Raporu</title>
+<meta name="description" content="bedirhancakiroglu.com tam taraması: PDF portfolyo ile tutarsızlıklar, portfolyo sırasına göre site yapısı, proje bazında slayt → case study güncelleme planı, görsel denetim, teknik bulgular ve Cuma öncesi yol haritası.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: single reading column (max 980px). Sections: verdict + stats, P0 list, inconsistency table,
+     site order (before/after), project cards, visual audit table, tech table, roadmap, process, open questions. */
+  :root{
+    --bg:#FCFCFB; --surface:#FFFFFF; --ink:#111214; --ink-2:#3A3D42; --muted:#6B6F76; --faint:#A6A9AE;
+    --line:#ECEBE8; --line-2:#DAD8D3; --signal:#C1401F; --signal-bg:#FBEDE8; --chip:#F3F2EF;
+    --sans:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --bg:#121315; --surface:#191A1D; --ink:#ECEBE8; --ink-2:#C9C8C4; --muted:#9A9A97; --faint:#6E6F72;
+    --line:#26272A; --line-2:#34353A; --signal:#E2643F; --signal-bg:#2A1913; --chip:#222326; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#121315; --surface:#191A1D; --ink:#ECEBE8; --ink-2:#C9C8C4; --muted:#9A9A97; --faint:#6E6F72;
+    --line:#26272A; --line-2:#34353A; --signal:#E2643F; --signal-bg:#2A1913; --chip:#222326; color-scheme:dark;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.6;
+        -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .wrap{ max-width:980px; margin:0 auto; padding:40px 16px 96px; }
+  a{ color:inherit; text-decoration-color:var(--line-2); text-underline-offset:3px; }
+  a:hover{ text-decoration-color:var(--signal); }
+  code{ font-family:var(--mono); font-size:.86em; background:var(--chip); padding:1px 5px; border-radius:3px; word-break:break-word; }
+
+  /* header */
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  h1{ font-size:clamp(30px,5.2vw,46px); line-height:1.06; letter-spacing:-.022em; font-weight:800; margin:14px 0 18px; text-wrap:balance; }
+  .lede{ font-size:17.5px; line-height:1.55; color:var(--ink-2); max-width:760px; margin:0; }
+  .scope{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:18px; line-height:1.7; }
+
+  .stats{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2); margin:34px 0 8px; }
+  .stat{ padding:16px 12px 14px 0; }
+  .stat b{ display:block; font-size:26px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .stat span{ font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); line-height:1.4; display:block; margin-top:2px; }
+  @media (max-width:760px){ .stats{ grid-template-columns:repeat(3,minmax(0,1fr)); } .stat{ border-bottom:1px solid var(--line); } }
+
+  nav.toc{ margin:26px 0 0; display:flex; flex-wrap:wrap; gap:6px 18px; font-family:var(--mono); font-size:12.5px; }
+  nav.toc a{ color:var(--muted); text-decoration:none; }
+  nav.toc a:hover{ color:var(--signal); }
+  nav.toc a span{ color:var(--signal); margin-right:5px; }
+
+  /* sections */
+  section{ margin-top:68px; scroll-margin-top:16px; }
+  .sh{ display:flex; gap:14px; align-items:baseline; border-top:1.5px solid var(--ink); padding-top:14px; margin-bottom:18px; }
+  .sh .n{ font-family:var(--mono); font-size:13px; color:var(--signal); font-weight:500; }
+  h2{ font-size:24px; line-height:1.2; letter-spacing:-.012em; font-weight:700; margin:0; text-wrap:balance; }
+  h3{ font-size:18px; line-height:1.3; font-weight:700; margin:0; letter-spacing:-.008em; }
+  p{ margin:0 0 12px; }
+  .intro{ color:var(--ink-2); max-width:780px; }
+  ul.clean{ margin:8px 0 0; padding-left:18px; }
+  ul.clean li{ margin:4px 0; }
+  .muted{ color:var(--muted); }
+
+  /* priority chips */
+  .p{ display:inline-block; font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.06em; padding:2px 6px; border-radius:3px; white-space:nowrap; vertical-align:1px; }
+  .p0{ background:var(--signal); color:#fff; }
+  .p1{ border:1px solid var(--signal); color:var(--signal); padding:1px 5px; }
+  .p2{ background:var(--chip); color:var(--muted); }
+  .tc{ font-family:var(--mono); font-size:11.5px; color:var(--signal); white-space:nowrap; }
+
+  /* P0 blocks */
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:760px){ .two{ grid-template-columns:1fr; } }
+  .box{ background:var(--surface); border:1px solid var(--line-2); border-radius:6px; padding:18px 18px 14px; }
+  .box h3{ display:flex; justify-content:space-between; gap:10px; align-items:baseline; margin-bottom:4px; }
+  .box .who{ font-family:var(--mono); font-size:11.5px; color:var(--muted); font-weight:400; white-space:nowrap; }
+  ol.steps{ margin:10px 0 0; padding-left:20px; }
+  ol.steps li{ margin:7px 0; padding-left:2px; }
+  ol.steps li::marker{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+
+  /* tables */
+  .tbl{ overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line-2); border-radius:6px; background:var(--surface); }
+  table{ border-collapse:collapse; width:100%; min-width:720px; font-size:14px; line-height:1.5; }
+  th{ text-align:left; font-family:var(--mono); font-weight:500; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+      padding:11px 12px; border-bottom:1px solid var(--line-2); background:var(--chip); vertical-align:bottom; }
+  td{ padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-2); }
+  tr:last-child td{ border-bottom:0; }
+  td:first-child{ color:var(--ink); font-weight:600; }
+  td.f{ font-family:var(--mono); font-size:12px; font-weight:400; word-break:break-word; }
+  .q{ color:var(--ink); }
+  .hint{ font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-top:8px; }
+
+  /* order before/after */
+  .order{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:760px){ .order{ grid-template-columns:1fr; } }
+  .col-h{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .grp{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin:14px 0 6px; }
+  .row{ display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px solid var(--line); }
+  .row .no{ font-family:var(--mono); font-size:12.5px; color:var(--signal); width:42px; flex:none; font-variant-numeric:tabular-nums; }
+  .row .nm{ font-weight:600; }
+  .row .nt{ margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--muted); text-align:right; }
+  .old .row .no{ color:var(--faint); }
+  .old .row .nm{ font-weight:500; color:var(--ink-2); }
+  .flag{ color:var(--signal); }
+  .chain{ font-family:var(--mono); font-size:12.5px; line-height:1.9; color:var(--ink-2); background:var(--surface); border:1px solid var(--line-2); border-radius:6px; padding:12px 14px; margin-top:8px; word-break:break-word; }
+  .chain b{ color:var(--ink); font-weight:500; }
+
+  /* project cards */
+  .proj{ border:1px solid var(--line-2); border-radius:6px; background:var(--surface); margin-top:16px; overflow:hidden; }
+  .proj-h{ display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline; padding:16px 18px 12px; border-bottom:1px solid var(--line); }
+  .proj-h .no{ font-family:var(--mono); font-size:13px; color:var(--signal); font-weight:500; }
+  .proj-h .meta{ margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--muted); }
+  .proj-b{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .proj-b > div{ padding:14px 18px 16px; border-right:1px solid var(--line); font-size:14.2px; color:var(--ink-2); }
+  .proj-b > div:last-child{ border-right:0; }
+  .proj-b .lab{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .proj-b ul{ margin:0; padding-left:16px; }
+  .proj-b li{ margin:4px 0; }
+  .proj-f{ padding:11px 18px 13px; border-top:1px solid var(--line); background:var(--chip); font-size:13.5px; color:var(--ink-2); }
+  .proj-f b{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); font-weight:500; margin-right:6px; }
+  @media (max-width:820px){ .proj-b{ grid-template-columns:1fr; } .proj-b > div{ border-right:0; border-bottom:1px solid var(--line); } .proj-b > div:last-child{ border-bottom:0; } }
+
+  /* roadmap */
+  .road{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:760px){ .road{ grid-template-columns:1fr; } }
+  .day{ padding:10px 0 10px; border-bottom:1px solid var(--line); }
+  .day .d{ font-family:var(--mono); font-size:11.5px; color:var(--signal); letter-spacing:.04em; }
+  .day p{ margin:3px 0 0; color:var(--ink-2); font-size:14.5px; }
+
+  .callout{ border-left:3px solid var(--signal); background:var(--signal-bg); padding:14px 16px; border-radius:0 6px 6px 0; margin-top:18px; color:var(--ink-2); }
+  .callout b{ color:var(--ink); }
+
+  ol.qs{ margin:0; padding-left:22px; }
+  ol.qs li{ margin:9px 0; padding-left:4px; }
+  ol.qs li::marker{ font-family:var(--mono); color:var(--signal); font-size:13px; }
+
+  footer{ margin-top:72px; padding-top:14px; border-top:1px solid var(--line-2); font-family:var(--mono); font-size:11.5px; color:var(--muted); line-height:1.8; }
+</style>
+</head>
+<body>
+<div class="wrap" lang="tr">
+
+  <header>
+    <div class="eyebrow"><span style="text-transform:none">bedirhancakiroglu.com</span> · Tam site taraması · 5 Ekim 2026</div>
+    <h1>Site sağlam, ama PDF portfolyonun gerisinde kaldı</h1>
+    <p class="lede">Teknik taraf temiz: kırık link yok, kırık görsel yok, üç dil eksiksiz. Asıl sorun içerikte. PDF'te 01 Pioneer → 02 Rockhounder → 03 Herptile → 04 Peanut → 05 Selected Works sırası, yeni görseller ve yeni projeler var. Site ise hâlâ eski sırayı, eski adı (REX), eski rengi (mor Rockhounder) gösteriyor; iki ödül/yarışma ifadesi de PDF ile çelişiyor. ASELSAN paneli ikisini yan yana açarsa ilk fark edeceği şey bu tutarsızlıklar olur.</p>
+    <div class="scope">Kapsam: main @ 4df9577 (Vercel'in yayınladığı kod) · 38 sayfa × EN/DE/TR · 48 sayfalık PDF portfolyo<br>Not: Bu ortamdan canlı siteye erişim kapalı. Ölçümler aynı kodun yerel kopyasında yapıldı.</div>
+
+    <div class="stats">
+      <div class="stat"><b>38</b><span>sayfa tarandı</span></div>
+      <div class="stat"><b>0</b><span>kırık iç link</span></div>
+      <div class="stat"><b>0</b><span>kırık görsel</span></div>
+      <div class="stat"><b>549×3</b><span>çeviri anahtarı, eksiksiz</span></div>
+      <div class="stat"><b>11</b><span>PDF ↔ site tutarsızlığı</span></div>
+      <div class="stat"><b>0.9–1.7</b><span>MB sayfa ağırlığı</span></div>
+    </div>
+
+    <nav class="toc" aria-label="İçindekiler">
+      <a href="#once"><span>01</span>Cuma'dan önce</a>
+      <a href="#tutarsiz"><span>02</span>PDF ↔ site</a>
+      <a href="#sira"><span>03</span>Sıralama</a>
+      <a href="#projeler"><span>04</span>Proje planları</a>
+      <a href="#gorsel"><span>05</span>Görsel denetim</a>
+      <a href="#teknik"><span>06</span>Teknik</a>
+      <a href="#yol"><span>07</span>Yol haritası</a>
+      <a href="#nasil"><span>08</span>Uygulama</a>
+      <a href="#sorular"><span>09</span>Açık sorular</a>
+    </nav>
+  </header>
+
+  <!-- 01 -->
+  <section id="once">
+    <div class="sh"><span class="n">01</span><h2>Cuma'dan önce yapılacaklar</h2></div>
+    <p class="intro">Mülakat 9 Ekim Cuma, 12:00 (Almanya). Aşağıdakiler küçük işler ama panelin göreceği yerde duruyor. Bunların dışındaki her şey Cuma'dan sonraya kalabilir.</p>
+    <div class="two">
+      <div class="box">
+        <h3>A · PDF revizyonu <span class="who">sen · tek export · ~1 saat</span></h3>
+        <ol class="steps">
+          <li><b>Rockhounder ödülü</b>: p16 "Best Graduation Project Award" ve p25 "Award-Winning Design", sitedeki "2nd Prize" ile çelişiyor. Doğru olanı iki yerde de aynı yaz. <span class="tc">[TO CONFIRM]</span></li>
+          <li><b>Yarışma adı</b>: p15 "TAC Challenge · Norway", site ve CV'de "MATE ROV Competition (Norway)". Tek bir resmi ad seç. <span class="tc">[TO CONFIRM]</span></li>
+          <li><b>TUS paftası (p41)</b>: TUS'un antetli üretim çizimi (adres, telefon, CAD başlığı) ve müşteri adları (Carl Zeiss AG, Stayery). İzin yoksa anteti kırp. Savunma sanayi paneli gizlilik refleksine bakar.</li>
+          <li><b>Yazım</b>: p10 "architechture", p16 "froms ﬁeld", p21 "ARCHITECHTURE", p24 "DEFINITON / Deﬁniton", p11 "vehicle`s" ve p30 "reformer`s" (ters tırnak yerine ’).</li>
+          <li><b>p3 İçindekiler</b>: üst satırda "2026" yazıyor, kapak ve footer "Portfolio 2027". Bu benim hatam, 2027 olacak.</li>
+          <li><b>p48 telefonlar</b>: PDF herkese açık bir adreste. İki numara web versiyonunda kalsın mı? Karar senin (bkz. 09).</li>
+        </ol>
+      </div>
+      <div class="box">
+        <h3>B · Site düzeltmeleri <span class="who">ben · tek PR · onayınla</span></h3>
+        <ol class="steps">
+          <li><b>Mecanum hatası</b>: Peanut sayfası "Mecanum wheel and sensor placement" diyor, robot paletli. EN/DE/TR, iki cümle.</li>
+          <li><b>REX → Peanut</b>: ana sayfa kartı ve case study başlığı PDF'teki adla aynı olsun, "REX" iç ad olarak alt satırda kalsın.</li>
+          <li><b>Sıra</b>: ana sayfa 01 Pioneer · 02 Rockhounder · 03 Herptile · 04 Peanut. Razor "More projects"e iner. Selected Works kartları PDF'teki 05 ile aynı olur (bkz. 03).</li>
+          <li><b>Almanca</b>: ana sayfada "German (B1)", CV ve PDF'te "B1–B2 (in progress)". Siteyi eşitle.</li>
+          <li><b>Yazdırma</b>: case study'ler Ctrl+P ile basılınca bölümlerin çoğu boş çıkıyor (Herptile A4: 8 sayfanın 5'i boş). Tek satır CSS.</li>
+          <li><b>Ana sayfa küçük görselleri</b>: Herptile kartı yazılı bir slayt kırpıntısı, Rockhounder kartı eski mor çanta. PDF görselleriyle değişir. Bunun için senden export lazım.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section id="tutarsiz">
+    <div class="sh"><span class="n">02</span><h2>PDF ↔ site tutarsızlıkları</h2></div>
+    <p class="intro">Panel PDF'i başvurudan, siteyi linkten açacak. Aynı bilgi iki yerde farklı yazıyorsa hangisinin doğru olduğu sorulur. Bu tabloda bir kural var: hiçbir bilgiyi ben seçmiyorum, doğru olanı sen söylüyorsun.</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:15%">Konu</th><th style="width:25%">PDF'te</th><th style="width:25%">Sitede / CV'de</th><th>Öneri</th><th style="width:52px">Önc.</th></tr></thead>
+      <tbody>
+        <tr><td>Rockhounder ödülü</td><td>p16 "Best Graduation Project Award"; p25 "From Graduation Project to Award-Winning Design"</td><td>"ITU Graduation Project, 2nd Prize"; "ITÜ 2nd Best Graduation Project" (ana sayfa, case study, CV)</td><td>Hangisi doğruysa iki yerde de o yazsın. 2. ise PDF'e örneğin "2nd Prize · ITU Graduation Projects 2023".</td><td><span class="p p0">P0</span></td></tr>
+        <tr><td>ROV yarışması</td><td>p15 "Vehicle: EXPLORER · TAC Challenge · Norway · 3rd Place"</td><td>"MATE ROV Competition (Norway), 3rd place" (ana sayfa, Pioneer JSON-LD, CV × 3 dil)</td><td>Yarışmanın resmi adını teyit et, iki yerde aynı isim geçsin.</td><td><span class="p p0">P0</span></td></tr>
+        <tr><td>Robotun adı</td><td>"Peanut — Mini Tracked Robot"; p38 "REX… commercially launched by Robotistan as Peanut"</td><td>"REX: Tracked Mini Robot Kit", URL <code>/work/rex-tank.html</code></td><td>Başlık "Peanut: Mini Tracked Robot", altında "internal name REX". URL <code>/work/peanut.html</code>, eski adres 301 ile yönlenir.</td><td><span class="p p0">P0</span></td></tr>
+        <tr><td>Hareket sistemi</td><td>p35 "Tracked drive", "differential tracked drive"</td><td>"Mecanum wheel and sensor placement" / "A mecanum wheel system was chosen for mobility" (EN/DE/TR)</td><td>Olgu hatası. Paletli sürüş olarak düzelt.</td><td><span class="p p0">P0</span></td></tr>
+        <tr><td>Pioneer'daki rolün</td><td>p4 "Role: Mechanical &amp; Product Designer"; p5 "My contribution" listesi (01–05)</td><td>Site: "The Pioneer MKII nose module design is mine". CV: "Designed the external hull… including the nose module and mid-body compartment"</td><td>Üç farklı ifade var. Tek cümlede birleştir, sitede p5 listesini aynen kullan. Mülakatta muhtemelen ilk sorulacak şey bu.</td><td><span class="p p0">P0</span></td></tr>
+        <tr><td>Almanca</td><td>CV slaytı: "B1–B2 (in progress)"</td><td>Ana sayfa Capabilities: "German (B1)". Site CV: "B1-B2 (developing)"</td><td>Üçünde de "B1–B2 (in progress)".</td><td><span class="p p0">P0</span></td></tr>
+        <tr><td>Robotistan süresi</td><td>p34 "Robotistan Product Development Internship 2022 · Duration 4 weeks"</td><td>CV: "Product Design Intern, Feb 2022 – Aug 2022"</td><td>Çelişki değil ama soru doğurur. PDF'te "Project duration: 4 weeks" yaz.</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>TUS proje sayısı</td><td>p39 "workflow over +150 Projects"</td><td>CV: "Over 150 steel-construction designs realized in production since 2023"</td><td>PDF'te "150+ projects" ("over" ile "+" birlikte olmaz).</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>Portfolyo yılı</td><td>p3 "Portfolio · Bedirhan Çakıroğlu · 2026"</td><td>Kapak ve tüm footer'lar "Portfolio 2027"</td><td>p3'ü 2027 yap.</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>Pioneer yazımı</td><td>p4 "Pioneer MK II"; p3 "Pioneer MKII"</td><td>"Pioneer MKII"</td><td>Birini seç. Site ve içindekiler "MKII" kullanıyor.</td><td><span class="p p2">P2</span></td></tr>
+        <tr><td>Behance</td><td>p47 "behance.net/bedirhanckr"</td><td>Sitede ve CV'de Behance linki yok</td><td>Behance güncelse siteye ekle, değilse PDF'ten çıkar.</td><td><span class="p p2">P2</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 03 -->
+  <section id="sira">
+    <div class="sh"><span class="n">03</span><h2>Site sırası = portfolyo sırası</h2></div>
+    <p class="intro">PDF'ten siteye geçen biri aynı projeyi aynı numarada bulmalı. Kartlarda PDF'teki numaralar (01–04, 05.1–05.4) aynen kullanılır. Aynı sıra DE/TR sayfalarında, case study'lerin "önceki / sonraki" linklerinde ve sitemap'te de uygulanır.</p>
+    <div class="order">
+      <div class="old">
+        <div class="col-h">Şimdi (ana sayfa)</div>
+        <div class="grp">Work</div>
+        <div class="row"><span class="no">—</span><span class="nm">Pioneer MKII</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">Rockhounder</span><span class="nt">mor çanta</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">REX</span><span class="nt flag">yanlış ad · 3. sırada</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">Herptile</span><span class="nt flag">4. sırada · slayt kırpıntısı</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">Electric Razor</span><span class="nt flag">PDF'te ana projelerde yok</span></div>
+        <div class="grp">Selected works</div>
+        <div class="row"><span class="no">—</span><span class="nm">Delta</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">Urn</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">Retroscent</span></div>
+        <div class="row"><span class="no">—</span><span class="nm">Spiegelau</span></div>
+        <div class="row"><span class="no">—</span><span class="nm muted">TUS · F1 · Sehpa</span><span class="nt flag">sitede yok</span></div>
+      </div>
+      <div>
+        <div class="col-h">Olması gereken (PDF ile aynı)</div>
+        <div class="grp">Selected Work · büyük kartlar</div>
+        <div class="row"><span class="no">01</span><span class="nm">Pioneer MKII</span><span class="nt">PDF p4–15</span></div>
+        <div class="row"><span class="no">02</span><span class="nm">Rockhounder</span><span class="nt">p16–25</span></div>
+        <div class="row"><span class="no">03</span><span class="nm">Herptile</span><span class="nt">p26–33</span></div>
+        <div class="row"><span class="no">04</span><span class="nm">Peanut Mini Robot</span><span class="nt">p34–38</span></div>
+        <div class="grp">05 Selected Works · kompakt kartlar</div>
+        <div class="row"><span class="no">05.1</span><span class="nm">TUS Metallbau</span><span class="nt">p40–43 · yeni sayfa</span></div>
+        <div class="row"><span class="no">05.2</span><span class="nm">F1 SIM Steering Wheel</span><span class="nt">p44 · yeni sayfa</span></div>
+        <div class="row"><span class="no">05.3</span><span class="nm">Coffee Table</span><span class="nt">p45 · yeni sayfa</span></div>
+        <div class="row"><span class="no">05.4</span><span class="nm">Spiegelau</span><span class="nt">p46 · mevcut</span></div>
+        <div class="grp">More projects · tek satır</div>
+        <div class="row"><span class="no">+</span><span class="nm">Electric Razor · Delta · Urn · Retroscent</span><span class="nt">p47</span></div>
+      </div>
+    </div>
+
+    <p style="margin-top:22px"><b>Case study'ler arası önceki / sonraki zinciri</b></p>
+    <div class="chain">Şimdi: Pioneer → Rockhounder → REX → Delta → Razor → Herptile → Urn → Retroscent → Spiegelau → Pioneer</div>
+    <div class="chain"><b>Olmalı:</b> <b>Pioneer → Rockhounder → Herptile → Peanut</b> → TUS → F1 → Sehpa → Spiegelau → Razor → Delta → Urn → Retroscent → Pioneer</div>
+    <p class="hint">Geçici çözüm: TUS / F1 / Sehpa sayfaları hazır olana kadar kartlar PDF'in ilgili sayfasını açar: <code>/pdf/Bedirhan-Cakiroglu-Portfolio-2027.pdf#page=40</code> (TUS), <code>#page=44</code> (F1), <code>#page=45</code> (Sehpa). Böylece sıra bu hafta düzelir, sayfalar Cuma'dan sonra gelir.</p>
+  </section>
+
+  <!-- 04 -->
+  <section id="projeler">
+    <div class="sh"><span class="n">04</span><h2>Proje bazında: slaytlar case study'lere nasıl taşınır</h2></div>
+    <p class="intro">Genel kural: sitenin case study'leri süreç anlatımında PDF'ten güçlü (problem → karar → doğrulama). PDF ise görsel olarak güncel ve teknik detayda daha zengin. Siteyi PDF'e çevirmiyoruz. Hikâye sitede kalıyor, PDF'in yeni görselleri ve teknik bölümleri bu hikâyeye ekleniyor. Görseller slayttan kırpılmaz, kaynak dosyadan yazısız export edilir (bkz. 08).</p>
+
+    <!-- Pioneer -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">01</span><h3>Pioneer MKII</h3><span class="meta">site: 13 bölüm · 15 görsel  |  PDF: p4–15 · 12 slayt</span></div>
+      <div class="proj-b">
+        <div><div class="lab">Sitede şimdi</div><ul>
+          <li>CAD render'ları (<code>cad-render-01…05</code>, <code>exploded-01…03</code>) doygun turkuaz zeminde. Ne sitenin ne PDF'in tonuyla uyuşuyor.</li>
+          <li><code>bracket-detail</code>: turkuaz üstünde pembe parça, 1036 px.</li>
+          <li>Havuz ve TEKNOFEST fotoğrafları 683–1024 px, ekranda 1286 px'e büyüyor.</li>
+          <li>Karbon fiber, M8 bağlantı çubukları, sökülebilirlik sitede hiç geçmiyor.</li>
+        </ul></div>
+        <div><div class="lab">PDF'te var</div><ul>
+          <li>p5 Brief + "My contribution" haritası</li>
+          <li>p6 Keşif eskizleri</li>
+          <li>p7 Sensör mimarisi, 3 adım</li>
+          <li>p8 Şeffaf iç mimari</li>
+          <li>p9 M8 bağlantı çubukları gövde içinde</li>
+          <li>p10 Sökülebilirlik</li>
+          <li>p11 Karbon fiber kuyruklar</li>
+          <li>p12–13 Final dış form + mühendislik özeti</li>
+          <li>p14 Explorer · p15 takım yılı + TEKNOFEST</li>
+        </ul></div>
+        <div><div class="lab">Plan</div><ul>
+          <li>Turkuaz render'ların yerine PDF render'ları, tüm sayfada tek ton.</li>
+          <li>"Modeling the form…" bölümünden sonra 5 yeni bölüm: sensör mimarisi (p7), iç mimari (p8), M8 çubuklar (p9), sökülebilirlik (p10), karbon kuyruklar (p11).</li>
+          <li>"Result" bölümüne p12 + p13 özet listesi, görsel değil HTML liste olarak.</li>
+          <li>Sona kısa bir "Also on the team: Explorer" bloğu (p14).</li>
+          <li>Rol cümlesi tekleşir (bkz. 02).</li>
+        </ul></div>
+      </div>
+      <div class="proj-f"><b>Senden lazım</b>p6–p13 render'ları yazısız (≥2400 px uzun kenar). Varsa havuz ve TEKNOFEST fotoğraflarının orijinalleri.</div>
+    </article>
+
+    <!-- Rockhounder -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">02</span><h3>Rockhounder</h3><span class="meta">site: 12 bölüm · 6 görsel  |  PDF: p16–25 · 10 slayt</span></div>
+      <div class="proj-b">
+        <div><div class="lab">Sitede şimdi</div><ul>
+          <li>3 görsel eski slaytlardan kırpılmış, başlıklar resmin içinde: "02 Concept", "04 Drawings Rockbag", "07 Appendix Model Plans".</li>
+          <li>Sonuç render'ı ve ana sayfa kartı mor çanta. PDF'teki final gri/sarı, iki farklı ürün gibi görünüyor.</li>
+          <li>Uygulama metinde 15 kez geçiyor ama tek bir ekran görüntüsü yok.</li>
+          <li><code>use-scenario</code> 1152×540 px.</li>
+        </ul></div>
+        <div><div class="lab">PDF'te var</div><ul>
+          <li>p16 Arazide kapak fotoğrafı</li>
+          <li>p17 Problemler, 4 adımlı senaryo, persona</li>
+          <li>p18–19 Eskizler</li>
+          <li>p20 Uygulama ekranları</li>
+          <li>p21 Çanta mimarisi + alet kutusu</li>
+          <li>p22 Kalıp → kâğıt maket → dikiş</li>
+          <li>p23 Arazide kullanım dizisi</li>
+          <li>p24 Teknik tanım, ortografik</li>
+          <li>p25 Jüri sunumu</li>
+        </ul></div>
+        <div><div class="lab">Plan</div><ul>
+          <li>3 slayt kırpıntısının yerine p18 / p19 / p24.</li>
+          <li>Yeni hero: p16 veya p21 (gri/sarı). Ana sayfa kartı da değişir.</li>
+          <li>Yeni "App" bölümü, p20 ekranlarıyla.</li>
+          <li>p23 kullanım dizisi <code>use-scenario</code>'nun yerine geçer.</li>
+          <li>Ödül ifadesi düzeltilir (bkz. 02).</li>
+        </ul></div>
+      </div>
+      <div class="proj-f"><b>Senden lazım</b>p16, p18–p24 kaynak görselleri. Uygulama ekranları ayrı PNG olarak.</div>
+    </article>
+
+    <!-- Herptile -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">03</span><h3>Herptile</h3><span class="meta">site: 10 bölüm · 7 görsel  |  PDF: p26–33 · 8 slayt</span></div>
+      <div class="proj-b">
+        <div><div class="lab">Sitede şimdi</div><ul>
+          <li>7 görselin <b>7'si de</b> eski slayt kırpıntısı, etiketler resmin içinde: "Problem", "Target Ecosystem", "Customer Journey Map", "Ideation Sketches", "Exploded view", "Technical Drawings".</li>
+          <li>Ana sayfa kartı da yazılı bir slayt kırpıntısı.</li>
+          <li>3'ten fazla görsel işaretlendiği için kural gereği görsel görsel değil, sayfanın tüm görselleri baştan yapılmalı.</li>
+        </ul></div>
+        <div><div class="lab">PDF'te var</div><ul>
+          <li>p26 Kapak render'ı</li>
+          <li>p27 Brief</li>
+          <li>p28 Sistem haritası</li>
+          <li>p29 İstasyon + reformer eskizleri</li>
+          <li>p30 6 adımlı kullanım senaryosu</li>
+          <li>p31 Reformer</li>
+          <li>p32 İstasyon</li>
+          <li>p33 Ürün tanımı</li>
+        </ul></div>
+        <div><div class="lab">Plan</div><ul>
+          <li>7 görselin tamamı yenilenir.</li>
+          <li>Yeni bölümler: "Use scenario" (p30, sitede hiç yok), "The Reformer" (p31), "The Station" (p32).</li>
+          <li>p28 sistem haritası slayt çerçevesi olmadan export edilir.</li>
+          <li>Customer Journey ancak çerçevesiz export'u varsa kalır, yoksa çıkar.</li>
+        </ul></div>
+      </div>
+      <div class="proj-f"><b>Senden lazım</b>p26–p33 kaynak görselleri. Sistem haritası SVG/PDF olarak varsa daha iyi.</div>
+    </article>
+
+    <!-- Peanut -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">04</span><h3>Peanut Mini Robot</h3><span class="meta">site: "REX" · 9 bölüm · 4 görsel  |  PDF: p34–38 · 5 slayt</span></div>
+      <div class="proj-b">
+        <div><div class="lab">Sitede şimdi</div><ul>
+          <li>Ad "REX", URL <code>rex-tank</code>.</li>
+          <li>"Mecanum" hatası, 3 dilde.</li>
+          <li>Montaj kılavuzu sayfaları doygun mor. Gerçek ürünün kılavuzu oldukları için kanıt olarak değerli.</li>
+          <li>"v2'den v4.2'ye" bölümü yalnızca metin.</li>
+        </ul></div>
+        <div><div class="lab">PDF'te var</div><ul>
+          <li>p34 Kapak, Robotistan ürün no. 18603</li>
+          <li>p35 Brief, kit parçaları fotoğrafı, özellikler</li>
+          <li>p36 Tasarım kriterleri tablosu</li>
+          <li>p37 Pirinç standoff'lu katmanlı gövde + CAD iterasyonları</li>
+          <li>p38 Kılavuz, online ürün sayfası, ambalaj</li>
+        </ul></div>
+        <div><div class="lab">Plan</div><ul>
+          <li>Yeni ad ve URL, mecanum düzeltmesi.</li>
+          <li>p36 kriterleri görsel değil HTML tablo olur.</li>
+          <li>p37'deki CAD iterasyonları "v2 → v4.2" bölümüne şerit olarak girer.</li>
+          <li>p38'den ticari kanıt: ambalaj, 18 sayfalık kılavuz, Robotistan ürün sayfasına "View on Robotistan" linki (p35'teki adres).</li>
+          <li>Metin, daha önce birlikte incelediğimiz Peanut slayt metninden alınır.</li>
+        </ul></div>
+      </div>
+      <div class="proj-f"><b>Senden lazım</b>p35–p38 kaynak görselleri ve ambalaj fotoğrafı.</div>
+    </article>
+
+    <!-- TUS -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">05.1</span><h3>TUS Metallbau</h3><span class="meta">site: sayfa yok  |  PDF: p40–43 · yeni sayfa</span></div>
+      <div class="proj-b">
+        <div><div class="lab">Sitede şimdi</div><ul>
+          <li>Yalnızca CV satırı ve Capabilities'te bir cümle.</li>
+          <li>ASELSAN açısından sitedeki en güçlü üretim kanıtı bu iş olabilir ama görünmüyor.</li>
+        </ul></div>
+        <div><div class="lab">PDF'te var</div><ul>
+          <li>p40 Rol listesi + 3 referans proje: Stayery Hotel Osnabrück, özel müşteri Paderborn, Carl Zeiss AG Braunschweig</li>
+          <li>p41 Ölçümden üretime, antetli pafta</li>
+          <li>p42–43 Yapılmış işlerin fotoğrafları</li>
+        </ul></div>
+        <div><div class="lab">Plan</div><ul>
+          <li>"Kısa proje" şablonu: hero + 3 bilgi + 4–6 görsel + tek bölüm ("From measurement to production").</li>
+          <li>Capabilities ve Timeline'dan bu sayfaya link.</li>
+          <li><b>Yayından önce</b> TUS'tan müşteri adları ve çizimler için izin. p41'deki antet (adres, telefon, CAD başlığı) kırpılır.</li>
+        </ul></div>
+      </div>
+      <div class="proj-f"><b>Senden lazım</b>İzin cevabı. 4–6 fotoğraf. Anteti temizlenmiş bir pafta.</div>
+    </article>
+
+    <!-- F1 / Coffee table / Spiegelau -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">05.2–05.4</span><h3>F1 SIM Steering Wheel · Coffee Table · Spiegelau</h3><span class="meta">PDF: p44 · p45 · p46</span></div>
+      <div class="proj-b">
+        <div><div class="lab">05.2 F1 SIM Steering Wheel · yeni</div><ul>
+          <li>PDF'te yalnızca şu var: "Electronic product · Designed &amp; Built · Arduino-based · Personal project".</li>
+          <li>Kısa sayfa: render'lar + yapılmış ürün + elektronik.</li>
+          <li>Teyit lazım: hangi kart/MCU, kaç buton/encoder, gövde nasıl üretildi, pedal seti de var mı (daha önce "direksiyon ve pedal seti" demiştin, PDF'te yalnızca direksiyon var). <span class="tc">[TO CONFIRM]</span></li>
+        </ul></div>
+        <div><div class="lab">05.3 Coffee Table · yeni</div><ul>
+          <li>PDF p45: tel kafes CAD → render → evde bitmiş ürün.</li>
+          <li>Senin anlatımın: lazer kesim metal gövde/ayaklar, cam tabla, kendi evin için gerçek üretim.</li>
+          <li>Kısa sayfa, 3–4 görsel.</li>
+          <li>Teyit lazım: malzeme/kalınlık, birleştirme yöntemi (kaynak / cıvata), ölçüler. <span class="tc">[TO CONFIRM]</span></li>
+        </ul></div>
+        <div><div class="lab">05.4 Spiegelau · mevcut</div><ul>
+          <li>PDF p46'da "Academic Design Exercise · Unaffiliated with Spiegelau" notu var. Sitede bu not yok, eklenmeli (marka adı izinsiz kullanılıyor görünmesin).</li>
+          <li>p46 görselleri daha yeniyse sitedeki 7 görselden en zayıflarının yerine geçer.</li>
+        </ul></div>
+      </div>
+    </article>
+
+    <!-- More -->
+    <article class="proj">
+      <div class="proj-h"><span class="no">+</span><h3>More projects: Razor · Delta · Urn · Retroscent</h3><span class="meta">PDF p47</span></div>
+      <div class="proj-f" style="border-top:0; background:transparent">Sayfalar kalır, ana sayfada tek satıra iner. Cuma'dan önce içerik işi yok. Retroscent'teki "prototip yok" açıklaması aynen kalır. Razor'daki <code>foam-early</code> (640 px) küçük gösterilir ya da çıkar.</div>
+    </article>
+  </section>
+
+  <!-- 05 -->
+  <section id="gorsel">
+    <div class="sh"><span class="n">05</span><h2>Görsel denetim</h2></div>
+    <p class="intro">7 kontrol: konu netliği, ışık, zemin, çözünürlük, renk tutarlılığı, zanaat sinyali, dürüstlük. Sınıflar: <b>Portfolio-grade</b> (kalır), <b>CSS-recoverable</b> (CSS ile kurtarılır), <b>Reframe</b> (yeniden kırp), <b>Re-render</b> (yeniden üret), <b>Cut</b> (çıkar / değiştir).</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:27%">Dosya</th><th style="width:14%">Sınıf</th><th style="width:29%">Kusur</th><th>Tek satırda çözüm</th></tr></thead>
+      <tbody>
+        <tr><td class="f">herptile/ problem, target-ecosystem, customer-journey, ideation-sketches, exploded-reformer, technical-drawing</td><td>Cut</td><td>Eski slayttan kırpılmış, başlık ve slayt düzeni resmin içinde. 1600×759.</td><td>PDF p26–33'ün yazısız kaynak export'larıyla değiştir. Sayfa tümden yenilenir.</td></tr>
+        <tr><td class="f">index · Herptile kartı</td><td>Cut</td><td>Yazılı slayt kırpıntısı, kart boyutunda okunmuyor.</td><td>p26 kapak render'ı.</td></tr>
+        <tr><td class="f">rockhounder/ concept, drawings-compartments, appendix-model-plans</td><td>Reframe</td><td>"02 Concept", "04 Drawings Rockbag", "07 Appendix Model Plans" başlıkları resmin içinde.</td><td>Hızlı çözüm: üst %12'yi kırp. Kalıcı çözüm: p18 / p19 / p24.</td></tr>
+        <tr><td class="f">rockhounder/hero-render + ana sayfa kartı</td><td>Cut</td><td>Mor renk PDF'teki final gri/sarı ile çelişiyor, başka bir ürün gibi okunuyor.</td><td>p16 veya p21 görseli.</td></tr>
+        <tr><td class="f">rockhounder/use-scenario</td><td>Cut</td><td>1152×540, case study için 1200 px altında.</td><td>p23 kullanım dizisi.</td></tr>
+        <tr><td class="f">pioneer-mk2/ cad-render-01…05, exploded-01…03</td><td>Re-render</td><td>Doygun turkuaz zemin. Zemin disiplini ve renk tutarlılığı kontrolünden kalıyor.</td><td>PDF p7–12 render'ları. Yoksa #F2F2F0 düz zemin, aynı kamera ve ışık kurulumu.</td></tr>
+        <tr><td class="f">pioneer-mk2/bracket-detail</td><td>Re-render</td><td>Turkuaz üstünde magenta parça, 1036 px.</td><td>Gri malzeme, nötr zemin, 2400 px.</td></tr>
+        <tr><td class="f">pioneer-mk2/ pool-test-overhead (683), pool-test-stand (1024), team-teknofest (1024), cross-section (1086)</td><td>CSS-recoverable</td><td>1200 px altında ama 1286 px gösteriliyor, yumuşak görünüyor.</td><td>Orijinaller bulunana kadar 2'li ızgarada en fazla 640 px göster.</td></tr>
+        <tr><td class="f">rex-tank/ assembly-guide, cover-rex</td><td>Portfolio-grade</td><td>Doygun mor gri paletle çatışıyor, ama satışa çıkmış ürünün gerçek kılavuzu.</td><td>Kalsın. En fazla 560 px genişlikte, iki sayfa yan yana, belge çerçevesiyle.</td></tr>
+        <tr><td class="f">razor/foam-early</td><td>Cut</td><td>640×480.</td><td>En fazla 480 px göster ya da çıkar.</td></tr>
+        <tr><td class="f">Tüm case study görselleri (1600 px)</td><td>Re-export</td><td>1286 px'te gösteriliyor. Retina ekran 2572 px ister, keskinlik düşüyor.</td><td>2400 px export, <code>srcset</code> 1200w / 2400w.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 06 -->
+  <section id="teknik">
+    <div class="sh"><span class="n">06</span><h2>Teknik, SEO, erişilebilirlik</h2></div>
+    <p class="intro"><b>Sağlam, dokunma:</b> 38 sayfada 0 kırık iç link · lazy-load zorlanarak test edildi, 0 kırık görsel · her görselde alt metin · geçerli JSON-LD · OG görselleri mevcut · 549 çeviri anahtarı 3 dilde eksiksiz · 375 px'te yatay taşma yok · robots.txt + sitemap (36 URL) · güvenlik başlıkları · PDF tarayıcıda açılıyor (CSP istisnası).</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:30%">Bulgu</th><th style="width:26%">Etkisi</th><th>Düzeltme</th><th style="width:52px">Önc.</th></tr></thead>
+      <tbody>
+        <tr><td>Yazdırınca boş bölümler: <code>[data-reveal]</code> opacity 0'da kalıyor</td><td>Case study yazdıran biri boş sayfa görür (Herptile A4: 2–6. sayfalar boş).</td><td><code>@media print{[data-reveal]{opacity:1!important;transform:none!important}}</code></td><td><span class="p p0">P0</span></td></tr>
+        <tr><td><code>pdf/deck-legacy.html</code> hâlâ yayında</td><td>Eski bilgilerle eski deck bulunabiliyor. "Automotive Design/" ve "Kickboard projesi/" klasörleri yalnızca bunun için deploy ediliyor.</td><td>Sil, <code>/pdf</code>'e 301. Ardından iki klasörü deploy'dan çıkar.</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>PDF indekslenebilir, p48'de iki telefon numarası var</td><td>Google'da çıkar, spam riski var.</td><td><code>/pdf/*.pdf</code> için <code>X-Robots-Tag: noindex</code> ya da web versiyonunda telefonsuz sayfa. Karar senin.</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>CV sayfalarında og:image yok</td><td>LinkedIn / WhatsApp'ta paylaşılan CV linki görselsiz önizleme verir.</td><td>Portre veya marka görseli ekle.</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>34 sayfada 290 görselde width/height yok</td><td>Yüklenirken sayfa kayıyor (CLS).</td><td>Script ile gerçek ölçüler eklenir.</td><td><span class="p p1">P1</span></td></tr>
+        <tr><td>PDF'in metin katmanı Pioneer ve Peanut sayfalarında bozuk</td><td>Kopyala-yapıştır ve arama "7KHUHGHVLJQ…" gibi anlamsız metin veriyor. ATS ve ekran okuyucu okuyamaz, görünüm etkilenmez.</td><td>Export ayarını değiştirip tekrar dene (fontlar tam gömülü). Düzelmezse önemli değil.</td><td><span class="p p2">P2</span></td></tr>
+        <tr><td>Proje kartları hero'nun <code>sizes="60vw"</code> değerini kullanıyor</td><td>Küçük kart için 1600w görsel iniyor.</td><td>Kart için kendi <code>sizes</code> değeri.</td><td><span class="p p2">P2</span></td></tr>
+        <tr><td>İletişim sayfalarında (EN/DE/TR) H1 yok</td><td>SEO ve ekran okuyucu.</td><td>Görsel olarak gizli bir H1.</td><td><span class="p p2">P2</span></td></tr>
+        <tr><td>Meta açıklamalar 170–186 karakter</td><td>Google'da kesiliyor.</td><td>En fazla 155 karakter.</td><td><span class="p p2">P2</span></td></tr>
+        <tr><td>Sitemap yeni sayfaları içermeyecek</td><td>TUS / F1 / Sehpa / Peanut eklendiğinde bulunmaz.</td><td>Her yeni sayfayla birlikte güncellenir.</td><td><span class="p p2">P2</span></td></tr>
+        <tr><td><code>bodies/</code> + <code>build.py</code> eski (<code>/home/claude</code> yolları)</td><td>Yalnızca kafa karışıklığı, deploy edilmiyor.</td><td><code>docs/archive/</code>'a taşı.</td><td><span class="p p2">P2</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 07 -->
+  <section id="yol">
+    <div class="sh"><span class="n">07</span><h2>Yol haritası</h2></div>
+    <div class="road">
+      <div>
+        <div class="col-h">Cuma'dan önce · 5–8 Ekim</div>
+        <div class="day"><span class="d">Pzt – Salı</span><p>PDF revizyonu (sen, A listesi) → yeni export → <code>/pdf</code>'e yüklerim. Paralelde site düzeltmeleri PR'ı (B listesi), önizleme, onayın, main.</p></div>
+        <div class="day"><span class="d">Salı – Çarşamba</span><p>Ana sayfa kartları (Herptile, Rockhounder), Peanut adı ve URL, yazdırma düzeltmesi. Export'lar gelirse Herptile görselleri.</p></div>
+        <div class="day"><span class="d">Perşembe</span><p>Son kontrol: telefon + masaüstü, PDF linki, üç dil. <b>Perşembe akşamından sonra deploy yok.</b></p></div>
+        <div class="day"><span class="d">Cuma 12:00</span><p>Mülakat. Site ve PDF aynı şeyi söylüyor.</p></div>
+      </div>
+      <div>
+        <div class="col-h">Cuma'dan sonra · Ekim – Kasım</div>
+        <div class="day"><span class="d">Adım 1</span><p>Herptile: tüm görsellerin yenilenmesi + 3 yeni bölüm</p></div>
+        <div class="day"><span class="d">Adım 2</span><p>Pioneer: 5 yeni teknik bölüm, render'lar tek tonda</p></div>
+        <div class="day"><span class="d">Adım 3</span><p>Rockhounder: App bölümü + görseller</p></div>
+        <div class="day"><span class="d">Adım 4</span><p>Peanut: kriter tablosu, CAD iterasyonları, ticari kanıt</p></div>
+        <div class="day"><span class="d">Adım 5</span><p>TUS Metallbau sayfası (izinden sonra)</p></div>
+        <div class="day"><span class="d">Adım 6</span><p>F1 + Coffee Table kısa sayfaları</p></div>
+        <div class="day"><span class="d">Adım 7</span><p>Teknik SEO: width/height, H1, og:image, meta, deck-legacy</p></div>
+        <div class="day"><span class="d">Adım 8</span><p>Retina için 2400 px yeniden export + srcset</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section id="nasil">
+    <div class="sh"><span class="n">08</span><h2>Nasıl uygularız</h2></div>
+    <div class="two">
+      <div>
+        <p><b>İş akışı</b></p>
+        <ul class="clean">
+          <li>Her adım ayrı bir branch ve PR. Bir seferde tek bölüm değişir (repo kuralı).</li>
+          <li>Önce önizleme gösteririm, sen onaylarsın, sonra main'e gider ve Vercel yayınlar.</li>
+          <li>Proje bilgisi uydurulmaz. Emin olmadığım her şey <span class="tc">[TO CONFIRM]</span> ile sana sorulur.</li>
+          <li>V1 kimliği korunur: gri tonlar + #C1401F, Inter + JetBrains Mono, 8 px ritim.</li>
+        </ul>
+      </div>
+      <div>
+        <p><b>Görsel export kuralları</b></p>
+        <ul class="clean">
+          <li>PDF'ten kırpma yok. Kaynak dosyadan (AI / INDD / Figma / KeyShot) yazısız, başlıksız export.</li>
+          <li>PNG ya da en yüksek kalite JPG. Uzun kenar case study için <b>2400 px</b>, kart için 1600 px.</li>
+          <li>Bir proje içinde tek beyaz ayarı, tek ton.</li>
+          <li>Dosya adı: <code>&lt;proje&gt;-p&lt;slayt&gt;-&lt;kısa-ad&gt;.png</code>, örn. <code>pioneer-p09-tie-rods.png</code>. Slayt numarası sayesinde neyin nereye gittiğini bilirim.</li>
+          <li>WebP'ye çevirme, srcset ve yerleştirme bende.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><b>Mülakat için not.</b> PDF p15'te TEKNOFEST ödülü "TEKNOFEST – aselsan" olarak geçiyor; bu, panelle doğal bir açılış konusu. Rol tanımın (Pioneer) ve iki ödül/yarışma adı mülakattan önce tekleşmiş olmalı, çünkü panel bunları büyük ihtimalle doğrudan soracak. TUS (üretim) ve Peanut (satışa çıkmış ürün) bu panel için en güçlü iki kanıtın.</div>
+  </section>
+
+  <!-- 09 -->
+  <section id="sorular">
+    <div class="sh"><span class="n">09</span><h2>Açık sorular: cevabın lazım</h2></div>
+    <ol class="qs">
+      <li><b>Rockhounder</b>: "2nd Prize" mı, "Best Graduation Project" mi? Resmi ifade ne?</li>
+      <li><b>Explorer 3.lüğü</b>: MATE ROV mu, TAC Challenge mı, yoksa ikisi aynı yarışmanın adı mı (örn. "MATE ROV – TAC Challenge")?</li>
+      <li><b>Pioneer'daki rolün</b>: tek cümleyle ne yaptın? (burun modülü / dış gövde / orta gövde / sensör paketi)</li>
+      <li><b>TUS</b>: müşteri adlarını ve çizimleri yayımlamak için iznin var mı?</li>
+      <li><b>PDF p48</b>: telefon numaraları web versiyonunda kalsın mı, PDF Google'da indekslensin mi?</li>
+      <li><b>Peanut URL</b>: <code>/work/peanut.html</code>'e taşıyalım mı (eski link 301 ile çalışmaya devam eder)?</li>
+      <li><b>F1</b>: kart/MCU, buton/encoder sayısı, gövde üretimi, pedal seti var mı?</li>
+      <li><b>Sehpa</b>: malzeme ve kalınlık, birleştirme yöntemi, ölçüler?</li>
+      <li><b>Behance</b>: aktif mi, siteye eklensin mi?</li>
+    </ol>
+  </section>
+
+  <footer>
+    Hazırlayan: Claude Code · 5 Ekim 2026 · main @ 4df9577<br>
+    Yöntem: 38 sayfanın taranması (link, görsel, alt metin, JSON-LD, i18n), Playwright ile tam sayfa ekran görüntüleri (lazy-load ve scroll-reveal zorlanarak), A4 yazdırma testi, 48 PDF sayfasından metin ve küçük resim çıkarımı.
+  </footer>
+</div>
+
+</body>
+</html>
